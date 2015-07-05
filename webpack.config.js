@@ -1,73 +1,43 @@
-var Webpack = require('webpack'),
-    path = require('path'),
-    pkg = require('./package.json');
+var path = require("path");
+var webpack = require('webpack')
+var commonLoaders = [
+    { test: /\.js$/, loader: "jsx-loader" },
+    { test: /\.png$/, loader: "url-loader" },
+    { test: /\.jpg$/, loader: "file-loader" },
+];
+var nodeModulesPath = path.resolve(__dirname, 'node_modules');
+var buildPath = path.resolve(__dirname, 'server', 'build');
+var indexPath = path.resolve(__dirname, 'app', 'index', 'entry.js');
+var pageAPath = path.resolve(__dirname, 'app', 'pageA', 'entry.js');
+var pageBPath = path.resolve(__dirname, 'app', 'pageB', 'entry.js');
 
-var eslintrcPath = path.resolve(__dirname, '.eslintrc'),
-    nodeModulesPath = path.resolve(__dirname, 'node_modules'),
-    buildPath = path.resolve(__dirname, 'src', 'build'),
-    mainPath = path.resolve(__dirname, 'src', 'app.js');
-
-var config = {
-    devtool: 'eval',
-    watch: true,
-    entry: {
-        app: [
-            'webpack/hot/dev-server',
-            'webpack-dev-server/client?http://localhost:8080',
-            mainPath
-        ],
-        vendors: pkg.vendors
-    },
-    output: {
-        path: buildPath,
-        filename: 'bundle.js',
-        publicPath: '/build/'
-    },
-    module: {
-        // preLoaders: [
-        //     {
-        //         test: /\.js(x)?$/,
-        //         loader: 'eslint',
-        //         exclude: nodeModulesPath
-        //     }
-        // ],
-        loaders: [
-            {
-                test: /\.js(x)?$/,
-                loader: 'babel',
-                exclude: nodeModulesPath
-            },
-            {
-                test: /\.(css|scss)$/,
-                loaders: ['style', 'css', 'sass']
-            },
-            {
-                test: /\.(png|jpg|jpeg|gif|svg)$/,
-                loader: 'url?limit=8192'
-            },
-            {
-                test : /\.(woff|woff2|ttf|eot)$/,
-                loader: 'url'
-            }
+module.exports = [
+    {
+        // The configuration for the client
+        name: "browser",
+        entry: {
+            index: [
+                'webpack/hot/dev-server',
+                'webpack-dev-server/client?http://localhost:8080',
+                indexPath
+            ]
+        },
+        output: {
+            path: buildPath,
+            filename: "[name].js"
+        },
+        module: {
+            loaders: commonLoaders.concat([
+                { test: /\.css$/, loader: "style-loader!css-loader" },
+                {
+                    test: /\.js(x)?$/,
+                    loader: 'babel',
+                    exclude: nodeModulesPath
+                }
+            ])
+        },
+        plugins: [
+            new webpack.optimize.CommonsChunkPlugin('common.js')
         ]
-    },
-    plugins: [
-        new Webpack.HotModuleReplacementPlugin(),
-        new Webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery',
-            'window.jQuery': 'jquery',
-            'root.jQuery': 'jquery'
-        }),
-        new Webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.bundle.js', Infinity),
-        new Webpack.NoErrorsPlugin()
-    ],
-    resolve: {
-        extensions: ['', '.js', '.jsx', '.css', '.scss']
-    },
-    eslint: {
-        configFile: eslintrcPath
     }
-};
-
-module.exports = config;
+];
