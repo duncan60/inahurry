@@ -8,8 +8,6 @@ var commonLoaders = [
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var buildPath = path.resolve(__dirname, 'server', 'build');
 var indexPath = path.resolve(__dirname, 'app', 'index', 'entry.js');
-var pageAPath = path.resolve(__dirname, 'app', 'pageA', 'entry.js');
-var pageBPath = path.resolve(__dirname, 'app', 'pageB', 'entry.js');
 
 module.exports = [
     {

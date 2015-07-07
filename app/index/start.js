@@ -16,4 +16,3 @@ class Start extends BaseComponent {
 }
 
 export default Start;
-
