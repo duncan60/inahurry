@@ -39,7 +39,7 @@ class Page extends BaseComponent {
                     latitude : position.coords.latitude,
                     longitude: position.coords.longitude
                 });
-                TrainTimetableActions.getTrainTimetable({latitude:position.coords.latitude, longitude:position.coords.longitude});
+                TrainTimetableActions.getTrainTimetable(position.coords.latitude, position.coords.longitude);
             });
         } else {
 
