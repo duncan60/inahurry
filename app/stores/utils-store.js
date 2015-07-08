@@ -4,7 +4,7 @@ const CHANGE_EVENT = 'change';
 
 class UtilsStore extends EventEmitter {
     emitChange(type) {
-    	setTimeout(() => {
+        setTimeout(() => {
             this.emit(CHANGE_EVENT, type);
         }, 0);
     }
