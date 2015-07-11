@@ -1,4 +1,5 @@
 let TrainsTimeTableData = {
+	key: '火車站',
 	station: [
 		{
 			id  : '1810',
@@ -83,7 +84,7 @@ let TrainsTimeTableData = {
 	  	 	name: '百福',
 	  	 	lat : 25.077924,
 	  	 	long: 121.693623
-	  	 }
+	  	},
 	  	{
 	  		id  : '1004',
 	  	 	name: '五堵',
@@ -95,7 +96,7 @@ let TrainsTimeTableData = {
 	  	 	name: '汐止',
 	  	 	lat : 25.068315,
 	  	 	long: 121.661734
-	  	 },
+	  	},
 	  	{
 	  		id  : '1031',
 	  	 	name: '汐科',
@@ -235,6 +236,8 @@ let TrainsTimeTableData = {
 	  	 	name: '北湖',
 	  	 	lat : 24.922226,
 	  	 	long: 121.055735
-	  	 },
+	  	 }
 	]
 };
+
+export default TrainsTimeTableData;
