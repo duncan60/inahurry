@@ -1,5 +1,3 @@
-var request = require("request");
-
 import trainsTimetableData from './trains-timetable-data';
 
 let closestTrainStations =  {
@@ -12,7 +10,7 @@ let closestTrainStations =  {
 			idx;
 
 		trainsTimetableData.stations.forEach((item, i, ary) => {
-           tmp = closestTrainStations.getDistance(lat, long, item.lat, item.long);
+           tmp = this.getDistance(lat, long, item.lat, item.long);
            if (tmp < lowest) {
            		lowest = tmp;
            		item.dist =tmp;
@@ -20,25 +18,35 @@ let closestTrainStations =  {
            		idx = i;
            }
 		})
-		northStation = trainsTimetableData.stations[idx + 1];
-		southStation = trainsTimetableData.stations[idx - 1];
-		return {targetStation, northStation, southStation} ;
+		northStation = trainsTimetableData.stations[idx - 1];
+		southStation = trainsTimetableData.stations[idx + 1];
+		return {targetStation, northStation, southStation};
 		//var minX = Math.min.apply(Math, stations.map(function(val) { return val.dist; }));
 	},
 	rad(d) {
 		return d * Math.PI / 180.0;
 	},
 	getDistance(lat1,  lng1,  lat2,  lng2) {
-		let radLat1 = closestTrainStations.rad(lat1),
-			radLat2 = closestTrainStations.rad(lat2);
+		let radLat1 = this.rad(lat1),
+			radLat2 = this.rad(lat2);
 		let a = radLat1 - radLat2,
-			b = closestTrainStations.rad(lng1) - closestTrainStations.rad(lng2);
+			b = this.rad(lng1) - this.rad(lng2);
 		let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin( b / 2), 2)));
 		s = s * 6378.137 ;// EARTH_RADIUS;
 		s = Math.round(s * 10000) / 10000;
 		return s;
 	}
 }
-
+/* parameters rule
+searchtype=0//0
+searchdate=2015/05/31 //日期
+fromcity=0 //地區起點ＩＤ
+tocity=10//地區城市ＩＤ
+fromstation=1008 // 火車起點站ＩＤ
+tostation=1238   //火車終點ＩＤ
+trainclass=2 //車種
+fromtime=0000//搜尋時間起點[00 : 00]
+totime=2359//搜尋時間終點[23 : 59]
+*/
 
 export default closestTrainStations;

@@ -10,6 +10,7 @@ class TrainTimetableStore extends UtilsStore {
     }
     setList(data) {
         list = data;
+        console.log('list', list);
     }
     getList() {
         return list;

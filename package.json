@@ -33,7 +33,9 @@
     "webpack-dev-server": "^1.9.0"
   },
   "devDependencies": {
-    "node-jsx": "^0.13.3",
-    "flux": "^2.0.3"
+    "cheerio": "^0.19.0",
+    "flux": "^2.0.3",
+    "moment": "^2.10.3",
+    "node-jsx": "^0.13.3"
   }
 }
