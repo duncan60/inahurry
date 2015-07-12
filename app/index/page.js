@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseComponent from '../base-component';
-import CommonChild from '../common/common-child';
+import Item from '../common/item';
 
 //store
 import TrainTimeTableStore from '../stores/train-timetable-store';
@@ -30,7 +30,7 @@ class Page extends BaseComponent {
         TrainTimeTableStore.removeChangeListener(this._storeChange);
     }
     _storeChange() {
-        console.log('_storeChange');
+
     }
     _getGeolocation() {
         if (navigator.geolocation) {
@@ -50,7 +50,6 @@ class Page extends BaseComponent {
             <div>
                 <p>latitude : {this.state.latitude}</p>
                 <p>longitude: {this.state.longitude}</p>
-                <CommonChild />
             </div>
         );
     }
