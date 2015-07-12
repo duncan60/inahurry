@@ -2,18 +2,22 @@ import AppDispatcher from '../dispatcher/app-dispatcher';
 import Constants from '../constants/constants';
 import UtilsStore from './utils-store.js';
 
-let list = [];
+let list = {}
+let dataReady = false;
 
 class TrainTimetableStore extends UtilsStore {
     constructor() {
         super();
     }
     setList(data) {
-        list = data;
-        console.log('list', list);
+        list = JSON.parse(data).data;
+        dataReady = true ;
     }
     getList() {
         return list;
+    }
+    getDataReady() {
+        return dataReady;
     }
 }
 

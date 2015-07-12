@@ -7,10 +7,10 @@ class Item extends BaseComponent {
         this._bind();
     }
     render() {
-        const {type, startTime} = this.props;
+        const {type, startTime, router} = this.props;
         return (
             <div className="item">
-                車種：<span>type</span> 發車時間: <span>startTime </span> 路線: <span>router </span>
+                車種：<span>{type}</span> 發車時間: <span>{startTime} </span> 路線: <span>{router} </span>
             </div>
         );
     }

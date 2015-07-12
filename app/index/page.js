@@ -8,17 +8,21 @@ import TrainTimeTableStore from '../stores/train-timetable-store';
 //actions
 import TrainTimetableActions from '../actions/train-timetable-actions';
 
+let getStore = () => {
+    return {
+        trainsData: TrainTimeTableStore.getList(),
+        dataReady : TrainTimeTableStore.getDataReady(),
+    }
+}
 class Page extends BaseComponent {
     constructor(props) {
         super(props);
         this._bind(
             '_getGeolocation',
-            '_storeChange'
+            '_storeChange',
+            '_renderItems'
         );
-        this.state = {
-            latitude : 0,
-            longitude: 0
-        }
+        this.state = getStore();;
     }
     componentWillMount() {
         this._getGeolocation();
@@ -29,16 +33,41 @@ class Page extends BaseComponent {
     componentWillUnmount() {
         TrainTimeTableStore.removeChangeListener(this._storeChange);
     }
+    _renderItems() {
+        if(!this.state.dataReady) {
+            return '';
+        }
+        const {south, north} = this.state.trainsData;
+        let southItems, northItems;
+        southItems = south.map((item, i) => {
+            return (
+                <Item key={i} type={item.type} startTime={item.startTime} router={item.router} />
+            );
+        });
+        northItems = north.map((item, i) => {
+            return (
+                <Item key={i} type={item.type} startTime={item.startTime} router={item.router} />
+            );
+        });
+        return (
+            <div>
+                <p>北上</p>
+                <ul>
+                    {northItems}
+                </ul>
+                <p>南下</p>
+                 <ul>
+                    {southItems}
+                </ul>
+            </div>
+        );
+    }
     _storeChange() {
-
+        this.setState(getStore());
     }
     _getGeolocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
-                this.setState({
-                    latitude : position.coords.latitude,
-                    longitude: position.coords.longitude
-                });
                 TrainTimetableActions.getTrainTimetable(position.coords.latitude, position.coords.longitude);
             });
         } else {
@@ -46,10 +75,11 @@ class Page extends BaseComponent {
         }
     }
     render() {
+        let lists = this._renderItems();
+
         return (
             <div>
-                <p>latitude : {this.state.latitude}</p>
-                <p>longitude: {this.state.longitude}</p>
+                {lists}
             </div>
         );
     }
