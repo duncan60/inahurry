@@ -1,6 +1,5 @@
 let TrainsTimeTableData = {
-	key: '火車站',
-	station: [
+	stations: [
 		{
 			id  : '1810',
 			name: '福隆',

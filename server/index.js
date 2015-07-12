@@ -3,7 +3,7 @@ require('node-jsx').install();
 import express from 'express';
 import opn from 'opn';
 
-import SearchTrainsStations from './search-train-stations';
+import closestTrainStations from './closest-train-stations';
 
 import React from 'react';
 import DefaultPage from './default-page';
@@ -11,8 +11,8 @@ import bundle from'./webpack-server';
 
 let app = express();
 
-let searchTrainsStations = new SearchTrainsStations(100, 200);
-
+let closestTrains = closestTrainStations.search(25.033888, 121.468605);
+console.log('closestTrains', closestTrains);
 
 // bundle();
 
