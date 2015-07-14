@@ -26,7 +26,7 @@ module.exports = [
         },
         module: {
             loaders: commonLoaders.concat([
-                { test: /\.css$/, loader: "style-loader!css-loader" },
+                { test: /\.css$/, loader: "style-loader!css-loader!cssnext-loader" },
                 {
                     test: /\.js(x)?$/,
                     loader: 'babel',

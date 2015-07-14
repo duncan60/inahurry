@@ -1,3 +1,8 @@
+/* custom properties */
+:root {
+	--bgc: #ccc;
+}
+
 body{
-	background-color: #ccc;
+	background-color: var(--bgc);
 }
