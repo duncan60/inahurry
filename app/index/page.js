@@ -10,8 +10,9 @@ import TrainTimetableActions from '../actions/train-timetable-actions';
 
 let getStore = () => {
     return {
-        trainsData: TrainTimeTableStore.getList(),
-        dataReady : TrainTimeTableStore.getDataReady(),
+        trainsTimetable: TrainTimeTableStore.getTrainsTimetable(),
+        closestTrains  : TrainTimeTableStore.getClosestTrains(),
+        dataReady      : TrainTimeTableStore.getDataReady()
     }
 }
 class Page extends BaseComponent {
@@ -20,7 +21,8 @@ class Page extends BaseComponent {
         this._bind(
             '_getGeolocation',
             '_storeChange',
-            '_renderItems'
+            '_renderItems',
+            '_renderHeader'
         );
         this.state = getStore();;
     }
@@ -33,11 +35,23 @@ class Page extends BaseComponent {
     componentWillUnmount() {
         TrainTimeTableStore.removeChangeListener(this._storeChange);
     }
+    _renderHeader() {
+        if(!this.state.dataReady) {
+            return '';
+        }
+        const {targetStation} = this.state.closestTrains;
+        return (
+            <div>
+                <p>最接近: {targetStation.name}火車站</p>
+                <p>距離: {targetStation.dist} 公里</p>
+            </div>
+        );
+    }
     _renderItems() {
         if(!this.state.dataReady) {
             return '';
         }
-        const {south, north} = this.state.trainsData;
+        const {south, north} = this.state.trainsTimetable;
         let southItems, northItems;
         southItems = south.map((item, i) => {
             return (
@@ -51,11 +65,11 @@ class Page extends BaseComponent {
         });
         return (
             <div>
-                <p>北上</p>
+                <p>北上列車</p>
                 <ul>
                     {northItems}
                 </ul>
-                <p>南下</p>
+                <p>南下列車</p>
                  <ul>
                     {southItems}
                 </ul>
@@ -64,6 +78,7 @@ class Page extends BaseComponent {
     }
     _storeChange() {
         this.setState(getStore());
+        console.log('state', this.state);
     }
     _getGeolocation() {
         if (navigator.geolocation) {
@@ -71,14 +86,15 @@ class Page extends BaseComponent {
                 TrainTimetableActions.getTrainTimetable(position.coords.latitude, position.coords.longitude);
             });
         } else {
-
+            alert('無法使用定位，請允許瀏覽器開啟定位功能');
         }
     }
     render() {
-        let lists = this._renderItems();
-
+        let lists  = this._renderItems();
+        let header = this._renderHeader();
         return (
             <div>
+                {header}
                 {lists}
             </div>
         );

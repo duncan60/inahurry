@@ -2,7 +2,8 @@ import AppDispatcher from '../dispatcher/app-dispatcher';
 import Constants from '../constants/constants';
 import UtilsStore from './utils-store.js';
 
-let list = {}
+let trainsTimetableData = [];
+let closestTrains = {};
 let dataReady = false;
 
 class TrainTimetableStore extends UtilsStore {
@@ -10,11 +11,16 @@ class TrainTimetableStore extends UtilsStore {
         super();
     }
     setList(data) {
-        list = JSON.parse(data).data;
+        let resData = JSON.parse(data).data;
+        trainsTimetableData = resData.trainsTimetableData;
+        closestTrains = resData.closestTrains;
         dataReady = true ;
     }
-    getList() {
-        return list;
+    getTrainsTimetable() {
+        return trainsTimetableData;
+    }
+    getClosestTrains() {
+        return closestTrains;
     }
     getDataReady() {
         return dataReady;

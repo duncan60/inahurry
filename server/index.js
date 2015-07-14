@@ -34,10 +34,11 @@ app.route('/api/trains')
 		crawlTrains.getTrainsData(closestTrains,(type, trainsData) => {
 			trainsTimetableData[type] = trainsData;
 			if(trainsTimetableData.north !== undefined && trainsTimetableData.south !== undefined) {
-				console.log('complete');
-				console.log('trainsTimetableData', trainsTimetableData);
 				res.json({
-	            	data : trainsTimetableData,
+	            	data : {
+	            		trainsTimetableData: trainsTimetableData,
+	            		closestTrains      : closestTrains
+	            	},
 	            	message  : "search trains ok!"
 	        	});
 			}
