@@ -1,5 +1,5 @@
 var path = require("path");
-var webpack = require('webpack')
+var Webpack = require('webpack')
 var commonLoaders = [
     { test: /\.js$/, loader: "jsx-loader" },
     { test: /\.png$/, loader: "url-loader" },
@@ -8,7 +8,8 @@ var commonLoaders = [
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var buildPath = path.resolve(__dirname, 'server', 'build');
 var indexPath = path.resolve(__dirname, 'app', 'index', 'entry.js');
-
+var autoprefixer = require('autoprefixer-core');
+var csswring     = require('csswring');
 module.exports = [
     {
         // The configuration for the client
@@ -26,7 +27,9 @@ module.exports = [
         },
         module: {
             loaders: commonLoaders.concat([
-                { test: /\.css$/, loader: "style-loader!css-loader!cssnext-loader" },
+                {   test: /\.css$/,
+                    loader: "style-loader!css-loader!postcss-loader!cssnext-loader"
+                },
                 {
                     test: /\.js(x)?$/,
                     loader: 'babel',
@@ -34,8 +37,12 @@ module.exports = [
                 }
             ])
         },
+        postcss: function () {
+            return [autoprefixer, csswring];
+        },
         plugins: [
-            new webpack.optimize.CommonsChunkPlugin('common.js')
+            new Webpack.HotModuleReplacementPlugin(),
+            new Webpack.optimize.CommonsChunkPlugin('common.js')
         ]
     }
 ];

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import BaseComponent from '../base-component';
 import Item from '../common/item';
@@ -64,16 +65,20 @@ class Page extends BaseComponent {
             );
         });
         return (
-            <div>
-                <p>北上列車</p>
-                <ul>
-                    {northItems}
-                </ul>
+            <section className="section-inner">
+                <div className="list-wrapper">
+                    <p>北上列車</p>
+                    <ul className="list-group">
+                        {northItems}
+                    </ul>
+                </div>
+                <div className="list-wrapper">
                 <p>南下列車</p>
-                 <ul>
-                    {southItems}
-                </ul>
-            </div>
+                    <ul className="list-group">
+                        {southItems}
+                    </ul>
+                </div>
+            </section>
         );
     }
     _storeChange() {

@@ -9,9 +9,15 @@ class Item extends BaseComponent {
     render() {
         const {type, startTime, router} = this.props;
         return (
-            <div className="item">
-                車種：<span>{type}</span> 發車時間: <span>{startTime} </span> 路線: <span>{router} </span>
-            </div>
+            <li className="item">
+                <div className="item-type">
+                    <p>{type}</p>
+                </div>
+                <div className="item-info">
+                    <p className="item-path">{router} </p>
+                    <p className="item-time">{startTime} </p>
+                </div>
+            </li>
         );
     }
 }

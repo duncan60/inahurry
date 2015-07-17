@@ -6,3 +6,35 @@
 body{
 	background-color: var(--bgc);
 }
+p{
+	padding: 0;
+	margin: 0;
+	line-height: 1.4;
+}
+.list-wrapper{
+	margin: 10px 0;
+}
+.list-group{
+  	margin    : 0;
+  	padding   : 0;
+	list-style: none;
+}
+.item{
+	display: flex;
+	margin-bottom: 10px;
+	border:1px solid #666;
+}
+.item-type{
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	background-color: #fff;
+}
+.item-info{
+	flex: 2;
+}
+.item-time{
+	font-size: 24px;
+}
