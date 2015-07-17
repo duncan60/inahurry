@@ -37,16 +37,32 @@ class Page extends BaseComponent {
         TrainTimeTableStore.removeChangeListener(this._storeChange);
     }
     _renderHeader() {
-        if(!this.state.dataReady) {
+        if (!this.state.dataReady) {
             return '';
         }
         const {targetStation} = this.state.closestTrains;
+
         return (
-            <div>
-                <p>最接近: {targetStation.name}火車站</p>
-                <p>距離: {targetStation.dist} 公里</p>
-            </div>
+            <header className="info-header">
+                <div className="info-inner">
+                    <p>最接近 : {targetStation.name} 火車站</p>
+                    <p>距離 : {targetStation.dist} Km</p>
+                </div>
+            </header>
         );
+    }
+    _storeChange() {
+        this.setState(getStore());
+        console.log('state', this.state);
+    }
+    _getGeolocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                //TrainTimetableActions.getTrainTimetable(position.coords.latitude, position.coords.longitude);
+            });
+        } else {
+            alert('無法使用定位，請允許瀏覽器開啟定位功能');
+        }
     }
     _renderItems() {
         if(!this.state.dataReady) {
@@ -81,26 +97,13 @@ class Page extends BaseComponent {
             </section>
         );
     }
-    _storeChange() {
-        this.setState(getStore());
-        console.log('state', this.state);
-    }
-    _getGeolocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                TrainTimetableActions.getTrainTimetable(position.coords.latitude, position.coords.longitude);
-            });
-        } else {
-            alert('無法使用定位，請允許瀏覽器開啟定位功能');
-        }
-    }
     render() {
-        let lists  = this._renderItems();
-        let header = this._renderHeader();
+        let header = this._renderHeader(),
+            list  = this._renderItems();
         return (
-            <div>
+            <div className="content-inner">
                 {header}
-                {lists}
+                {list}
             </div>
         );
     }

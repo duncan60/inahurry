@@ -4,7 +4,7 @@ import UtilsStore from './utils-store.js';
 
 let trainsTimetableData = [];
 let closestTrains = {};
-let dataReady = false;
+let dataReady = true;
 
 class TrainTimetableStore extends UtilsStore {
     constructor() {
