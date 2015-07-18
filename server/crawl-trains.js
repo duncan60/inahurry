@@ -28,6 +28,7 @@ let crawlTrains =  {
 	        url: this.templateURL(type),
 	        method: "GET"
 	    }, (e,r,b) => {
+	    	console.log('url' ,this.templateURL('north'));
 	    	if(e || !b) { return; }
 	    	let $ = cheerio.load(b),
 	        	result = [],
@@ -48,5 +49,15 @@ let crawlTrains =  {
 	}
 }
 
-
+/* parameters rule
+searchtype=0//0
+searchdate=2015/05/31 //日期
+fromcity=0 //地區起點ＩＤ
+tocity=10//地區城市ＩＤ
+fromstation=1008 // 火車起點站ＩＤ
+tostation=1238   //火車終點ＩＤ
+trainclass=2 //車種
+fromtime=0000//搜尋時間起點[00 : 00]
+totime=2359//搜尋時間終點[23 : 59]
+*/
 export default crawlTrains;

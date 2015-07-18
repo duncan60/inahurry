@@ -3,23 +3,22 @@
 	--bgc: #fff;
 	--header-bgc:#42CECB;
 }
-
+html {
+  	font-size: 112.5%;
+	font-family: MHei,STHeitiTC-Light,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
 body{
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#266b94+0,92c1e5+100 */
-background: #266b94; /* Old browsers */
-background: -moz-linear-gradient(-45deg,  #266b94 0%, #92c1e5 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#266b94), color-stop(100%,#92c1e5)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(-45deg,  #266b94 0%,#92c1e5 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(-45deg,  #266b94 0%,#92c1e5 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(-45deg,  #266b94 0%,#92c1e5 100%); /* IE10+ */
-background: linear-gradient(135deg,  #266b94 0%,#92c1e5 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#266b94', endColorstr='#92c1e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
+	background: linear-gradient(135deg,  #266b94 0%,#92c1e5 100%); /* W3C */
+	-webkit-font-smoothing: antialiased;
 }
 p{
 	padding: 0;
 	margin: 0;
 	line-height: 1.4;
+	font-weight: 200;
+}
+.mini-fs{
+	font-size:12px;
 }
 .pull-right{
 	float:right;
@@ -29,15 +28,30 @@ p{
 	color:#fff;
 	font-size: 24px;
 }
+.main-title{
+	margin: 0 0 6px;
+	font-size: 28px;
+	font-weight: normal;
+}
+.subsection-headline{
+	font-size: 22px;
+}
+.footer{
+	padding:10px;
+	color:#fff;
+	text-align:center;
+}
 .km-info{
 	font-size:16px;
+	font-family: 'Roboto Mono' ;
+	font-style: italic;
 }
 .info-inner{
 	padding:26px 20px;
 }
 
 .list-wrapper{
-	padding:20px 10px;
+	padding:10px;
 }
 .list-group{
   	margin    : 0;
@@ -45,14 +59,14 @@ p{
 	list-style: none;
 }
 .group-title{
-	margin-bottom: 6px;
+	margin-bottom: 10px;
 	font-size:20px;
 	color:#fff;
 }
 .item{
 	display: flex;
 	padding:16px 10px;
-	margin-bottom: 6px;
+	margin-bottom: 4px;
 	border-radius:4px;
 	color:#fff;
 	background-color: rgba(255, 255, 255, 0.3);
@@ -72,5 +86,7 @@ p{
 	justify-content: center;
 }
 .item-time{
-	font-size:42px;
+	font-family: 'Roboto Mono' ;
+	font-style: italic;
+	font-size:46px;
 }

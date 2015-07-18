@@ -28,7 +28,7 @@ class Page extends BaseComponent {
         this.state = getStore();;
     }
     componentWillMount() {
-        //this._getGeolocation();
+        this._getGeolocation();
     }
     componentDidMount() {
         TrainTimeTableStore.addChangeListener(this._storeChange);
@@ -45,8 +45,10 @@ class Page extends BaseComponent {
         return (
             <header className="info-header">
                 <div className="info-inner">
-                    <p>{targetStation.name} 火車站 </p>
-                    <p className="km-info"> 約 {parseInt(targetStation.dist)} Km</p>
+                    <h2 className="main-title">台鐵時刻表 </h2>
+                    <p className="subsection-headline">{targetStation.name}火車站
+                        <span className="km-info"> 約 {parseInt(targetStation.dist)} Km</span>
+                    </p>
                 </div>
             </header>
         );
@@ -104,6 +106,9 @@ class Page extends BaseComponent {
             <div className="content-inner">
                 {header}
                 {list}
+                <footer className="footer">
+                    <p className="mini-fs">資料來源：台灣鐵路局火車時刻表</p>
+                </footer>
             </div>
         );
     }

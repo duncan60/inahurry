@@ -7,9 +7,10 @@ class DefaultPage extends React.Component {
             <html>
                 <head>
                     <meta charSet="utf-8" />
-                    <title>react server rendering</title>
+                    <title>特搜時刻表</title>
                     <meta name="description" content="" />
                     <meta name="viewport" content="width=device-width" />
+                    <link href='http://fonts.googleapis.com/css?family=Roboto+Mono:400,300italic' rel='stylesheet' type='text/css' />
                 </head>
                 <body>
                     <div id="content"></div>
