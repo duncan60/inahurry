@@ -23,7 +23,8 @@ class Page extends BaseComponent {
             '_getGeolocation',
             '_storeChange',
             '_renderItems',
-            '_renderHeader'
+            '_renderClosestStationInfo',
+            '_renderNotHasTrains'
         );
         this.state = getStore();;
     }
@@ -35,23 +36,6 @@ class Page extends BaseComponent {
     }
     componentWillUnmount() {
         TrainTimeTableStore.removeChangeListener(this._storeChange);
-    }
-    _renderHeader() {
-        if (!this.state.dataReady) {
-            return '';
-        }
-        const {targetStation} = this.state.closestTrains;
-
-        return (
-            <header className="info-header">
-                <div className="info-inner">
-                    <h2 className="main-title">台鐵時刻表 </h2>
-                    <p className="subsection-headline">{targetStation.name}火車站
-                        <span className="km-info"> 約 {parseInt(targetStation.dist)} Km</span>
-                    </p>
-                </div>
-            </header>
-        );
     }
     _storeChange() {
         this.setState(getStore());
@@ -65,6 +49,28 @@ class Page extends BaseComponent {
         } else {
             alert('無法使用定位，請允許瀏覽器開啟定位功能');
         }
+    }
+    _renderClosestStationInfo() {
+        if (!this.state.dataReady) {
+            return '';
+        }
+        const {targetStation} = this.state.closestTrains;
+
+        return (
+            <p className="subsection-headline">
+                <span className="mini-fs">距離 </span>{targetStation.name}火車站
+                <span className="mini-fs"> 約 {(+targetStation.dist).toFixed(2)} Km</span>
+            </p>
+        );
+    }
+    _renderNotHasTrains() {
+        return (
+            <li className="item">
+                <div className="item-type">
+                        <p>目前沒有任何列車</p>
+                </div>
+            </li>
+        );
     }
     _renderItems() {
         if(!this.state.dataReady) {
@@ -82,8 +88,14 @@ class Page extends BaseComponent {
                 <Item key={i} type={item.type} startTime={item.startTime} router={item.router} />
             );
         });
+        if(south.length === 0) {
+            southItems = this._renderNotHasTrains();
+        }
+        if(north.length === 0) {
+            northItems = this._renderNotHasTrains();
+        }
         return (
-            <section className="list-section">
+            <div className="list-section-inner">
                 <div className="list-wrapper north-list">
                     <p className="group-title">北上列車</p>
                     <ul className="list-group">
@@ -96,18 +108,25 @@ class Page extends BaseComponent {
                         {southItems}
                     </ul>
                 </div>
-            </section>
+            </div>
         );
     }
     render() {
-        let header = this._renderHeader(),
+        let header = this._renderClosestStationInfo(),
             list  = this._renderItems();
         return (
             <div className="content-inner">
-                {header}
-                {list}
+                <header className="info-header">
+                    <div className="info-inner">
+                        <h2 className="main-title">台鐵時刻表 </h2>
+                        {header}
+                    </div>
+                </header>
+                <section className="list-section">
+                    {list}
+                 </section>
                 <footer className="footer">
-                    <p className="mini-fs">資料來源：台灣鐵路局火車時刻表</p>
+                    <p className="mini-fs">資料來源：交通部台灣鐵路管理局 列車時刻查詢系統</p>
                 </footer>
             </div>
         );

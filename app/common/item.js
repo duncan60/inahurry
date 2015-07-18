@@ -17,7 +17,7 @@ class Item extends BaseComponent {
                     </div>
                 </div>
                 <div className="item-info">
-                    <p className="item-time">{startTime} </p>
+                    <p className="item-time"><span className="mini-fs"> 發車 </span>{startTime} </p>
                 </div>
             </li>
         );

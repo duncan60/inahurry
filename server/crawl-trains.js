@@ -8,7 +8,6 @@ let crawlTrains =  {
 		this.stations = stations;
 		this.postRequest('north', callback);
 		this.postRequest('south', callback);
-		//console.log('result', this.result);
 	},
 
 	templateURL(type) {
@@ -19,23 +18,21 @@ let crawlTrains =  {
 			fromStationId =  targetStation.id,
 			toCityId      =  type === 'north' ? northStation.city : southStation.city,
 			toStationId   =  type === 'north' ? northStation.id : southStation.id,
-			nowTime       = momentDate.format('hhmm'),
-			totime        = momentDate.add(1, 'hours').format('hhmm');
+			nowTime       = momentDate.format('HHmm'),
+			totime        = momentDate.add(1, 'hours').format('HH') === '00' ? '24' + momentDate.add(1, 'hours').format('mm')  : momentDate.add(1, 'hours').format('HHmm') ;
 		return `http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=${searchDate}&fromcity=${fromCityId}&tocity=${toCityId}&fromstation=${fromStationId}&tostation=${toStationId}&trainclass=2&fromtime=${nowTime}&totime=${totime}`;
 	},
 	postRequest(type, callback) {
 		request({
-	        url: this.templateURL(type),
-	        method: "GET"
-	    }, (e,r,b) => {
-	    	console.log('url' ,this.templateURL('north'));
+	        url   : this.templateURL(type),
+	        method: 'GET'
+	    }, (e, r, b) => {
 	    	if(e || !b) { return; }
-	    	let $ = cheerio.load(b),
-	        	result = [],
-	        	train = {},
-	        	trainRow = $(".Grid_Row"),
+	    	let $        = cheerio.load(b),
+	        	result   = [],
+	        	train    = {},
+	        	trainRow = $('.Grid_Row'),
 	        	$trainTarget;
-
 	        for (var i = 1; i < trainRow.length; i ++) {
 	            train = {};
 	            $trainTarget= $(trainRow[i]);

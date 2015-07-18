@@ -41,7 +41,7 @@ p{
 	color:#fff;
 	text-align:center;
 }
-.km-info{
+.mini-fs{
 	font-size:16px;
 	font-family: 'Roboto Mono' ;
 	font-style: italic;
@@ -52,6 +52,9 @@ p{
 
 .list-wrapper{
 	padding:10px;
+}
+.list-section{
+	min-height: 100px;
 }
 .list-group{
   	margin    : 0;
@@ -66,7 +69,7 @@ p{
 .item{
 	display: flex;
 	padding:16px 10px;
-	margin-bottom: 4px;
+	margin-bottom: 8px;
 	border-radius:4px;
 	color:#fff;
 	background-color: rgba(255, 255, 255, 0.3);
