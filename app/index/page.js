@@ -28,7 +28,7 @@ class Page extends BaseComponent {
         this.state = getStore();;
     }
     componentWillMount() {
-        this._getGeolocation();
+        //this._getGeolocation();
     }
     componentDidMount() {
         TrainTimeTableStore.addChangeListener(this._storeChange);
@@ -45,8 +45,8 @@ class Page extends BaseComponent {
         return (
             <header className="info-header">
                 <div className="info-inner">
-                    <p>最接近 : {targetStation.name} 火車站</p>
-                    <p>距離 : {targetStation.dist} Km</p>
+                    <p>{targetStation.name} 火車站 </p>
+                    <p className="km-info"> 約 {parseInt(targetStation.dist)} Km</p>
                 </div>
             </header>
         );
@@ -58,7 +58,7 @@ class Page extends BaseComponent {
     _getGeolocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
-                //TrainTimetableActions.getTrainTimetable(position.coords.latitude, position.coords.longitude);
+                TrainTimetableActions.getTrainTimetable(position.coords.latitude, position.coords.longitude);
             });
         } else {
             alert('無法使用定位，請允許瀏覽器開啟定位功能');
@@ -81,15 +81,15 @@ class Page extends BaseComponent {
             );
         });
         return (
-            <section className="section-inner">
-                <div className="list-wrapper">
-                    <p>北上列車</p>
+            <section className="list-section">
+                <div className="list-wrapper north-list">
+                    <p className="group-title">北上列車</p>
                     <ul className="list-group">
                         {northItems}
                     </ul>
                 </div>
-                <div className="list-wrapper">
-                <p>南下列車</p>
+                <div className="list-wrapper south-list">
+                    <p className="group-title">南下列車</p>
                     <ul className="list-group">
                         {southItems}
                     </ul>

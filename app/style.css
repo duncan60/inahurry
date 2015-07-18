@@ -5,37 +5,58 @@
 }
 
 body{
-	background-color: var(--bgc);
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#266b94+0,92c1e5+100 */
+background: #266b94; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #266b94 0%, #92c1e5 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#266b94), color-stop(100%,#92c1e5)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  #266b94 0%,#92c1e5 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  #266b94 0%,#92c1e5 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  #266b94 0%,#92c1e5 100%); /* IE10+ */
+background: linear-gradient(135deg,  #266b94 0%,#92c1e5 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#266b94', endColorstr='#92c1e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
 }
 p{
 	padding: 0;
 	margin: 0;
 	line-height: 1.4;
 }
+.pull-right{
+	float:right;
+}
 .info-header{
-	background-color: var(--header-bgc);
+	background-color: rgba(255, 255, 255, 0.3);
 	color:#fff;
 	font-size: 24px;
-	box-shadow: 0px 7px 18px #DDD9D9;
+}
+.km-info{
+	font-size:16px;
 }
 .info-inner{
 	padding:26px 20px;
 }
-.info-header p:first-child{
-	margin-bottom: 20px;
-}
+
 .list-wrapper{
-	margin: 10px 0;
+	padding:20px 10px;
 }
 .list-group{
   	margin    : 0;
   	padding   : 0;
 	list-style: none;
 }
+.group-title{
+	margin-bottom: 6px;
+	font-size:20px;
+	color:#fff;
+}
 .item{
 	display: flex;
-	margin-bottom: 10px;
-	border:1px solid #666;
+	padding:16px 10px;
+	margin-bottom: 6px;
+	border-radius:4px;
+	color:#fff;
+	background-color: rgba(255, 255, 255, 0.3);
+	box-shadow: 0px 0px 8px #4886AD;
 }
 .item-type{
 	display: flex;
@@ -43,11 +64,13 @@ p{
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	background-color: #fff;
 }
 .item-info{
+	display: flex;
 	flex: 2;
+	align-items: center;
+	justify-content: center;
 }
 .item-time{
-	font-size: 24px;
+	font-size:42px;
 }

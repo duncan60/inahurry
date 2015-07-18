@@ -11,10 +11,12 @@ class Item extends BaseComponent {
         return (
             <li className="item">
                 <div className="item-type">
-                    <p>{type}</p>
+                    <div>
+                        <p>{type}</p>
+                        <p className="item-path">{router} </p>
+                    </div>
                 </div>
                 <div className="item-info">
-                    <p className="item-path">{router} </p>
                     <p className="item-time">{startTime} </p>
                 </div>
             </li>
