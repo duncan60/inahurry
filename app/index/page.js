@@ -24,7 +24,8 @@ class Page extends BaseComponent {
             '_storeChange',
             '_renderItems',
             '_renderClosestStationInfo',
-            '_renderNotHasTrains'
+            '_renderNotHasTrains',
+            '_renderLoading'
         );
         this.state = getStore();;
     }
@@ -61,6 +62,17 @@ class Page extends BaseComponent {
                 <span className="mini-fs">距離 </span>{targetStation.name}火車站
                 <span className="mini-fs"> 約 {(+targetStation.dist).toFixed(2)} Km</span>
             </p>
+        );
+    }
+    _renderLoading() {
+        if(this.state.dataReady) {
+            return '';
+        }
+        return (
+            <div className="loading">
+                <div className="double-bounce1"></div>
+                <div className="double-bounce2"></div>
+            </div>
         );
     }
     _renderNotHasTrains() {
@@ -112,8 +124,9 @@ class Page extends BaseComponent {
         );
     }
     render() {
-        let header = this._renderClosestStationInfo(),
-            list  = this._renderItems();
+        let header  = this._renderClosestStationInfo(),
+            loading = this._renderLoading(),
+            list    = this._renderItems();
         return (
             <div className="content-inner">
                 <header className="info-header">
@@ -123,6 +136,7 @@ class Page extends BaseComponent {
                     </div>
                 </header>
                 <section className="list-section">
+                    {loading}
                     {list}
                  </section>
                 <footer className="footer">
