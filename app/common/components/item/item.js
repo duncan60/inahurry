@@ -1,5 +1,7 @@
+import './_item';
+
 import React from 'react';
-import BaseComponent from '../base-component';
+import BaseComponent from '../../../base-component';
 
 class Item extends BaseComponent {
     constructor(props) {
@@ -10,14 +12,14 @@ class Item extends BaseComponent {
         const {type, startTime, router} = this.props;
         return (
             <li className="item">
-                <div className="item-type">
+                <div className="item__heading">
                     <div>
                         <p>{type}</p>
-                        <p className="item-path">{router} </p>
+                        <p>{router} </p>
                     </div>
                 </div>
-                <div className="item-info">
-                    <p className="item-time"><span className="icon-clock"></span>{startTime} </p>
+                <div className="item__body">
+                    <p className="item__body--time"><span className="item__body--mini-fs">時間：</span>{startTime}</p>
                 </div>
             </li>
         );

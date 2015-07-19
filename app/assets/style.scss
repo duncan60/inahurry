@@ -76,37 +76,6 @@ p{
         vertical-align: middle;
     }
 }
-.item{
-    display: flex;
-    padding:16px 10px;
-    margin-bottom: 8px;
-    border-radius:4px;
-    color:#fff;
-    background-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0px 0px 8px #4886AD;
-}
-.item-type{
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-.item-info{
-    display: flex;
-    flex: 2;
-    align-items: center;
-    justify-content: center;
-}
-.item-time{
-    font-family: 'Roboto Mono' ;
-    font-style: italic;
-    font-size:46px;
-    .icon-clock{
-        font-size: 22px;
-    }
-}
-
 /* loading */
 .loading{
     height: 30px;

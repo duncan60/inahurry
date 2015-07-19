@@ -1,7 +1,7 @@
 
 import React from 'react';
 import BaseComponent from '../base-component';
-import Item from '../common/item';
+import Item from '../common/components/item/item';
 
 //store
 import TrainTimeTableStore from '../stores/train-timetable-store';

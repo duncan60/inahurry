@@ -28,7 +28,7 @@ module.exports = [
         module: {
             loaders: commonLoaders.concat([
                 {   test: /\.(css|scss)$/,
-                    loader: "style!css!sass!postcss!cssnext"
+                    loader: "style!css!sass!postcss"
                 },
                 {
                     test : /\.(woff|woff2|ttf|eot|svg)$/,

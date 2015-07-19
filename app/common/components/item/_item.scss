@@ -1,0 +1,34 @@
+
+.item {
+	display: flex;
+    padding:16px 10px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    color: #fff;
+    background-color: rgba(#fff, 0.3);
+    box-shadow: 0px 0px 8px #4886AD;
+    &__heading {
+    	display: flex;
+	    flex: 1;
+	    align-items: center;
+	    justify-content: center;
+	    text-align: center;
+    },
+    &__body {
+    	display: flex;
+	    flex: 2;
+	    align-items: center;
+	    justify-content: center;
+	    &--time {
+	    	font-family: 'Roboto Mono' ;
+		    font-style: italic;
+		    font-size: 46px;
+		    .icon-clock {
+		        font-size: 22px;
+		    }
+	    },
+	    &--mini-fs {
+	    	font-size:16px;
+	    }
+    }
+}
