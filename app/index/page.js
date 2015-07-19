@@ -1,7 +1,10 @@
 
 import React from 'react';
 import BaseComponent from '../base-component';
+
+//components
 import Item from '../common/components/item/item';
+import Loading from '../common/components/loading/loading';
 
 //store
 import TrainTimeTableStore from '../stores/train-timetable-store';
@@ -40,7 +43,6 @@ class Page extends BaseComponent {
     }
     _storeChange() {
         this.setState(getStore());
-        console.log('state', this.state);
     }
     _getGeolocation() {
         if (navigator.geolocation) {
@@ -50,6 +52,14 @@ class Page extends BaseComponent {
         } else {
             alert('無法使用定位，請允許瀏覽器開啟定位功能');
         }
+    }
+    _renderLoading() {
+        if(this.state.dataReady) {
+            return '';
+        }
+        return (
+            <Loading />
+        );
     }
     _renderClosestStationInfo() {
         if (!this.state.dataReady) {
@@ -62,17 +72,6 @@ class Page extends BaseComponent {
                 <span className="mini-fs">距離 </span>{targetStation.name}火車站
                 <span className="mini-fs"> 約 {(+targetStation.dist).toFixed(2)} Km</span>
             </p>
-        );
-    }
-    _renderLoading() {
-        if(this.state.dataReady) {
-            return '';
-        }
-        return (
-            <div className="loading">
-                <div className="double-bounce1"></div>
-                <div className="double-bounce2"></div>
-            </div>
         );
     }
     _renderNotHasTrains() {
@@ -124,15 +123,15 @@ class Page extends BaseComponent {
         );
     }
     render() {
-        let header  = this._renderClosestStationInfo(),
-            loading = this._renderLoading(),
-            list    = this._renderItems();
+        let stationInfo  = this._renderClosestStationInfo(),
+            loading      = this._renderLoading(),
+            list         = this._renderItems();
         return (
             <div className="content-inner">
                 <header className="info-header">
                     <div className="info-inner">
                         <h2 className="main-title">台鐵時刻表 </h2>
-                        {header}
+                        {stationInfo}
                     </div>
                 </header>
                 <section className="list-section">
