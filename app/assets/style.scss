@@ -1,34 +1,46 @@
-/* custom properties */
-:root {
-    --bgc: #fff;
-    --header-bgc:#42CECB;
-}
+
 html {
-    font-size: 112.5%;
+    font-size: 100%;
     font-family: MHei,STHeitiTC-Light,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 body{
     background: linear-gradient(135deg,  #266b94 0%,#92c1e5 100%); /* W3C */
     -webkit-font-smoothing: antialiased;
 }
+
 p{
     padding: 0;
     margin: 0;
     line-height: 1.4;
     font-weight: 200;
 }
-.mini-fs{
-    font-size:12px;
-}
-.pull-right{
-    float:right;
-}
+/* layout */
 .info-header{
     margin-bottom: 10px;
     background-color: rgba(255, 255, 255, 0.3);
     color:#fff;
-    font-size: 24px;
 }
+
+.list-section{
+    position: relative;
+    min-height: 100px;
+}
+
+.footer{
+    padding:10px;
+    color:#fff;
+    text-align:center;
+}
+
+.mini-fs{
+    font-size:12px;
+}
+
+.pull-right{
+    float:right;
+}
+
+
 .main-title{
     margin: 0 0 6px;
     font-size: 28px;
@@ -37,11 +49,7 @@ p{
 .subsection-headline{
     font-size: 22px;
 }
-.footer{
-    padding:10px;
-    color:#fff;
-    text-align:center;
-}
+
 .mini-fs{
     font-size:16px;
     font-family: 'Roboto Mono' ;
@@ -54,10 +62,7 @@ p{
 .list-wrapper{
     padding:10px;
 }
-.list-section{
-    position: relative;
-    min-height: 100px;
-}
+
 .list-group{
     margin    : 0;
     padding   : 0;

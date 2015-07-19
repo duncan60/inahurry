@@ -27,7 +27,7 @@ let crawlTrains =  {
 	        url   : this.templateURL(type),
 	        method: 'GET'
 	    }, (e, r, b) => {
-	    	console.log('url', this.templateURL(type));
+	    	//console.log('url', this.templateURL(type));
 	    	if(e || !b) { return; }
 	    	let $        = cheerio.load(b),
 	        	result   = [],
