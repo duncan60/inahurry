@@ -1,5 +1,6 @@
 import 'normalize.css';
-import '../style.css';
+import '../assets/fonts-style';
+import '../assets/style';
 
 import React from 'react';
 import Start from './start';

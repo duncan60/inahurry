@@ -109,13 +109,13 @@ class Page extends BaseComponent {
         return (
             <div className="list-section-inner">
                 <div className="list-wrapper north-list">
-                    <p className="group-title">北上列車</p>
+                    <p className="group-title"><span className="icon-train"></span>北上列車</p>
                     <ul className="list-group">
                         {northItems}
                     </ul>
                 </div>
                 <div className="list-wrapper south-list">
-                    <p className="group-title">南下列車</p>
+                    <p className="group-title"><span className="icon-train"></span>南下列車</p>
                     <ul className="list-group">
                         {southItems}
                     </ul>

@@ -24,6 +24,7 @@ p{
     float:right;
 }
 .info-header{
+    margin-bottom: 10px;
     background-color: rgba(255, 255, 255, 0.3);
     color:#fff;
     font-size: 24px;
@@ -66,6 +67,9 @@ p{
     margin-bottom: 10px;
     font-size:20px;
     color:#fff;
+    .icon-train{
+        vertical-align: middle;
+    }
 }
 .item{
     display: flex;
@@ -93,6 +97,9 @@ p{
     font-family: 'Roboto Mono' ;
     font-style: italic;
     font-size:46px;
+    .icon-clock{
+        font-size: 22px;
+    }
 }
 
 /* loading */

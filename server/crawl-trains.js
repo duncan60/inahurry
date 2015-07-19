@@ -19,7 +19,7 @@ let crawlTrains =  {
 			toCityId      =  type === 'north' ? northStation.city : southStation.city,
 			toStationId   =  type === 'north' ? northStation.id : southStation.id,
 			nowTime       = momentDate.format('HHmm'),
-			totime        = momentDate.add(1, 'hours').format('HH') === '00' ? '24' + momentDate.add(1, 'hours').format('mm')  : momentDate.add(1, 'hours').format('HHmm') ;
+			totime        = momentDate.add(1, 'hours').format('HH') === '00' ? '24' + momentDate.format('mm') : momentDate.format('HHmm');
 		return `http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=${searchDate}&fromcity=${fromCityId}&tocity=${toCityId}&fromstation=${fromStationId}&tostation=${toStationId}&trainclass=2&fromtime=${nowTime}&totime=${totime}`;
 	},
 	postRequest(type, callback) {
@@ -27,6 +27,7 @@ let crawlTrains =  {
 	        url   : this.templateURL(type),
 	        method: 'GET'
 	    }, (e, r, b) => {
+	    	console.log('url', this.templateURL(type));
 	    	if(e || !b) { return; }
 	    	let $        = cheerio.load(b),
 	        	result   = [],

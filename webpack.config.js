@@ -27,8 +27,12 @@ module.exports = [
         },
         module: {
             loaders: commonLoaders.concat([
-                {   test: /\.css$/,
-                    loader: "style-loader!css-loader!sass-loader!postcss-loader!cssnext-loader"
+                {   test: /\.(css|scss)$/,
+                    loader: "style!css!sass!postcss!cssnext"
+                },
+                {
+                    test : /\.(woff|woff2|ttf|eot|svg)$/,
+                    loader: 'url'
                 },
                 {
                     test: /\.js(x)?$/,
@@ -39,6 +43,9 @@ module.exports = [
         },
         postcss: function () {
             return [autoprefixer, csswring];
+        },
+        resolve: {
+            extensions: ['', '.js', '.jsx', '.css', '.scss']
         },
         plugins: [
             new Webpack.HotModuleReplacementPlugin(),
