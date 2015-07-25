@@ -19,7 +19,10 @@ class Item extends BaseComponent {
                     </div>
                 </div>
                 <div className="item__body">
-                    <p className="item__body--time"><span className="item__body--mini-fs">時間：</span>{startTime}</p>
+                    <p className="item__body--time">
+                        <small className="item__body--small">時間：</small>
+                        {startTime}
+                    </p>
                 </div>
             </li>
         );

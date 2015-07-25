@@ -70,8 +70,8 @@ class Page extends BaseComponent {
 
         return (
             <p className="header__subsection">
-                <span className="mini-fs">距離 </span>{targetStation.name}火車站
-                <span className="mini-fs"> 約 {(+targetStation.dist).toFixed(2)} Km</span>
+                <small className="header__subsection--small">距離 </small>{targetStation.name}火車站
+                <small className="header__subsection--small"> 約 {(+targetStation.dist).toFixed(2)} Km</small>
             </p>
         );
     }
@@ -140,7 +140,7 @@ class Page extends BaseComponent {
                     {list}
                  </section>
                 <footer className="footer">
-                    <p className="mini-fs">資料來源：交通部台灣鐵路管理局 列車時刻查詢系統</p>
+                    <p>資料來源：交通部台灣鐵路管理局 列車時刻查詢系統</p>
                 </footer>
             </div>
         );
