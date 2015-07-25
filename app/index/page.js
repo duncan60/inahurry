@@ -17,8 +17,8 @@ let getStore = () => {
         trainsTimetable: TrainTimeTableStore.getTrainsTimetable(),
         closestTrains  : TrainTimeTableStore.getClosestTrains(),
         dataReady      : TrainTimeTableStore.getDataReady()
-    }
-}
+    };
+};
 class Page extends BaseComponent {
     constructor(props) {
         super(props);
@@ -30,7 +30,7 @@ class Page extends BaseComponent {
             '_renderNotHasTrains',
             '_renderLoading'
         );
-        this.state = getStore();;
+        this.state = getStore();
     }
     componentWillMount() {
         this._getGeolocation();
@@ -50,11 +50,12 @@ class Page extends BaseComponent {
                 TrainTimetableActions.getTrainTimetable(position.coords.latitude, position.coords.longitude);
             });
         } else {
+            /*eslint-disable */
             alert('無法使用定位，請允許瀏覽器開啟定位功能');
         }
     }
     _renderLoading() {
-        if(this.state.dataReady) {
+        if (this.state.dataReady) {
             return '';
         }
         return (
@@ -68,7 +69,7 @@ class Page extends BaseComponent {
         const {targetStation} = this.state.closestTrains;
 
         return (
-            <p className="subsection-headline">
+            <p className="header__subsection">
                 <span className="mini-fs">距離 </span>{targetStation.name}火車站
                 <span className="mini-fs"> 約 {(+targetStation.dist).toFixed(2)} Km</span>
             </p>
@@ -77,14 +78,14 @@ class Page extends BaseComponent {
     _renderNotHasTrains() {
         return (
             <li className="item">
-                <div className="item-type">
-                        <p>目前沒有任何列車</p>
+                <div className="item__heading">
+                    <p>目前沒有任何列車</p>
                 </div>
             </li>
         );
     }
     _renderItems() {
-        if(!this.state.dataReady) {
+        if (!this.state.dataReady) {
             return '';
         }
         const {south, north} = this.state.trainsTimetable;
@@ -99,22 +100,22 @@ class Page extends BaseComponent {
                 <Item key={i} type={item.type} startTime={item.startTime} router={item.router} />
             );
         });
-        if(south.length === 0) {
+        if (south.length === 0) {
             southItems = this._renderNotHasTrains();
         }
-        if(north.length === 0) {
+        if (north.length === 0) {
             northItems = this._renderNotHasTrains();
         }
         return (
-            <div className="list-section-inner">
+            <div className="list-section__inner">
                 <div className="list-wrapper north-list">
-                    <p className="group-title"><span className="icon-train"></span>北上列車</p>
+                    <p className="list-title"><span className="icon-train"></span>北上列車</p>
                     <ul className="list-group">
                         {northItems}
                     </ul>
                 </div>
                 <div className="list-wrapper south-list">
-                    <p className="group-title"><span className="icon-train"></span>南下列車</p>
+                    <p className="list-title"><span className="icon-train"></span>南下列車</p>
                     <ul className="list-group">
                         {southItems}
                     </ul>
@@ -128,9 +129,9 @@ class Page extends BaseComponent {
             list         = this._renderItems();
         return (
             <div className="content-inner">
-                <header className="info-header">
-                    <div className="info-inner">
-                        <h2 className="main-title">台鐵時刻表 </h2>
+                <header className="header">
+                    <div className="header__inner">
+                        <h2 className="header__title">台鐵時刻表</h2>
                         {stationInfo}
                     </div>
                 </header>

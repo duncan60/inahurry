@@ -6,7 +6,7 @@ let TrainTimetableActions = {
         var request = new XMLHttpRequest();
         request.open('GET', `/api/trains?latitude=${latitude}&longitude=${longitude}`, true);
         request.onreadystatechange = function() {
-            if (request.readyState == 4 && request.status == 200){
+            if (request.readyState === 4 && request.status === 200){
                  AppDispatcher.viewHandleAction({
                     actionType: Constants.SET_TRAIN_TIMETABLE,
                     data      : request.responseText
@@ -14,7 +14,7 @@ let TrainTimetableActions = {
             } else {
                 console.log('statusText', request.statusText);
             }
-        }
+        };
 
         request.onerror = function() {
           // There was a connection error of some sort

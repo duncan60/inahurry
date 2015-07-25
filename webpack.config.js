@@ -10,9 +10,9 @@ var buildPath = path.resolve(__dirname, 'server', 'build');
 var indexPath = path.resolve(__dirname, 'app', 'index', 'entry.js');
 var autoprefixer = require('autoprefixer-core');
 var csswring     = require('csswring');
+var eslintrcPath = path.resolve(__dirname, '.eslintrc');
 module.exports = [
     {
-        // The configuration for the client
         name: "browser",
         entry: {
             index: [
@@ -26,6 +26,13 @@ module.exports = [
             filename: "[name].js"
         },
         module: {
+            preLoaders: [
+                {
+                    test: /\.js(x)?$/,
+                    loader: 'eslint',
+                    exclude: nodeModulesPath
+                }
+            ],
             loaders: commonLoaders.concat([
                 {   test: /\.(css|scss)$/,
                     loader: "style!css!sass!postcss"
@@ -41,15 +48,18 @@ module.exports = [
                 }
             ])
         },
-        postcss: function () {
-            return [autoprefixer, csswring];
-        },
         resolve: {
             extensions: ['', '.js', '.jsx', '.css', '.scss']
         },
         plugins: [
             new Webpack.HotModuleReplacementPlugin(),
             new Webpack.optimize.CommonsChunkPlugin('common.js')
-        ]
+        ],
+        eslint: {
+            configFile: eslintrcPath
+        },
+        postcss: function () {
+            return [autoprefixer, csswring];
+        }
     }
 ];

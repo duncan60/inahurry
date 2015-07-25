@@ -14,7 +14,7 @@ class TrainTimetableStore extends UtilsStore {
         let resData = JSON.parse(data).data;
         trainsTimetableData = resData.trainsTimetableData;
         closestTrains = resData.closestTrains;
-        dataReady = true ;
+        dataReady = true;
     }
     getTrainsTimetable() {
         return trainsTimetableData;
@@ -32,7 +32,7 @@ let _TrainTimetableStore = new TrainTimetableStore();
 _TrainTimetableStore.dispatchToken = AppDispatcher.register((payload) => {
     let action = payload.action,
         type   = '';
-    switch(action.actionType){
+    switch (action.actionType) {
         case Constants.SET_TRAIN_TIMETABLE:
             _TrainTimetableStore.setList(action.data);
         break;

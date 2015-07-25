@@ -32,6 +32,4 @@ Item.propTypes = {
     router   : React.PropTypes.string.isRequired
 };
 
-
 export default Item;
-
