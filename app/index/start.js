@@ -8,9 +8,7 @@ class Start extends BaseComponent {
     }
     render() {
         return (
-            <main className="content-wrapper" role="main">
-                <Page />
-            </main>
+            <Page />
         );
     }
 }

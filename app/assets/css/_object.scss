@@ -1,5 +1,10 @@
 //layout
-
+.site-top {
+    top: 0;
+    position: -webkit-sticky;
+    position: sticky;
+    padding: 6px 0;
+}
 .header {
     margin-bottom: 10px;
 }
@@ -22,21 +27,34 @@
     padding:10px;
 }
 
+//site-top
+.site-top {
+    background-color: #84AEC9;
+    box-shadow: 0 1px 0px #639FC3;
+    border-bottom: 1px solid #045C90;
+    &__title{
+        margin: 0;
+        padding: 0;
+        @include fontToRem(28, 1.4);
+        color:$global-font-color;
+        text-align: center;
+        font-weight: 200;
+    }
+}
 
 //hearder
 .header {
-    background-color: $box-alpha-bg-color;
     color:$global-font-color;
     &__inner {
-        padding:26px 20px;
+        padding:16px 10px;
     }
     &__title {
         margin: 0 0 6px;
-        @include fontToRem(28, 1.4);
+        @include fontToRem(24, 1.4);
         font-weight: normal;
     }
     &__subsection {
-        @include fontToRem(22, 1.4);
+        @include fontToRem(20, 1.4);
         &--small {
             @include fontToRem(16, 1.4);
             font-family: 'Roboto Mono';
@@ -56,7 +74,7 @@
     @include fontToRem(20, 1.4);
     color: $global-font-color;
     .icon-train{
-        vertical-align: middle;
+        vertical-align: text-bottom;
     }
 }
 
