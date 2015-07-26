@@ -3,7 +3,7 @@ html {
     font-family: MHei,STHeitiTC-Light,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 body{
-    font-size: 1em;
+    font-size: $global-font-size;
     background: linear-gradient(135deg,  $body-gb-lg-top-color 0%, $body-bg-lg-down-color 100%);
     -webkit-font-smoothing: antialiased;
 }

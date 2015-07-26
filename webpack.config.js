@@ -1,9 +1,9 @@
-var path = require("path");
-var Webpack = require('webpack')
+var path = require('path');
+var Webpack = require('webpack');
 var commonLoaders = [
-    { test: /\.js$/, loader: "jsx-loader" },
-    { test: /\.png$/, loader: "url-loader" },
-    { test: /\.jpg$/, loader: "file-loader" },
+    { test: /\.js$/, loader: 'jsx-loader' },
+    { test: /\.png$/, loader: 'url-loader' },
+    { test: /\.jpg$/, loader: 'file-loader' }
 ];
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var buildPath = path.resolve(__dirname, 'server', 'build');
@@ -13,7 +13,7 @@ var csswring     = require('csswring');
 var eslintrcPath = path.resolve(__dirname, '.eslintrc');
 module.exports = [
     {
-        name: "browser",
+        name: 'browser',
         entry: {
             index: [
                 'webpack/hot/dev-server',
@@ -23,7 +23,7 @@ module.exports = [
         },
         output: {
             path: buildPath,
-            filename: "[name].js"
+            filename: '[name].js'
         },
         module: {
             preLoaders: [
@@ -35,7 +35,7 @@ module.exports = [
             ],
             loaders: commonLoaders.concat([
                 {   test: /\.(css|scss)$/,
-                    loader: "style!css!sass!postcss"
+                    loader: 'style!css!sass!postcss'
                 },
                 {
                     test : /\.(woff|woff2|ttf|eot|svg)$/,

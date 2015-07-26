@@ -16,11 +16,6 @@
 .pull-right {
     float: right;
 }
-.mini-fs {
-    font-size: 16px;
-    font-family: 'Roboto Mono';
-    font-style: italic;
-}
 
 //wrapper
 .list-wrapper {
@@ -37,13 +32,13 @@
     }
     &__title {
         margin: 0 0 6px;
-        font-size: 28px;
+        @include fontToRem(28, 1.4);
         font-weight: normal;
     }
     &__subsection {
-        font-size: 22px;
+        @include fontToRem(22, 1.4);
         &--small {
-            font-size: 16px;
+            @include fontToRem(16, 1.4);
             font-family: 'Roboto Mono';
             font-style: italic;
         }
@@ -58,7 +53,7 @@
 }
 .list-title {
     margin-bottom: 10px;
-    font-size: 20px;
+    @include fontToRem(20, 1.4);
     color: $global-font-color;
     .icon-train{
         vertical-align: middle;

@@ -20,8 +20,8 @@ let renderPage = (entryPath) => {
                     DefaultPage,
                     {jsPath: entryPath}
                 )
-            )
-}
+            );
+};
 
 app.get('/', (req, res) => {
 	res.end(renderPage('//localhost:8080/build/index.js'));
@@ -31,15 +31,15 @@ app.route('/api/trains')
     .get((req, res) => {
 	    let trainsTimetableData = {};
 		let closestTrains = closestTrainStations.search(req.query.latitude, req.query.longitude);
-		crawlTrains.getTrainsData(closestTrains,(type, trainsData) => {
+		crawlTrains.getTrainsData(closestTrains, (type, trainsData) => {
 			trainsTimetableData[type] = trainsData;
-			if(trainsTimetableData.north !== undefined && trainsTimetableData.south !== undefined) {
+			if (trainsTimetableData.north !== undefined && trainsTimetableData.south !== undefined) {
 				res.json({
 	            	data : {
 	            		trainsTimetableData: trainsTimetableData,
 	            		closestTrains      : closestTrains
 	            	},
-	            	message  : "search trains ok!"
+	            	message  : 'search trains ok!'
 	        	});
 			}
 		});
