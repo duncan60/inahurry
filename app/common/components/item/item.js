@@ -21,7 +21,7 @@ class Item extends BaseComponent {
                 <div className="item__body">
                     <p className="item__body--time">
                         <small className="item__body--small">時間：</small>
-                        {startTime}
+                        <time dateTime={startTime}>{startTime}</time>
                     </p>
                 </div>
             </li>
