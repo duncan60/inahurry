@@ -8,12 +8,9 @@ class Start extends BaseComponent {
     }
     render() {
         return (
-            <div className="start">
-                <Page />
-            </div>
+            <Page />
         );
     }
 }
 
 export default Start;
-

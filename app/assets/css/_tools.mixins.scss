@@ -1,0 +1,9 @@
+//change px to em
+@mixin fontToRem($font-size, $line-height: 1.2, $parent-font: 16) {
+    font-size: toRem($font-size, $parent-font);
+    line-height: $line-height;
+}
+
+@function toRem($value, $font-size: 16) {
+    @return #{1 / $font-size * $value}rem;
+}

@@ -1,20 +1,19 @@
-var path = require("path");
-var webpack = require('webpack')
+var path = require('path');
+var Webpack = require('webpack');
 var commonLoaders = [
-    { test: /\.js$/, loader: "jsx-loader" },
-    { test: /\.png$/, loader: "url-loader" },
-    { test: /\.jpg$/, loader: "file-loader" },
+    { test: /\.js$/, loader: 'jsx-loader' },
+    { test: /\.png$/, loader: 'url-loader' },
+    { test: /\.jpg$/, loader: 'file-loader' }
 ];
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var buildPath = path.resolve(__dirname, 'server', 'build');
 var indexPath = path.resolve(__dirname, 'app', 'index', 'entry.js');
-var pageAPath = path.resolve(__dirname, 'app', 'pageA', 'entry.js');
-var pageBPath = path.resolve(__dirname, 'app', 'pageB', 'entry.js');
-
+var autoprefixer = require('autoprefixer-core');
+var csswring     = require('csswring');
+var eslintrcPath = path.resolve(__dirname, '.eslintrc');
 module.exports = [
     {
-        // The configuration for the client
-        name: "browser",
+        name: 'browser',
         entry: {
             index: [
                 'webpack/hot/dev-server',
@@ -24,11 +23,24 @@ module.exports = [
         },
         output: {
             path: buildPath,
-            filename: "[name].js"
+            filename: '[name].js'
         },
         module: {
+            preLoaders: [
+                {
+                    test: /\.js(x)?$/,
+                    loader: 'eslint',
+                    exclude: nodeModulesPath
+                }
+            ],
             loaders: commonLoaders.concat([
-                { test: /\.css$/, loader: "style-loader!css-loader" },
+                {   test: /\.(css|scss)$/,
+                    loader: 'style!css!sass!postcss'
+                },
+                {
+                    test : /\.(woff|woff2|ttf|eot|svg)$/,
+                    loader: 'url'
+                },
                 {
                     test: /\.js(x)?$/,
                     loader: 'babel',
@@ -36,8 +48,18 @@ module.exports = [
                 }
             ])
         },
+        resolve: {
+            extensions: ['', '.js', '.jsx', '.css', '.scss']
+        },
         plugins: [
-            new webpack.optimize.CommonsChunkPlugin('common.js')
-        ]
+            new Webpack.HotModuleReplacementPlugin(),
+            new Webpack.optimize.CommonsChunkPlugin('common.js')
+        ],
+        eslint: {
+            configFile: eslintrcPath
+        },
+        postcss: function () {
+            return [autoprefixer, csswring];
+        }
     }
 ];

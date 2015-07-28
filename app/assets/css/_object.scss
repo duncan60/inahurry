@@ -1,0 +1,85 @@
+//layout
+.site-top {
+    top: 0;
+    position: -webkit-sticky;
+    position: sticky;
+    padding: 6px 0;
+}
+.header {
+    margin-bottom: 10px;
+}
+.list-section {
+    position: relative;
+    min-height: 100px;
+}
+
+.footer {
+    padding: 10px;
+}
+
+// base style
+.pull-right {
+    float: right;
+}
+
+//wrapper
+.list-wrapper {
+    padding:10px;
+}
+
+//site-top
+.site-top {
+    background-color: #84AEC9;
+    box-shadow: 0 1px 0px #639FC3;
+    border-bottom: 1px solid #045C90;
+    &__title{
+        margin: 0;
+        padding: 0;
+        @include fontToRem(28, 1.4);
+        color:$global-font-color;
+        text-align: center;
+        font-weight: 200;
+    }
+}
+
+//hearder
+.header {
+    color:$global-font-color;
+    &__inner {
+        padding:16px 10px;
+    }
+    &__title {
+        margin: 0 0 6px;
+        @include fontToRem(24, 1.4);
+        font-weight: normal;
+    }
+    &__subsection {
+        @include fontToRem(20, 1.4);
+        &--small {
+            @include fontToRem(16, 1.4);
+            font-family: 'Roboto Mono';
+            font-style: italic;
+        }
+    }
+}
+
+//list
+.list-group {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.list-title {
+    margin-bottom: 10px;
+    @include fontToRem(20, 1.4);
+    color: $global-font-color;
+    .icon-train{
+        vertical-align: text-bottom;
+    }
+}
+
+//footer
+.footer {
+    color: $global-font-color;
+    text-align: center;
+}

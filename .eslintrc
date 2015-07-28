@@ -57,7 +57,7 @@
     "no-undef": 2,
     "no-underscore-dangle": 0,
     "no-unused-vars": 2,
-    "no-use-before-define": true,
+    "no-use-before-define": 2,
     "no-with": 2,
     "quotes": [2, "single"],
     "react/display-name": 0,
@@ -86,9 +86,10 @@
       ]
     }],
     "react/wrap-multilines": 2,
-    "semi": [2, "active"],
+    "semi": [2, "always"],
+    "space-after-keywords": [2, "always"],
     "strict": 2,
     "valid-typeof": 2,
-    "wrap-iife": [2, "inside"]
+    "wrap-iife": [2, "any"]
   }
 }
