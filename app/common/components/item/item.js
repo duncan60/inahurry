@@ -1,7 +1,9 @@
 import './_item';
 
-import React from 'react';
+import React from 'react/addons';
 import BaseComponent from '../../../base-component';
+
+let ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 class Item extends BaseComponent {
     constructor(props) {
@@ -11,20 +13,22 @@ class Item extends BaseComponent {
     render() {
         const {type, startTime, router} = this.props;
         return (
-            <li className="item">
-                <div className="item__heading">
-                    <div>
-                        <p>{type}</p>
-                        <p>{router} </p>
+            <ReactCSSTransitionGroup transitionName="item" >
+                <li className="item" >
+                    <div className="item__heading">
+                        <div>
+                            <p>{type}</p>
+                            <p>{router} </p>
+                        </div>
                     </div>
-                </div>
-                <div className="item__body">
-                    <p className="item__body--time">
-                        <small className="item__body--small">時間：</small>
-                        <time dateTime={startTime}>{startTime}</time>
-                    </p>
-                </div>
-            </li>
+                    <div className="item__body">
+                        <p className="item__body--time">
+                            <small className="item__body--small">時間：</small>
+                            <time dateTime={startTime}>{startTime}</time>
+                        </p>
+                    </div>
+                </li>
+            </ReactCSSTransitionGroup>
         );
     }
 }

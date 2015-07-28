@@ -7,6 +7,24 @@
     color: #fff;
     background-color: rgba(#fff, 0.25);
     box-shadow: 0px 0px 8px #4886AD;
+
+
+	&.item-enter {
+	  opacity: 0.01;
+	}
+
+	&.item-enter.item-enter-active {
+	  opacity: 1;
+	  transition: opacity .5s ease-in;
+	}
+	&.item-leave {
+	  opacity: 1;
+	}
+
+	&.item-leave.item-leave-active {
+	  opacity: 0.01;
+	  transition: opacity .5s ease-in;
+	}
     &__heading {
     	display: flex;
 	    flex: 1;
