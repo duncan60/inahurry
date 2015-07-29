@@ -13,7 +13,7 @@ class Item extends BaseComponent {
     render() {
         const {type, startTime, router} = this.props;
         return (
-            <ReactCSSTransitionGroup transitionName="item" >
+            <ReactCSSTransitionGroup transitionName="item" transitionAppear={true}>
                 <li className="item" >
                     <div className="item__heading">
                         <div>

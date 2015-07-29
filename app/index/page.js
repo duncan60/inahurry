@@ -25,8 +25,9 @@ class Page extends BaseComponent {
         this._bind(
             '_getGeolocation',
             '_storeChange',
+            '_renderList',
             '_renderItems',
-            '_renderClosestStationInfo',
+            '_renderHeaderInfo',
             '_renderNotHasTrains',
             '_renderLoading'
         );
@@ -56,22 +57,22 @@ class Page extends BaseComponent {
     }
     _renderLoading() {
         if (this.state.dataReady) {
-            return '';
+            return ;
         }
         return (
             <Loading />
         );
     }
-    _renderClosestStationInfo() {
+    _renderHeaderInfo() {
         if (!this.state.dataReady) {
-            return '';
+            return ;
         }
         const {targetStation} = this.state.closestTrains;
 
         return (
             <p className="header__subsection">
                 <small className="header__subsection--small">距離 </small>{targetStation.name}火車站
-                <small className="header__subsection--small"> 約 {(+targetStation.dist).toFixed(2)} Km</small>
+                <small className="header__subsection--small">約 {(+targetStation.dist).toFixed(2)} Km</small>
             </p>
         );
     }
@@ -84,38 +85,34 @@ class Page extends BaseComponent {
             </li>
         );
     }
-    _renderItems() {
+    _renderItems(items) {
+        if (items.length === 0) {
+            return this._renderNotHasTrains();
+        }
+        return items.map((item, i) => {
+            return (
+                <Item key={i} type={item.type} startTime={item.startTime} router={item.router} />
+            );
+        });
+    }
+    _renderList() {
         if (!this.state.dataReady) {
-            return '';
+            return ;
         }
         const {south, north} = this.state.trainsTimetable;
-        let southItems, northItems;
-        southItems = south.map((item, i) => {
-            return (
-                <Item key={i} type={item.type} startTime={item.startTime} router={item.router} />
-            );
-        });
-        northItems = north.map((item, i) => {
-            return (
-                <Item key={i} type={item.type} startTime={item.startTime} router={item.router} />
-            );
-        });
-        if (south.length === 0) {
-            southItems = this._renderNotHasTrains();
-        }
-        if (north.length === 0) {
-            northItems = this._renderNotHasTrains();
-        }
+        let northItems = this._renderItems(north),
+            southItems = this._renderItems(south);
+
         return (
             <div className="list-section__inner">
                 <div className="list-wrapper north-list">
-                    <p className="list-title"><span className="icon-train"></span>北上列車</p>
+                    <p className="list-title"><span className="icon-train" />北上列車</p>
                     <ul className="list-group">
                         {northItems}
                     </ul>
                 </div>
                 <div className="list-wrapper south-list">
-                    <p className="list-title"><span className="icon-train"></span>南下列車</p>
+                    <p className="list-title"><span className="icon-train" />南下列車</p>
                     <ul className="list-group">
                         {southItems}
                     </ul>
@@ -124,21 +121,22 @@ class Page extends BaseComponent {
         );
     }
     render() {
-        let stationInfo  = this._renderClosestStationInfo(),
-            loading      = this._renderLoading(),
-            list         = this._renderItems();
+        let headerInfo = this._renderHeaderInfo(),
+            loading    = this._renderLoading(),
+            list       = this._renderList();
+
         return (
             <div className="content-inner">
                 <header className="header">
                     <div className="header__inner">
                         <h2 className="header__title">台鐵時刻表</h2>
-                        {stationInfo}
+                        {headerInfo}
                     </div>
                 </header>
                 <section className="list-section">
                     {loading}
                     {list}
-                 </section>
+                </section>
                 <footer className="footer">
                     <p>資料來源：交通部台灣鐵路管理局 列車時刻查詢系統</p>
                 </footer>
