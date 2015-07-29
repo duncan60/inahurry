@@ -15,7 +15,7 @@
 
 	&.item-enter.item-enter-active {
 	  opacity: 1;
-	  transition: opacity .5s ease-in;
+	  transition: opacity .25s ease-in;
 	}
 	&.item-leave {
 	  opacity: 1;
@@ -23,7 +23,15 @@
 
 	&.item-leave.item-leave-active {
 	  opacity: 0.01;
-	  transition: opacity .5s ease-in;
+	  transition: opacity .25s ease-in;
+	}
+	&.item-appear {
+	  	opacity: 0.01;
+	  	transition: opacity .25s ease-in;
+	}
+
+	&.item-appear.item-appear-active {
+	  	opacity: 1;
 	}
     &__heading {
     	display: flex;
