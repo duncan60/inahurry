@@ -1,5 +1,4 @@
 import request from 'request';
-import fs from 'fs';
 import cheerio from 'cheerio';
 import moment from 'moment';
 
@@ -28,24 +27,24 @@ let crawlTrains =  {
 	        method: 'GET'
 	    }, (e, r, b) => {
 	    	//console.log('url', this.templateURL(type));
-	    	if(e || !b) { return; }
+	    	if (e || !b) { return; }
 	    	let $        = cheerio.load(b),
 	        	result   = [],
 	        	train    = {},
 	        	trainRow = $('.Grid_Row'),
 	        	$trainTarget;
-	        for (var i = 1; i < trainRow.length; i ++) {
+	        for (var i = 1; i < trainRow.length; i++) {
 	            train = {};
-	            $trainTarget= $(trainRow[i]);
+	            $trainTarget = $(trainRow[i]);
 	            train.type = $trainTarget.find('.SearchResult_TrainType span').text();
 	            train.startTime = $trainTarget.find('.SearchResult_Time').eq(0).text();
 	            train.router = $trainTarget.find('td').eq(3).text();
 	            result.push(train);
 	        }
-	        callback(type, result)
+	        callback(type, result);
 	    });
 	}
-}
+};
 
 /* parameters rule
 searchtype=0//0

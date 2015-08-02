@@ -39,7 +39,7 @@ app.route('/api/trains')
 	            		trainsTimetableData: trainsTimetableData,
 	            		closestTrains      : closestTrains
 	            	},
-	            	message  : 'search trains ok!'
+	            	message: 'search trains ok!'
 	        	});
 			}
 		});
