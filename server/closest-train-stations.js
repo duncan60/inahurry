@@ -9,15 +9,15 @@ let closestTrainStations =  {
 			southStation,
 			idx;
 
-		trainsTimetableData.stations.forEach((item, i, ary) => {
+		trainsTimetableData.stations.forEach((item, i) => {
            tmp = this.getDistance(lat, long, item.lat, item.long);
            if (tmp < lowest) {
            		lowest = tmp;
-           		item.dist =tmp;
+           		item.dist = tmp;
            		targetStation = item;
            		idx = i;
            }
-		})
+		});
 		northStation = trainsTimetableData.stations[idx - 1];
 		southStation = trainsTimetableData.stations[idx + 1];
 		return {targetStation, northStation, southStation};
@@ -32,10 +32,10 @@ let closestTrainStations =  {
 		let a = radLat1 - radLat2,
 			b = this.rad(lng1) - this.rad(lng2);
 		let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin( b / 2), 2)));
-		s = s * 6378.137 ;// EARTH_RADIUS;
+		s = s * 6378.137;// EARTH_RADIUS;
 		s = Math.round(s * 10000) / 10000;
 		return s;
 	}
-}
+};
 
 export default closestTrainStations;
