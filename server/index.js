@@ -8,11 +8,9 @@ import crawlTrains from './crawl-trains';
 
 import React from 'react';
 import DefaultPage from './default-page';
-import bundle from'./webpack-server';
+
 
 let app = express();
-
-bundle();
 
 let renderPage = (entryPath) => {
     return React.renderToString(
