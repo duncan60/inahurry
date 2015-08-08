@@ -12,7 +12,7 @@ let TrainTimetableActions = {
                     data      : request.responseText
                 });
             } else {
-                console.log('statusText', request.statusText);
+                //console.log('statusText', request.statusText);
             }
         };
 
