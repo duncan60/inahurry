@@ -7,6 +7,22 @@
     color: #fff;
     background-color: rgba(#fff, 0.25);
 
+	&.item-enter {
+	  opacity: 0.01;
+	}
+
+	&.item-enter.item-enter-active {
+	  opacity: 1;
+	  transition: opacity .25s ease-in;
+	}
+	&.item-leave {
+	  opacity: 1;
+	}
+
+	&.item-leave.item-leave-active {
+	  opacity: 0.01;
+	  transition: opacity .25s ease-in;
+	}
 	&.item-appear {
 	  	opacity: 0.01;
 	  	transition: opacity .25s ease-in;
