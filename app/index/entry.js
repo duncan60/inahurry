@@ -3,6 +3,6 @@ import '../assets/fonts-style';
 import '../assets/main';
 
 import React from 'react';
-import Start from './start';
+import Page from './page';
 
-React.render(<Start />, document.getElementById('content'));
+React.render(<Page />, document.getElementById('content'));
