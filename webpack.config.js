@@ -1,10 +1,5 @@
 var path = require('path');
 var Webpack = require('webpack');
-var commonLoaders = [
-    { test: /\.js$/, loader: 'jsx-loader' },
-    { test: /\.png$/, loader: 'url-loader' },
-    { test: /\.jpg$/, loader: 'file-loader' }
-];
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var buildPath = path.resolve(__dirname, 'server', 'build');
 var indexPath = path.resolve(__dirname, 'app', 'index', 'entry.js');
@@ -33,7 +28,10 @@ module.exports = [
                     exclude: nodeModulesPath
                 }
             ],
-            loaders: commonLoaders.concat([
+            loaders: [
+                { test: /\.js$/, loader: 'jsx-loader' },
+                { test: /\.png$/, loader: 'url-loader' },
+                { test: /\.jpg$/, loader: 'file-loader' },
                 {   test: /\.(css|scss)$/,
                     loader: 'style!css!sass!postcss'
                 },
@@ -46,7 +44,7 @@ module.exports = [
                     loader: 'babel',
                     exclude: nodeModulesPath
                 }
-            ])
+            ]
         },
         resolve: {
             extensions: ['', '.js', '.jsx', '.css', '.scss']
