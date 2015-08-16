@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf server/dist",
+    "clean": "rimraf server/assets",
     "webpackDev": "node webpack-server.js",
-    "server": "./node_modules/.bin/babel-node server ",
-    "webpackDeploy": "npm run clean && NODE_ENV=production webpack -p --progress --config webpack.production.config.js"
+    "serverDev": "./node_modules/.bin/babel-node server ",
+    "webpackDeploy": "npm run clean && NODE_ENV=production webpack -p --progress --config webpack.production.config.js",
+    "server": "./node_modules/.bin/babel-node server"
   },
   "repository": "duncan60/closest-train",
   "keywords": [

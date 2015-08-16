@@ -5,9 +5,9 @@ var Webpack = require('webpack'),
     ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var nodeModulesPath = path.resolve(__dirname, 'node_modules'),
-    buildPath = path.resolve(__dirname, 'server', 'dist'),
+    buildPath = path.resolve(__dirname, 'server', 'assets'),
     indexPath = path.resolve(__dirname, 'app', 'index', 'entry.js'),
-    cssBundleName = util.format('style.bundle.%s.css', pkg.version);
+    cssBundleName = util.format('assets/styles/style.bundle.%s.css', pkg.version);
 
 process.env.UV_THREADPOOL_SIZE = 100;
 
