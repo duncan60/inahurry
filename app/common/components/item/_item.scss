@@ -1,58 +1,58 @@
 
 .item {
-	display: flex;
+    display: flex;
     margin-bottom: 8px;
     padding:16px 10px;
     border-radius: 4px;
     color: #fff;
     background-color: rgba(#fff, 0.25);
 
-	&.item-enter {
-	  opacity: 0.01;
-	}
+    &.item-enter {
+      opacity: 0.01;
+    }
 
-	&.item-enter.item-enter-active {
-	  opacity: 1;
-	  transition: opacity .25s ease-in;
-	}
-	&.item-leave {
-	  opacity: 1;
-	}
+    &.item-enter.item-enter-active {
+      opacity: 1;
+      transition: opacity .25s ease-in;
+    }
+    &.item-leave {
+      opacity: 1;
+    }
 
-	&.item-leave.item-leave-active {
-	  opacity: 0.01;
-	  transition: opacity .25s ease-in;
-	}
-	&.item-appear {
-	  	opacity: 0.01;
-	  	transition: opacity .25s ease-in;
-	}
+    &.item-leave.item-leave-active {
+      opacity: 0.01;
+      transition: opacity .25s ease-in;
+    }
+    &.item-appear {
+        opacity: 0.01;
+        transition: opacity .25s ease-in;
+    }
 
-	&.item-appear.item-appear-active {
-	  	opacity: 1;
-	}
+    &.item-appear.item-appear-active {
+        opacity: 1;
+    }
     &__heading {
-    	display: flex;
-	    flex: 1;
-	    align-items: center;
-	    justify-content: center;
-	    text-align: center;
-    },
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
     &__body {
-    	display: flex;
-	    flex: 2;
-	    align-items: center;
-	    justify-content: center;
-	    &--time {
-	    	font-family: 'Roboto Mono' ;
-		    font-style: italic;
-		    font-size: 46px;
-		    .icon-clock {
-		        font-size: 22px;
-		    }
-	    },
-	    &--small {
-	    	font-size:16px;
-	    }
+        display: flex;
+        flex: 2;
+        align-items: center;
+        justify-content: center;
+    }
+    &__time {
+        font-family: 'Roboto Mono' ;
+        font-style: italic;
+        font-size: 46px;
+        .icon-clock {
+            font-size: 22px;
+        }
+    }
+    &__small {
+        font-size:16px;
     }
 }
