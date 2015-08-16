@@ -7,7 +7,8 @@ var Webpack = require('webpack'),
 var nodeModulesPath = path.resolve(__dirname, 'node_modules'),
     buildPath = path.resolve(__dirname, 'server', 'assets'),
     indexPath = path.resolve(__dirname, 'app', 'index', 'entry.js'),
-    cssBundleName = util.format('assets/styles/style.bundle.%s.css', pkg.version);
+    cssBundleName = util.format('styles/style.bundle.%s.css', pkg.version),
+    jsBundleName = util.format('js/[name].%s.js', pkg.version);
 
 process.env.UV_THREADPOOL_SIZE = 100;
 
@@ -18,7 +19,7 @@ var config = {
     },
     output: {
         path: buildPath,
-        filename: 'js/[name].js'
+        filename: jsBundleName
     },
     module: {
         loaders: [
