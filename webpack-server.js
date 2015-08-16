@@ -1,8 +1,8 @@
 var webpack          = require('webpack'),
-    webpackDevServer = require('webpack-dev-server'),
-    webpackConfig    = require('./webpack.config.js');
+    webpackConfig    = require('./webpack.config.js'),
+    WebpackDevServer = require('webpack-dev-server');
 
-module.exports = function() {
+var webpackBundle = function() {
     var bundleStart = null;
     var compiler = webpack(webpackConfig);
 
@@ -15,7 +15,7 @@ module.exports = function() {
         console.log('Bundled in ' + (Date.now() - bundleStart) + 'ms!');
     });
 
-    var bundler = new webpackDevServer(compiler, {
+    var bundler = new WebpackDevServer(compiler, {
         publicPath: '/build/',
         hot: true,
         quiet: false,
@@ -29,3 +29,5 @@ module.exports = function() {
         console.log('Bundling project, please wait...');
     });
 };
+
+webpackBundle();
