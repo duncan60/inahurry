@@ -12,8 +12,7 @@ import DefaultPage from './default-page';
 let app        = express(),
     jsPath     = process.env.NODE_ENV === 'production' ? util.format('assets/js/index.%s.js', pkg.version) : '//localhost:8080/build/index.js',
     stylePath  = process.env.NODE_ENV === 'production' ? util.format('assets/styles/style.bundle.%s.css', pkg.version) : '',
-    //commonPath = process.env.NODE_ENV === 'production' ? util.format('assets/js/common.%s.js', pkg.version) : '//localhost:8080/build/common.js';
-    commonPath = '';
+    commonPath = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080/build/common.js';
 
 let renderPage = (common, entry, style) => {
     return React.renderToString(
@@ -36,7 +35,8 @@ app.route('/api/trains').get((req, res) => {
     let closestTrains = closestTrainStations.search(req.query.latitude, req.query.longitude);
     crawlTrains.getTrainsData(closestTrains, (trainsData) => {
         if (trainsData.code === 0) {
-            res.writeHead(200, {'Content-Type': 'text/plain'});
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'text/plain');
             res.json({
                 data   : {
                     trainsTimetableData: trainsData,
@@ -46,7 +46,8 @@ app.route('/api/trains').get((req, res) => {
                 message: 'search trains ok!'
             });
         } else {
-            res.writeHead(401, {'Content-Type': 'text/plain'});
+            res.statusCode = 401;
+            res.setHeader('Content-Type', 'text/plain');
             res.json({
                 data   : {
                     trainsTimetableData: trainsData,
