@@ -20,6 +20,7 @@
   "author": "Duncan Du <tmduncan60@gmail.com>",
   "license": "MIT",
   "dependencies": {
+      "normalize.css": "^3.0.3",
       "moment": "^2.10.3"
   },
   "devDependencies": {
@@ -38,7 +39,6 @@
     "json-loader": "~0.5.1",
     "jsx-loader": "~0.10.2",
     "node-sass": "^3.2.0",
-    "opn": "^2.0.1",
     "postcss-loader": "^0.5.1",
     "react": "^0.13.3",
     "sass-loader": "^1.0.2",
@@ -49,7 +49,6 @@
     "cheerio": "^0.19.0",
     "flux": "^2.0.3",
     "node-jsx": "^0.13.3",
-    "normalize.css": "^3.0.3",
     "rimraf": "^2.4.2"
   }
 }
