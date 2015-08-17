@@ -62,7 +62,7 @@ app.route('/api/trains').get((req, res) => {
         }
     });
 });
- app.listen(port, '107.167.184.87', () => {
+ app.listen(port, () => {
     console.log('Listening on ' + port);
  } );
 
