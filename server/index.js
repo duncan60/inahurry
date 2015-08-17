@@ -14,7 +14,7 @@ let app        = express(),
     jsPath     = process.env.NODE_ENV === 'production' ? util.format('js/index.%s.js', pkg.version) : '//localhost:8080/build/index.js',
     stylePath  = process.env.NODE_ENV === 'production' ? util.format('styles/style.bundle.%s.css', pkg.version) : '',
     commonPath = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080/build/common.js',
-    port       = process.env.NODE_ENV === 'production' ?  8080 : 3000;
+    port       = process.env.NODE_ENV === 'production' ?  process.env.PORT : 3000;
 
 let renderPage = (common, entry, style) => {
     return React.renderToString(
@@ -62,7 +62,12 @@ app.route('/api/trains').get((req, res) => {
         }
     });
 });
- app.listen(port, () => {
-    console.log('Listening on ' + port);
- } );
+ // app.listen(port, () => {
+ //    console.log('Listening on ' + port);
+ // } );
 
+/* Start the server */
+var server = app.listen(port, '0.0.0.0', function() {
+  console.log('App listening at http://%s:%s', server.address().address, server.address().port);
+  console.log('Press Ctrl+C to quit.');
+});
