@@ -14,7 +14,7 @@ let app        = express(),
     jsPath     = process.env.NODE_ENV === 'production' ? util.format('js/index.%s.js', pkg.version) : '//localhost:8080/build/index.js',
     stylePath  = process.env.NODE_ENV === 'production' ? util.format('styles/style.bundle.%s.css', pkg.version) : '',
     commonPath = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080/build/common.js',
-    port       = process.env.NODE_ENV === 'production' ?  8080 : 3000;
+    port       = process.env.NODE_ENV === 'production' ?  process.env.PORT : 3000;
 
 let renderPage = (common, entry, style) => {
     return React.renderToString(
