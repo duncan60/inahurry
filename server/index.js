@@ -53,7 +53,7 @@ app.route('/api/trains').get((req, res) => {
                     trainsTimetableData: trainsData,
                     closestTrains      : closestTrains
                 },
-                code   : 1,
+                code   : -1,
                 message: 'search trains error!'
             });
         }

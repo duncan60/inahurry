@@ -7,12 +7,15 @@ let TrainTimetableActions = {
         request.open('GET', `/api/trains?latitude=${latitude}&longitude=${longitude}`, true);
         request.onreadystatechange = function() {
             if (request.readyState === 4 && request.status === 200){
-                 AppDispatcher.viewHandleAction({
+                AppDispatcher.viewHandleAction({
                     actionType: Constants.SET_TRAIN_TIMETABLE,
                     data      : request.responseText
                 });
             } else {
-                //console.log('statusText', request.statusText);
+                AppDispatcher.viewHandleAction({
+                    actionType: Constants.SERVER_ERROR,
+                    data      : null
+                });
             }
         };
 

@@ -2,9 +2,10 @@ import AppDispatcher from '../dispatcher/app-dispatcher';
 import Constants from '../constants/constants';
 import UtilsStore from './utils-store.js';
 
-let trainsTimetableData = {};
-let closestTrains = {};
-let dataReady = false;
+let trainsTimetableData = {},
+    closestTrains       = {},
+    isReady             = false,
+    isError             = false;
 
 class TrainTimetableStore extends UtilsStore {
     constructor() {
@@ -14,7 +15,7 @@ class TrainTimetableStore extends UtilsStore {
         let resData = JSON.parse(data).data;
         trainsTimetableData = resData.trainsTimetableData;
         closestTrains = resData.closestTrains;
-        dataReady = true;
+        isReady = true;
     }
     getTrainsTimetable() {
         return trainsTimetableData;
@@ -22,8 +23,11 @@ class TrainTimetableStore extends UtilsStore {
     getClosestTrains() {
         return closestTrains;
     }
-    getDataReady() {
-        return dataReady;
+    getReady() {
+        return isReady;
+    }
+    getError() {
+        return isError;
     }
 }
 
@@ -35,6 +39,9 @@ _TrainTimetableStore.dispatchToken = AppDispatcher.register((payload) => {
     switch (action.actionType) {
         case Constants.SET_TRAIN_TIMETABLE:
             _TrainTimetableStore.setList(action.data);
+        break;
+        case Constants.SERVER_ERROR:
+            isError = true;
         break;
     default:
         return true;
