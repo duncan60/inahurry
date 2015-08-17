@@ -12,7 +12,8 @@ import DefaultPage from './default-page';
 let app        = express(),
     jsPath     = process.env.NODE_ENV === 'production' ? util.format('assets/js/index.%s.js', pkg.version) : '//localhost:8080/build/index.js',
     stylePath  = process.env.NODE_ENV === 'production' ? util.format('assets/styles/style.bundle.%s.css', pkg.version) : '',
-    commonPath = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080/build/common.js';
+    commonPath = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080/build/common.js',
+    port = process.env.PORT || 3000;
 
 let renderPage = (common, entry, style) => {
     return React.renderToString(
@@ -59,7 +60,7 @@ app.route('/api/trains').get((req, res) => {
         }
     });
 });
-if (process.env.NODE_ENV !== 'production' ){
-    app.listen(3000, () => {} );
-}
+ app.listen(port, () => {
+    console.log('Listening on ' + port);
+ } );
 
