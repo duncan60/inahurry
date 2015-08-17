@@ -11,18 +11,15 @@ let TrainTimetableActions = {
                     actionType: Constants.SET_TRAIN_TIMETABLE,
                     data      : request.responseText
                 });
-            } else {
-                AppDispatcher.viewHandleAction({
-                    actionType: Constants.SERVER_ERROR,
-                    data      : null
-                });
             }
         };
 
         request.onerror = function() {
-          // There was a connection error of some sort
+            AppDispatcher.viewHandleAction({
+                actionType: Constants.SERVER_ERROR,
+                data      : null
+            });
         };
-        // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         request.send();
     }
 };

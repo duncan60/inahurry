@@ -1,4 +1,5 @@
 require('node-jsx').install();
+var path = require('path');
 import pkg from '../package.json';
 import express from 'express';
 import util from 'util';
@@ -10,8 +11,8 @@ import DefaultPage from './default-page';
 
 
 let app        = express(),
-    jsPath     = process.env.NODE_ENV === 'production' ? util.format('assets/js/index.%s.js', pkg.version) : '//localhost:8080/build/index.js',
-    stylePath  = process.env.NODE_ENV === 'production' ? util.format('assets/styles/style.bundle.%s.css', pkg.version) : '',
+    jsPath     = process.env.NODE_ENV === 'production' ? util.format('js/index.%s.js', pkg.version) : '//localhost:8080/build/index.js',
+    stylePath  = process.env.NODE_ENV === 'production' ? util.format('styles/style.bundle.%s.css', pkg.version) : '',
     commonPath = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080/build/common.js',
     port       = process.env.NODE_ENV === 'production' ?  8080 : 3000;
 
@@ -31,6 +32,7 @@ let renderPage = (common, entry, style) => {
 app.get('/', (req, res) => {
     res.end(renderPage(commonPath, jsPath, stylePath));
 });
+app.use(express.static(path.join(__dirname, 'assets')));
 
 app.route('/api/trains').get((req, res) => {
     let closestTrains = closestTrainStations.search(req.query.latitude, req.query.longitude);
