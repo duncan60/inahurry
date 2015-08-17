@@ -25,6 +25,7 @@ let crawlTrains =  {
         });
     },
     promise(url, type) {
+        //console.log('url', url);
         return new Promise((resolve, reject) => {
             request({
                 url   : url,

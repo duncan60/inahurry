@@ -20,7 +20,8 @@ let getStore = () => {
     return {
         trainsTimetable: TrainTimeTableStore.getTrainsTimetable(),
         closestTrains  : TrainTimeTableStore.getClosestTrains(),
-        dataReady      : TrainTimeTableStore.getDataReady()
+        isReady      : TrainTimeTableStore.getReady(),
+        isError        : TrainTimeTableStore.getError()
     };
 };
 class Page extends BaseComponent {
@@ -29,6 +30,7 @@ class Page extends BaseComponent {
         this._bind(
             '_getGeolocation',
             '_storeChange',
+            '_renderError',
             '_renderList',
             '_renderItems',
             '_renderHeaderInfo',
@@ -59,8 +61,16 @@ class Page extends BaseComponent {
             alert('無法使用定位，請允許瀏覽器開啟定位功能');
         }
     }
+    _renderError() {
+        if (!this.state.isError) {
+            return ;
+        }
+        return (
+            <p className='error_txt'>連線錯誤，暫時無法提供服務...</p>
+        );
+    }
     _renderLoading() {
-        if (this.state.dataReady) {
+        if (this.state.isReady || this.state.isError) {
             return ;
         }
         return (
@@ -68,7 +78,7 @@ class Page extends BaseComponent {
         );
     }
     _renderHeaderInfo() {
-        if (!this.state.dataReady) {
+        if (!this.state.isReady) {
             return ;
         }
         const {targetStation} = this.state.closestTrains;
@@ -100,7 +110,7 @@ class Page extends BaseComponent {
         });
     }
     _renderList() {
-        if (!this.state.dataReady) {
+        if (!this.state.isReady) {
             return ;
         }
         const {south, north} = this.state.trainsTimetable;
@@ -127,7 +137,8 @@ class Page extends BaseComponent {
     render() {
         let headerInfo = this._renderHeaderInfo(),
             loading    = this._renderLoading(),
-            list       = this._renderList();
+            list       = this._renderList(),
+            error      = this._renderError();
 
         return (
             <div className="content-inner">
@@ -138,6 +149,7 @@ class Page extends BaseComponent {
                     </div>
                 </header>
                 <section className="list-section">
+                    {error}
                     {loading}
                     {list}
                 </section>
