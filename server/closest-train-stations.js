@@ -27,7 +27,7 @@ let closestTrainStations =  {
     rad(d) {
         return d * Math.PI / 180.0;
     },
-    getDistance(lat1,  lng1,  lat2,  lng2) {
+    getDistance(lat1, lng1, lat2, lng2) {
         let radLat1 = this.rad(lat1),
             radLat2 = this.rad(lat2);
         let a = radLat1 - radLat2,
