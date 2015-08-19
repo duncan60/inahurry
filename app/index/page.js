@@ -40,6 +40,10 @@ class Page extends BaseComponent {
         this.state = getStore();
     }
     componentWillMount() {
+        if (navigator.userAgent.match(/FB/) !== null) {
+            /*eslint-disable */
+            alert('建議使用safair瀏覽，確保能使用使服務！');
+        }
         this._getGeolocation();
     }
     componentDidMount() {

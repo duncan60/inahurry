@@ -1,4 +1,4 @@
-
+@import '../../../assets/css/_tools.mixins.scss';
 .item {
     display: flex;
     margin-bottom: 8px;
@@ -6,53 +6,36 @@
     border-radius: 4px;
     color: #fff;
     background-color: rgba(#fff, 0.25);
+}
+.item__heading {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.item__body {
+    display: flex;
+    flex: 2;
+    align-items: center;
+    justify-content: center;
+}
+.item__time {
+    font-family: 'Roboto Mono';
+    font-style: italic;
+    @include fontToRem(46, 1.4);
+}
+.item__icon-clock {
+    @include fontToRem(22, 1.4);
+}
+.item__small {
+    @include fontToRem(16, 1.4);
+}
+.item-appear {
+    opacity: 0.01;
+    transition: opacity .25s ease-in;
+}
 
-    &.item-enter {
-      opacity: 0.01;
-    }
-
-    &.item-enter.item-enter-active {
-      opacity: 1;
-      transition: opacity .25s ease-in;
-    }
-    &.item-leave {
-      opacity: 1;
-    }
-
-    &.item-leave.item-leave-active {
-      opacity: 0.01;
-      transition: opacity .25s ease-in;
-    }
-    &.item-appear {
-        opacity: 0.01;
-        transition: opacity .25s ease-in;
-    }
-
-    &.item-appear.item-appear-active {
-        opacity: 1;
-    }
-    &__heading {
-        display: flex;
-        flex: 1;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-    &__body {
-        display: flex;
-        flex: 2;
-        align-items: center;
-        justify-content: center;
-    }
-    &__time {
-        font-family: 'Roboto Mono' ;
-        font-style: italic;
-        font-size: 46px;
-        .icon-clock {
-            font-size: 22px;
-        }
-    }
-    &__small {
-        font-size:16px;
-    }
+.item-appear.item-appear-active {
+    opacity: 1;
 }
