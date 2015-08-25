@@ -6,7 +6,7 @@ closest-train
 $ npm install
 ```
 
-##Begin to development server
+##Start to development server
 
 ``` text
 # 2 ddifferent terminals  
@@ -15,7 +15,7 @@ $ npm run serverDev
 # open this url in your browser
 # http://localhost:3000/
 ```
-##deploy
+##deployment
 
 ``` text
 # 2 ddifferent terminals  
