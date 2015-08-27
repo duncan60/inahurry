@@ -22,5 +22,5 @@ $ npm run serverDev
 $ npm run webpackDeploy
 $ npm run server
 # open this url in your browser
-# http://localhost:3000/
+# http://localhost:8080/
 ```
