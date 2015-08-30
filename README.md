@@ -9,7 +9,7 @@ $ npm install
 ##Start to development server
 
 ``` text
-# 2 ddifferent terminals  
+# 2 different terminals  
 $ npm run weboackDev
 $ npm run serverDev
 # open this url in your browser
@@ -18,7 +18,7 @@ $ npm run serverDev
 ##deployment
 
 ``` text
-# 2 ddifferent terminals  
+# 2 different terminals  
 $ npm run webpackDeploy
 $ npm run server
 # open this url in your browser
