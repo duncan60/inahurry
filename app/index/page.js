@@ -109,7 +109,12 @@ class Page extends BaseComponent {
         }
         return items.map((item, i) => {
             return (
-                <Item key={i} type={item.type} startTime={item.startTime} router={item.router} />
+                <Item
+                    key={i}
+                    type={item.type}
+                    startTime={item.startTime}
+                    router={item.router}
+                    state ={item.state} />
             );
         });
     }
@@ -139,23 +144,23 @@ class Page extends BaseComponent {
         );
     }
     render() {
-        let headerInfo = this._renderHeaderInfo(),
-            loading    = this._renderLoading(),
-            list       = this._renderList(),
-            error      = this._renderError();
+        let headerInfoHtml = this._renderHeaderInfo(),
+            loadingHtml    = this._renderLoading(),
+            listHtml       = this._renderList(),
+            errorHtml      = this._renderError();
 
         return (
             <div className="content-inner">
                 <header className="header">
                     <div className="header__inner">
                         <h2 className="header__title">台鐵時刻表</h2>
-                        {headerInfo}
+                        {headerInfoHtml}
                     </div>
                 </header>
                 <section className="list-section">
-                    {error}
-                    {loading}
-                    {list}
+                    {errorHtml}
+                    {loadingHtml}
+                    {listHtml}
                 </section>
                 <footer className="footer">
                     <p>資料來源：交通部台灣鐵路管理局 列車時刻查詢系統</p>

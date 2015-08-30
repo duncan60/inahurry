@@ -10,11 +10,10 @@ let crawlTrains =  {
             south: [],
             msg  : ''
         };
-        let north = this.promise(this.templateURL(stations, 'north'), 'GET'),
-            south = this.promise(this.templateURL(stations, 'south'), 'GET');
-        Promise.all([north, south]).then((res) => {
-            this.model.north = this.parseData(res[0]);
-            this.model.south = this.parseData(res[1]);
+        let getStationInfo = this.promise(this.crawlURL(stations), 'GET');
+        Promise.all([getStationInfo]).then((res) => {
+            this.model.north = this.parseData(res[0]).filter((item) => item.direction === '0');
+            this.model.south = this.parseData(res[0]).filter((item) => item.direction === '1');
             this.model.code = 0;
             this.model.msg = 'success';
             callback(this.model);
@@ -39,31 +38,35 @@ let crawlTrains =  {
             });
         });
     },
-    templateURL(stations, type) {
-        const {targetStation, northStation, southStation} = stations;
+    crawlURL(stations) {
+        const {targetStation} = stations;
         let momentDate    = moment(),
             searchDate    = momentDate.format('YYYY/MM/DD'),
-            fromCityId    = targetStation.city,
-            fromStationId = targetStation.id,
-            toCityId      = type === 'north' ? northStation.city : southStation.city,
-            toStationId   = type === 'north' ? northStation.id : southStation.id,
-            nowTime       = momentDate.format('HHmm'),
-            totime        = momentDate.add(1, 'hours').format('HH') === '00' ? '24' + momentDate.format('mm') : momentDate.format('HHmm');
-        return `http://twtraffic.tra.gov.tw/twrail/SearchResult.aspx?searchtype=0&searchdate=${searchDate}&fromcity=${fromCityId}&tocity=${toCityId}&fromstation=${fromStationId}&tostation=${toStationId}&trainclass=2&fromtime=${nowTime}&totime=${totime}`;
+            fromStationId = targetStation.id;
+        return `http://twtraffic.tra.gov.tw/twrail/mobile/StationSearchResult.aspx?fromstation=${fromStationId}&searchdate=${searchDate}`;
     },
     parseData(data) {
-        let $        = cheerio.load(data),
-            result   = [],
-            train    = {},
-            trainRow = $('.Grid_Row'),
-            $trainTarget;
-        for (var i = 1; i < trainRow.length; i++) {
+        let $          = cheerio.load(data),
+            scriptAry  = $('#form1').find('script').text().split(';'),
+            loopNum    = scriptAry.length / 7,
+            train      = {},
+            result     = [],
+            multiple   = 0,
+            momentDate = moment(),
+            nowTime    = momentDate.format('YYYY-MM-DD HH:mm'),
+            totime     = momentDate.add(1, 'hours').format('YYYY-MM-DD HH:mm');
+        for (let i = 0; i < loopNum - 1; i += 1) {
             train = {};
-            $trainTarget = $(trainRow[i]);
-            train.type = $trainTarget.find('.SearchResult_TrainType span').text();
-            train.startTime = $trainTarget.find('.SearchResult_Time').eq(0).text();
-            train.router = $trainTarget.find('td').eq(3).text();
-            result.push(train);
+            multiple = i * 7;
+            train.startTime = scriptAry[multiple + 2].split('\'')[1];
+            let time = moment(train.startTime, 'HH:mm').format('YYYY-MM-DD HH:mm');
+            if ( moment(time).isBetween(nowTime, totime, 'milliseconds')) {
+                train.type = scriptAry[multiple].split('\'')[1];
+                train.router = scriptAry[multiple + 3].split('\'')[1];
+                train.direction = scriptAry[multiple + 4].split('\'')[1];
+                train.state = scriptAry[multiple + 5].split('\'')[1];
+                result.push(train);
+            }
         }
         return result;
     }

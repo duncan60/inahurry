@@ -10,19 +10,30 @@ class Item extends BaseComponent {
         this._bind();
     }
     render() {
-        const {type, startTime, router} = this.props;
+        const
+            {
+                type,
+                startTime,
+                router,
+                state
+            } = this.props;
+        let stateStr = (state === '0' || state === '') ? '準點' : `誤點${state}分鐘`;
+
         return (
             <li className="item" >
                 <div className="item__heading">
-                    <div>
                         <p>{type}</p>
-                        <p>{router} </p>
-                    </div>
+                        <p>開往: {router} </p>
                 </div>
                 <div className="item__body">
                     <p className="item__time">
                         <small className="item__small">時間：</small>
                         <time dateTime={startTime}>{startTime}</time>
+                    </p>
+                </div>
+                <div className="item__footer">
+                    <p>
+                        {stateStr}
                     </p>
                 </div>
             </li>
@@ -33,7 +44,8 @@ class Item extends BaseComponent {
 Item.propTypes = {
     type     : React.PropTypes.string.isRequired,
     startTime: React.PropTypes.string.isRequired,
-    router   : React.PropTypes.string.isRequired
+    router   : React.PropTypes.string.isRequired,
+    state    : React.PropTypes.string.isRequired
 };
 
 export default Item;

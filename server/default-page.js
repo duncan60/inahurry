@@ -7,7 +7,7 @@ class DefaultPage extends React.Component {
             <html lang="zh-TW">
                 <head>
                     <meta charSet="utf-8" />
-                    <title>通勤時刻表</title>
+                    <title>特搜時刻表</title>
                     <meta name="viewport" content="width=device-width" />
                     <meta name="description" content="你是急急忙忙的通勤族嗎？利用定位分析出距離最近的車站，快速幫你搜尋鐵路時刻表資訊，讓你當個不疾不徐的通勤族" />
                     <meta property="og:site_name" content="特搜時刻表" />
