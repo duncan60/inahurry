@@ -1,6 +1,9 @@
 @import '../../../assets/css/_tools.mixins.scss';
 .item {
     display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
     margin-bottom: 8px;
     padding:16px 10px;
     border-radius: 4px;
@@ -8,17 +11,16 @@
     background-color: rgba(#fff, 0.25);
 }
 .item__heading {
-    display: flex;
     flex: 1;
-    align-items: center;
-    justify-content: center;
     text-align: center;
 }
 .item__body {
-    display: flex;
     flex: 2;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
+}
+.item__footer{
+    flex: 1;
+    text-align: center;
 }
 .item__time {
     font-family: 'Roboto Mono';
@@ -33,7 +35,7 @@
 }
 .item-appear {
     opacity: 0.01;
-    transition: opacity .25s ease-in;
+    transition: opacity .5s ease-in;
 }
 
 .item-appear.item-appear-active {
