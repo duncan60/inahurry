@@ -1,8 +1,8 @@
 require('node-jsx').install();
-var path = require('path');
-import pkg from '../package.json';
-import express from 'express';
+import path from 'path';
 import util from 'util';
+import express from 'express';
+import pkg from '../package.json';
 
 //twtraffic
 import closestTwtrafficStations from './twtraffic/closest-stations';
@@ -17,13 +17,27 @@ import React from 'react';
 import DefaultPage from './default-page';
 
 
+
 let app    = express(),
     lhPath = '//localhost:8080/build/',
+    activeRouter,
     indexJsPath,
     thsrcJsPath,
     stylePath,
     commonPath,
     port;
+
+const routerConfig = [
+    {
+        name  : '台鐵時刻表',
+        router: '/'
+    },
+    {
+        name  : '高鐵時刻表',
+        router: '/thsrc'
+    }
+];
+
 
 if (process.env.NODE_ENV) {
     stylePath  = util.format('styles/style.bundle.%s.css', pkg.version);
@@ -44,9 +58,11 @@ let renderPage = (common, entry, style) => {
                 React.createElement(
                     DefaultPage,
                     {
-                        jsPath    : entry,
-                        stylePath : style,
-                        commonPath: common
+                        jsPath      : entry,
+                        stylePath   : style,
+                        commonPath  : common,
+                        tabData     : routerConfig,
+                        activeRouter: activeRouter
                     }
                 )
             );
@@ -54,11 +70,13 @@ let renderPage = (common, entry, style) => {
 
 
 //router
-app.get('/', (req, res) => {
+app.get(routerConfig[0].router, (req, res) => {
+    activeRouter = routerConfig[0].router;
     res.end(renderPage(commonPath, indexJsPath, stylePath));
 });
 //
-app.get('/thsrc', (req, res) => {
+app.get(routerConfig[1].router, (req, res) => {
+    activeRouter = routerConfig[1].router;
     res.end(renderPage(commonPath, thsrcJsPath, stylePath));
 });
 

@@ -4,7 +4,7 @@ html {
 }
 body{
     font-size: $global-font-size;
-    background: linear-gradient(135deg,  $body-gb-lg-top-color 0%, $body-bg-lg-down-color 100%);
+    background: linear-gradient(135deg, $body-bg-lg-top-color 0%, $body-bg-lg-down-color 100%);
     -webkit-font-smoothing: antialiased;
 }
 p{
