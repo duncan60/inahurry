@@ -44,7 +44,7 @@ let crawlTrains =  {
     parseData(data) {
         let $        = cheerio.load(data),
             southRow = $('#southbound');
-        console.log('data', southRow.find('li').text());
+        console.log('data', data);
         // let southStation = southRow.map((item) => {
         //     let id   = $(item).find('em').text(),
         //         time = $(item).find('strong').text();
