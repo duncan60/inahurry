@@ -1,4 +1,4 @@
-let TwtrafficStationData = {
+let StationData = {
     stations: [
         {
             id  : '1001',
@@ -895,4 +895,4 @@ let TwtrafficStationData = {
     ]
 };
 
-export default TwtrafficStationData;
+export default StationData;

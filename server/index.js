@@ -5,8 +5,8 @@ import express from 'express';
 import util from 'util';
 
 //twtraffic
-import closestTwtrafficStations from './twtraffic/closest-twtraffic-stations';
-import crawlTwtrafficTrains from './twtraffic/crawl-twtraffic-trains';
+import closestTwtrafficStations from './twtraffic/closest-stations';
+import crawlTwtrafficTrains from './twtraffic/crawl-trains';
 
 //thsrc
 
