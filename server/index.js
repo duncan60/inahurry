@@ -10,11 +10,27 @@ import React from 'react';
 import DefaultPage from './default-page';
 
 
-let app        = express(),
-    jsPath     = process.env.NODE_ENV === 'production' ? util.format('js/index.%s.js', pkg.version) : '//localhost:8080/build/index.js',
-    stylePath  = process.env.NODE_ENV === 'production' ? util.format('styles/style.bundle.%s.css', pkg.version) : '',
-    commonPath = process.env.NODE_ENV === 'production' ? '' : '//localhost:8080/build/common.js',
-    port       = process.env.NODE_ENV === 'production' ?  8080 : 3000;
+let app    = express(),
+    lhPath = '//localhost:8080/build/',
+    indexJsPath,
+    thsrcJsPath,
+    stylePath,
+    commonPath,
+    port;
+
+if (process.env.NODE_ENV) {
+    stylePath  = util.format('styles/style.bundle.%s.css', pkg.version);
+    commonPath = util.format('js/common.%s.js', pkg.version);
+    indexJsPath = util.format('js/index.%s.js', pkg.version);
+    thsrcJsPath = util.format('js/thrsc.%s.js', pkg.version);
+    port = 8080;
+} else {
+    stylePath  = '';
+    commonPath = `${lhPath}common.js`;
+    indexJsPath = `${lhPath}index.js`;
+    thsrcJsPath = `${lhPath}thsrc.js`;
+    port = 3000;
+}
 
 let renderPage = (common, entry, style) => {
     return React.renderToString(
@@ -29,11 +45,21 @@ let renderPage = (common, entry, style) => {
             );
 };
 
+
+//router
 app.get('/', (req, res) => {
-    res.end(renderPage(commonPath, jsPath, stylePath));
+    res.end(renderPage(commonPath, indexJsPath, stylePath));
 });
+//
+app.get('/thsrc', (req, res) => {
+    res.end(renderPage(commonPath, thsrcJsPath, stylePath));
+});
+
+
 app.use(express.static(path.join(__dirname, 'assets')));
 
+
+//api
 app.route('/api/trains').get((req, res) => {
     let closestTrains = closestTrainStations.search(req.query.latitude, req.query.longitude);
     crawlTrains.getTrainsData(closestTrains, (trainsData) => {
@@ -61,6 +87,11 @@ app.route('/api/trains').get((req, res) => {
             });
         }
     });
+});
+
+//api
+app.route('/api/thsrc').get((req, res) => {
+
 });
  app.listen(port, () => {
     console.log('Listening on ' + port);

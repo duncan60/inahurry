@@ -3,6 +3,7 @@ var Webpack = require('webpack');
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var buildPath = path.resolve(__dirname, 'server', 'build');
 var indexPath = path.resolve(__dirname, 'app', 'index', 'entry.js');
+var thsrcPath = path.resolve(__dirname, 'app', 'thsrc', 'entry.js');
 var autoprefixer = require('autoprefixer-core');
 var csswring     = require('csswring');
 var eslintrcPath = path.resolve(__dirname, '.eslintrc');
@@ -14,6 +15,11 @@ module.exports = [
                 'webpack/hot/dev-server',
                 'webpack-dev-server/client?http://localhost:8080',
                 indexPath
+            ],
+            thsrc: [
+                'webpack/hot/dev-server',
+                'webpack-dev-server/client?http://localhost:8080',
+                thsrcPath
             ]
         },
         output: {

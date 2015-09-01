@@ -20,8 +20,9 @@
   "author": "Duncan Du <tmduncan60@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "moment": "^2.10.3",
     "normalize.css": "^3.0.3",
-    "moment": "^2.10.3"
+    "request": "^2.61.0"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",

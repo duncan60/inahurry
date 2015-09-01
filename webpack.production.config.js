@@ -7,6 +7,7 @@ var Webpack = require('webpack'),
 var nodeModulesPath = path.resolve(__dirname, 'node_modules'),
     buildPath = path.resolve(__dirname, 'server', 'assets'),
     indexPath = path.resolve(__dirname, 'app', 'index', 'entry.js'),
+    thsrcPath = path.resolve(__dirname, 'app', 'thsrc', 'entry.js'),
     cssBundleName = util.format('styles/style.bundle.%s.css', pkg.version),
     jsBundleName = util.format('js/[name].%s.js', pkg.version);
 
@@ -15,7 +16,8 @@ process.env.UV_THREADPOOL_SIZE = 100;
 var config = {
     devtool: 'source-map',
     entry: {
-        index: [indexPath]
+        index: [indexPath],
+        thsrc: [thsrcPath]
     },
     output: {
         path: buildPath,
@@ -45,6 +47,7 @@ var config = {
     plugins: [
         new ExtractTextPlugin(cssBundleName),
         new Webpack.ProvidePlugin({}),
+        new Webpack.optimize.CommonsChunkPlugin(util.format('js/common.%s.js', pkg.version)),
         new Webpack.optimize.UglifyJsPlugin({
             sourceMap: true,
             compress: {
