@@ -3,8 +3,13 @@ var path = require('path');
 import pkg from '../package.json';
 import express from 'express';
 import util from 'util';
+
+//twtraffic
 import closestTrainStations from './closest-train-stations';
 import crawlTrains from './crawl-trains';
+
+//thsrc
+
 
 import React from 'react';
 import DefaultPage from './default-page';
@@ -60,7 +65,7 @@ app.use(express.static(path.join(__dirname, 'assets')));
 
 
 //api
-app.route('/api/trains').get((req, res) => {
+app.route('/api/twtraffic').get((req, res) => {
     let closestTrains = closestTrainStations.search(req.query.latitude, req.query.longitude);
     crawlTrains.getTrainsData(closestTrains, (trainsData) => {
         if (trainsData.code === 0) {
