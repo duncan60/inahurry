@@ -19,8 +19,8 @@ let ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 let getStore = () => {
     return {
         trainsTimetable: TrainTimeTableStore.getTrainsTimetable(),
-        closestTrains  : TrainTimeTableStore.getClosestTrains(),
-        isReady      : TrainTimeTableStore.getReady(),
+        closestStation : TrainTimeTableStore.getClosestTrains(),
+        isReady        : TrainTimeTableStore.getReady(),
         isError        : TrainTimeTableStore.getError()
     };
 };
@@ -85,7 +85,7 @@ class Page extends BaseComponent {
         if (!this.state.isReady) {
             return ;
         }
-        const {targetStation} = this.state.closestTrains;
+        const {targetStation} = this.state.closestStation;
 
         return (
             <p className="header__subsection">

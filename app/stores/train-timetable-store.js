@@ -3,7 +3,7 @@ import Constants from '../constants/constants';
 import UtilsStore from './utils-store.js';
 
 let trainsTimetableData = {},
-    closestTrains       = {},
+    closestStation      = {},
     isReady             = false,
     isError             = false;
 
@@ -14,14 +14,14 @@ class TrainTimetableStore extends UtilsStore {
     setList(data) {
         let resData = JSON.parse(data).data;
         trainsTimetableData = resData.trainsTimetableData;
-        closestTrains = resData.closestTrains;
+        closestStation = resData.closestStation;
         isReady = true;
     }
     getTrainsTimetable() {
         return trainsTimetableData;
     }
     getClosestTrains() {
-        return closestTrains;
+        return closestStation;
     }
     getReady() {
         return isReady;

@@ -18,9 +18,8 @@ let closestStations =  {
                 idx = i;
            }
         });
-        northStation = targetStation.id === '1001' ? targetStation : stationData.stations[idx - 1];
-        southStation = targetStation.id === stationData.stations[stationData.stations.length - 1].id ?
-                        targetStation : stationData.stations[idx + 1];
+        northStation = stationData.stations[idx - 1];
+        southStation = stationData.stations[idx + 1];
         return {targetStation, northStation, southStation};
         //var minX = Math.min.apply(Math, stations.map(function(val) { return val.dist; }));
     },

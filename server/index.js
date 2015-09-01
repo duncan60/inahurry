@@ -66,15 +66,15 @@ app.use(express.static(path.join(__dirname, 'assets')));
 
 //api
 app.route('/api/twtraffic').get((req, res) => {
-    let closestTrains = closestTwtrafficStations.search(req.query.latitude, req.query.longitude);
-    crawlTwtrafficTrains.getTrainsData(closestTrains, (trainsData) => {
+    let closestStation = closestTwtrafficStations.search(req.query.latitude, req.query.longitude);
+    crawlTwtrafficTrains.getTrainsData(closestStation, (trainsData) => {
         if (trainsData.code === 0) {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'text/plain');
             res.json({
                 data   : {
                     trainsTimetableData: trainsData,
-                    closestTrains      : closestTrains
+                    closestStation      : closestStation
                 },
                 code   : 0,
                 message: 'search trains ok!'
@@ -85,7 +85,7 @@ app.route('/api/twtraffic').get((req, res) => {
             res.json({
                 data   : {
                     trainsTimetableData: trainsData,
-                    closestTrains      : closestTrains
+                    closestStation      : closestStation
                 },
                 code   : -1,
                 message: 'search trains error!'
