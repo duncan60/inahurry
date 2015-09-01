@@ -4,23 +4,17 @@ let closestStations =  {
     search(lat, long) {
         let lowest = Number.POSITIVE_INFINITY,
             tmp,
-            targetStation,
-            northStation,
-            southStation,
-            idx;
+            targetStation;
 
-        stationData.stations.forEach((item, i) => {
+        stationData.stations.forEach((item) => {
            tmp = this.getDistance(lat, long, item.lat, item.long);
            if (tmp < lowest) {
                 lowest = tmp;
                 item.dist = tmp;
                 targetStation = item;
-                idx = i;
            }
         });
-        northStation = stationData.stations[idx - 1];
-        southStation = stationData.stations[idx + 1];
-        return {targetStation, northStation, southStation};
+        return {targetStation};
         //var minX = Math.min.apply(Math, stations.map(function(val) { return val.dist; }));
     },
     rad(d) {

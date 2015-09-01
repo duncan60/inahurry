@@ -7,7 +7,9 @@ import util from 'util';
 //twtraffic
 import closestTwtrafficStations from './twtraffic/closest-stations';
 import crawlTwtrafficTrains from './twtraffic/crawl-trains';
-
+//thsrc
+import closestThsrcStation from './thsrc/closest-stations';
+import crawlThsrcTrains from './thsrc/crawl-trains';
 //thsrc
 
 
@@ -95,7 +97,11 @@ app.route('/api/twtraffic').get((req, res) => {
 });
 
 app.route('/api/thsrc').get((req, res) => {
+    let closestStation = closestThsrcStation.search(25.033888, 121.468605);
+    //let closestStation = closestThsrcStation.search(req.query.latitude, req.query.longitude);
+    crawlThsrcTrains.getTrainsData(closestStation, ()=> {
 
+    });
 });
  app.listen(port, () => {
     console.log('Listening on ' + port);
