@@ -22,7 +22,7 @@ class DefaultPage extends React.Component {
                 <head>
                     <meta charSet="utf-8" />
                     <title>特搜時刻表</title>
-                    <meta name="viewport" content="width=device-width" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
                     <meta name="description" content="你是急急忙忙的通勤族嗎？利用定位分析出距離最近的車站，快速幫你搜尋鐵路時刻表資訊，讓你當個不疾不徐的通勤族" />
                     <meta property="og:site_name" content="特搜時刻表" />
                     <meta property="og:type" content="article" />
@@ -36,7 +36,7 @@ class DefaultPage extends React.Component {
                     <link href={this.props.stylePath} rel='stylesheet' type='text/css' />
                 </head>
                 <body>
-                    <header className="site-top">
+                    <header className="site-top" role="banner">
                         <h1 className="site-top__title">特搜時刻表</h1>
                     </header>
                     <nav>
