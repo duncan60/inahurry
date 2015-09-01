@@ -1,4 +1,4 @@
-let TrainsTimeTableData = {
+let TwtrafficStationData = {
     stations: [
         {
             id  : '1001',
@@ -895,4 +895,4 @@ let TrainsTimeTableData = {
     ]
 };
 
-export default TrainsTimeTableData;
+export default TwtrafficStationData;

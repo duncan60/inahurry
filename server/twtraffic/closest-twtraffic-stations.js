@@ -1,6 +1,6 @@
-import trainsTimetableData from './trains-timetable-data';
+import TwtrafficStationData from './twtraffic-station-data';
 
-let closestTrainStations =  {
+let closestTwtrafficStations =  {
     search(lat, long) {
         let lowest = Number.POSITIVE_INFINITY,
             tmp,
@@ -9,7 +9,7 @@ let closestTrainStations =  {
             southStation,
             idx;
 
-        trainsTimetableData.stations.forEach((item, i) => {
+        TwtrafficStationData.stations.forEach((item, i) => {
            tmp = this.getDistance(lat, long, item.lat, item.long);
            if (tmp < lowest) {
                 lowest = tmp;
@@ -18,9 +18,9 @@ let closestTrainStations =  {
                 idx = i;
            }
         });
-        northStation = targetStation.id === '1001' ? targetStation : trainsTimetableData.stations[idx - 1];
-        southStation = targetStation.id === trainsTimetableData.stations[trainsTimetableData.stations.length - 1].id ?
-                        targetStation : trainsTimetableData.stations[idx + 1];
+        northStation = targetStation.id === '1001' ? targetStation : TwtrafficStationData.stations[idx - 1];
+        southStation = targetStation.id === TwtrafficStationData.stations[TwtrafficStationData.stations.length - 1].id ?
+                        targetStation : TwtrafficStationData.stations[idx + 1];
         return {targetStation, northStation, southStation};
         //var minX = Math.min.apply(Math, stations.map(function(val) { return val.dist; }));
     },
@@ -39,4 +39,4 @@ let closestTrainStations =  {
     }
 };
 
-export default closestTrainStations;
+export default closestTwtrafficStations;

@@ -5,8 +5,8 @@ import express from 'express';
 import util from 'util';
 
 //twtraffic
-import closestTrainStations from './closest-train-stations';
-import crawlTrains from './crawl-trains';
+import closestTwtrafficStations from './twtraffic/closest-twtraffic-stations';
+import crawlTwtrafficTrains from './twtraffic/crawl-twtraffic-trains';
 
 //thsrc
 
@@ -66,8 +66,8 @@ app.use(express.static(path.join(__dirname, 'assets')));
 
 //api
 app.route('/api/twtraffic').get((req, res) => {
-    let closestTrains = closestTrainStations.search(req.query.latitude, req.query.longitude);
-    crawlTrains.getTrainsData(closestTrains, (trainsData) => {
+    let closestTrains = closestTwtrafficStations.search(req.query.latitude, req.query.longitude);
+    crawlTwtrafficTrains.getTrainsData(closestTrains, (trainsData) => {
         if (trainsData.code === 0) {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'text/plain');
@@ -94,7 +94,6 @@ app.route('/api/twtraffic').get((req, res) => {
     });
 });
 
-//api
 app.route('/api/thsrc').get((req, res) => {
 
 });
