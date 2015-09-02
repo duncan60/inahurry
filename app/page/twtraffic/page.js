@@ -111,7 +111,8 @@ class Page extends BaseComponent {
             return (
                 <Item
                     key={i}
-                    type={item.type}
+                    type={'twtraffic'}
+                    trainType={item.type}
                     startTime={item.startTime}
                     router={item.router}
                     state ={item.state} />

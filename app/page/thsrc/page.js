@@ -87,7 +87,7 @@ class Page extends BaseComponent {
 
         return (
             <p className="header__subsection">
-                <small className="header__subsection--small">距離 </small>高鐵{targetStation.name}站
+                <small className="header__subsection--small">距離 </small>高鐵{targetStation.name}
                 <small className="header__subsection--small">約 {(+targetStation.dist).toFixed(2)} Km</small>
             </p>
         );
@@ -109,10 +109,9 @@ class Page extends BaseComponent {
             return (
                 <Item
                     key={i}
-                    type={item.type}
-                    startTime={item.startTime}
-                    router={item.router}
-                    state ={item.state} />
+                    type={'thsrc'}
+                    trainType={item.trainNumber}
+                    startTime={item.departureTime} />
             );
         });
     }

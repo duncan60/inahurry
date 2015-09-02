@@ -9,10 +9,33 @@ class Item extends BaseComponent {
         super(props);
         this._bind();
     }
-    render() {
+    _renderThsrcItem() {
         const
             {
-                type,
+                startTime,
+                trainType
+            } = this.props;
+
+        return (
+            <li className="item" >
+                <div className="item__heading">
+                        <p>車次</p>
+                        <p>{trainType} </p>
+                </div>
+                <div className="item__body">
+                    <p className="item__time">
+                        <small className="item__small">時間：</small>
+                        <time dateTime={startTime}>{startTime}</time>
+                    </p>
+                </div>
+
+            </li>
+        );
+    }
+    _renderTwtrafficItem() {
+        const
+            {
+                trainType,
                 startTime,
                 router,
                 state
@@ -22,7 +45,7 @@ class Item extends BaseComponent {
         return (
             <li className="item" >
                 <div className="item__heading">
-                        <p>{type}</p>
+                        <p>{trainType}</p>
                         <p>開往: {router} </p>
                 </div>
                 <div className="item__body">
@@ -39,13 +62,31 @@ class Item extends BaseComponent {
             </li>
         );
     }
+    render() {
+        let contentHtml = this.props.type === 'twtraffic' ? this._renderTwtrafficItem() : this._renderThsrcItem();
+
+        return (
+            <div>
+                {contentHtml}
+            </div>
+        );
+    }
 }
 
 Item.propTypes = {
-    type     : React.PropTypes.string.isRequired,
-    startTime: React.PropTypes.string.isRequired,
-    router   : React.PropTypes.string.isRequired,
-    state    : React.PropTypes.string.isRequired
+    type     : React.PropTypes.string,
+    trainType         : React.PropTypes.string,
+    startTime    : React.PropTypes.string,
+    router       : React.PropTypes.string,
+    state        : React.PropTypes.string
+};
+Item.defaultProps = {
+    type      : 'twtraffic',
+    trainType          : '',
+    startTime     : '',
+    router        : '',
+    state         : ''
+
 };
 
 export default Item;
