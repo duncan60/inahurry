@@ -5,7 +5,7 @@ import '../../assets/main';
 import React from 'react';
 import Page from '../../common/container/page/page';
 
-React.render(<Page  routerType={'thsrc'} />, document.getElementById('content'));
+React.render(<Page routerType={'thsrc'} />, document.getElementById('content'));
 
 /*eslint-disable */
 if (location.hostname !== 'localhost') {

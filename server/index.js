@@ -43,7 +43,7 @@ if (process.env.NODE_ENV) {
     stylePath = util.format('styles/style.bundle.%s.css', pkg.version);
     commonPath = util.format('js/common.%s.js', pkg.version);
     twtrafficJsPath = util.format('js/twtraffic.%s.js', pkg.version);
-    thsrcJsPath = util.format('js/thrsc.%s.js', pkg.version);
+    thsrcJsPath = util.format('js/thsrc.%s.js', pkg.version);
     port = 8080;
 } else {
     stylePath = '';
