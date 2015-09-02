@@ -2,7 +2,7 @@ import request from 'request';
 import cheerio from 'cheerio';
 import moment from 'moment';
 
-let crawlTrains =  {
+let crawlTwtrafficTrains =  {
     getTrainsData(stations, callback) {
         this.model = {
             code : -1,
@@ -83,4 +83,4 @@ trainclass=2 //車種
 fromtime=0000//搜尋時間起點[00 : 00]
 totime=2359//搜尋時間終點[23 : 59]
 */
-export default crawlTrains;
+export default crawlTwtrafficTrains;

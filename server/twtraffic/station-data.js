@@ -1,4 +1,4 @@
-let TrainsTimeTableData = {
+let StationData = {
     stations: [
         {
             id  : '1001',
@@ -151,8 +151,8 @@ let TrainsTimeTableData = {
             id  : '1011',
             city: '0',
             name: '板橋',
-            lat : 25.014051,
-            long: 121.463814
+            lat : 25.0140798,
+            long: 121.464766
         },
         {
             id  : '1032',
@@ -895,4 +895,4 @@ let TrainsTimeTableData = {
     ]
 };
 
-export default TrainsTimeTableData;
+export default StationData;
