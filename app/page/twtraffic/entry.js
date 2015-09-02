@@ -3,9 +3,9 @@ import '../../assets/fonts-style';
 import '../../assets/main';
 
 import React from 'react';
-import Page from './page';
+import Page from '../../common/container/page/page';
 
-React.render(<Page />, document.getElementById('content'));
+React.render(<Page routerType={'twtraffic'} />, document.getElementById('content'));
 
 /*eslint-disable */
 if (location.hostname !== 'localhost') {

@@ -75,17 +75,17 @@ class Item extends BaseComponent {
 
 Item.propTypes = {
     type     : React.PropTypes.string,
-    trainType         : React.PropTypes.string,
-    startTime    : React.PropTypes.string,
-    router       : React.PropTypes.string,
-    state        : React.PropTypes.string
+    trainType: React.PropTypes.string,
+    startTime: React.PropTypes.string,
+    router   : React.PropTypes.string,
+    state    : React.PropTypes.string
 };
 Item.defaultProps = {
-    type      : 'twtraffic',
-    trainType          : '',
-    startTime     : '',
-    router        : '',
-    state         : ''
+    type     : 'twtraffic',
+    trainType: '',
+    startTime: '',
+    router   : '',
+    state    : ''
 
 };
 

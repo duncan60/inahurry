@@ -1,15 +1,17 @@
+
+
 import React from 'react/addons';
-import BaseComponent from '../../base-component';
+import BaseComponent from '../../../base-component';
 
 //components
-import Item from '../../common/components/item/item';
-import Loading from '../../common/components/loading/loading';
+import Item from '../../../common/components/item/item';
+import Loading from '../../../common/components/loading/loading';
 
 //store
-import TrainTimeTableStore from '../../stores/train-timetable-store';
+import TrainTimeTableStore from '../../../stores/train-timetable-store';
 
 //actions
-import TrainTimetableActions from '../../actions/train-timetable-actions';
+import TrainTimetableActions from '../../../actions/train-timetable-actions';
 
 
 let ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
@@ -56,7 +58,7 @@ class Page extends BaseComponent {
     _getGeolocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
-                TrainTimetableActions.getTrainTimetable(position.coords.latitude, position.coords.longitude, 'thsrc');
+                TrainTimetableActions.getTrainTimetable(position.coords.latitude, position.coords.longitude, this.props.routerType);
             });
         } else {
             /*eslint-disable */
@@ -87,7 +89,7 @@ class Page extends BaseComponent {
 
         return (
             <p className="header__subsection">
-                <small className="header__subsection--small">距離 </small>高鐵{targetStation.name}
+                <small className="header__subsection--small">距離 </small>{targetStation.name}火車站
                 <small className="header__subsection--small">約 {(+targetStation.dist).toFixed(2)} Km</small>
             </p>
         );
@@ -105,15 +107,29 @@ class Page extends BaseComponent {
         if (items.length === 0) {
             return this._renderNotHasTrains();
         }
-        return items.map((item, i) => {
-            return (
-                <Item
-                    key={i}
-                    type={'thsrc'}
-                    trainType={item.trainNumber}
-                    startTime={item.departureTime} />
-            );
-        });
+        if (this.props.routerType ==='twtraffic') {
+            return items.map((item, i) => {
+                return (
+                    <Item
+                        key={i}
+                        type={this.props.routerType}
+                        trainType={item.type}
+                        startTime={item.startTime}
+                        router={item.router}
+                        state ={item.state} />
+                );
+            });
+        } else {
+            return items.map((item, i) => {
+                return (
+                    <Item
+                        key={i}
+                        type={this.props.routerType}
+                        trainType={item.trainNumber}
+                        startTime={item.departureTime} />
+                );
+            });
+        }
     }
     _renderList() {
         if (!this.state.isReady) {
@@ -144,27 +160,37 @@ class Page extends BaseComponent {
         let headerInfoHtml = this._renderHeaderInfo(),
             loadingHtml    = this._renderLoading(),
             listHtml       = this._renderList(),
-            errorHtml      = this._renderError();
+            errorHtml      = this._renderError(),
+            title          = this.props.routerType === 'twtraffic' ? '台鐵時刻表' : '高鐵時刻表',
+            source         = this.props.routerType === 'twtraffic' ? '交通部台灣鐵路管理局 列車時刻查詢系統' : '台灣高速鐵路股份有限公司 表定最近車次';
 
         return (
             <div className="content-inner">
-                <header className="header">
+                <div className="header">
                     <div className="header__inner">
-                        <h2 className="header__title">高鐵時刻表</h2>
+                        <h2 className="header__title">{title}</h2>
                         {headerInfoHtml}
                     </div>
-                </header>
+                </div>
                 <section className="list-section">
                     {errorHtml}
                     {loadingHtml}
                     {listHtml}
                 </section>
                 <footer className="footer">
-                    <p>資料來源：台灣高速鐵路股份有限公司</p>
+                    <p>資料來源：{source}</p>
                 </footer>
             </div>
         );
     }
 }
+
+Item.propTypes = {
+    routerType: React.PropTypes.string,
+};
+
+Item.defaultProps = {
+    routerType: 'twtraffic',
+};
 
 export default Page;
