@@ -1,11 +1,11 @@
 import 'normalize.css';
-import '../assets/fonts-style';
-import '../assets/main';
+import '../../assets/fonts-style';
+import '../../assets/main';
 
 import React from 'react';
-import Page from './page';
+import Page from '../../common/container/page/page';
 
-React.render(<Page />, document.getElementById('content'));
+React.render(<Page routerType={'thsrc'} />, document.getElementById('content'));
 
 /*eslint-disable */
 if (location.hostname !== 'localhost') {
