@@ -21,13 +21,13 @@ import DefaultPage from './default-page';
 let app    = express(),
     lhPath = '//localhost:8080/build/',
     activeRouter,
-    indexJsPath,
+    twtrafficJsPath,
     thsrcJsPath,
     stylePath,
     commonPath,
     port;
 
-const routerConfig = [
+const ROUTERCONFIG = [
     {
         name  : '台鐵時刻表',
         router: '/'
@@ -40,15 +40,15 @@ const routerConfig = [
 
 
 if (process.env.NODE_ENV) {
-    stylePath  = util.format('styles/style.bundle.%s.css', pkg.version);
+    stylePath = util.format('styles/style.bundle.%s.css', pkg.version);
     commonPath = util.format('js/common.%s.js', pkg.version);
-    indexJsPath = util.format('js/index.%s.js', pkg.version);
+    twtrafficJsPath = util.format('js/twtraffic.%s.js', pkg.version);
     thsrcJsPath = util.format('js/thrsc.%s.js', pkg.version);
     port = 8080;
 } else {
-    stylePath  = '';
+    stylePath = '';
     commonPath = `${lhPath}common.js`;
-    indexJsPath = `${lhPath}index.js`;
+    twtrafficJsPath = `${lhPath}twtraffic.js`;
     thsrcJsPath = `${lhPath}thsrc.js`;
     port = 3000;
 }
@@ -61,7 +61,7 @@ let renderPage = (common, entry, style) => {
                         jsPath      : entry,
                         stylePath   : style,
                         commonPath  : common,
-                        tabData     : routerConfig,
+                        tabData     : ROUTERCONFIG,
                         activeRouter: activeRouter
                     }
                 )
@@ -70,16 +70,14 @@ let renderPage = (common, entry, style) => {
 
 
 //router
-app.get(routerConfig[0].router, (req, res) => {
-    activeRouter = routerConfig[0].router;
-    res.end(renderPage(commonPath, indexJsPath, stylePath));
+app.get(ROUTERCONFIG[0].router, (req, res) => {
+    activeRouter = ROUTERCONFIG[0].router;
+    res.end(renderPage(commonPath, twtrafficJsPath, stylePath));
 });
-//
-app.get(routerConfig[1].router, (req, res) => {
-    activeRouter = routerConfig[1].router;
+app.get(ROUTERCONFIG[1].router, (req, res) => {
+    activeRouter = ROUTERCONFIG[1].router;
     res.end(renderPage(commonPath, thsrcJsPath, stylePath));
 });
-
 
 app.use(express.static(path.join(__dirname, 'assets')));
 
@@ -115,10 +113,31 @@ app.route('/api/twtraffic').get((req, res) => {
 });
 
 app.route('/api/thsrc').get((req, res) => {
-    let closestStation = closestThsrcStation.search(25.033888, 121.468605);
-    //let closestStation = closestThsrcStation.search(req.query.latitude, req.query.longitude);
-    crawlThsrcTrains.getTrainsData(closestStation, ()=> {
-
+    let closestStation = closestThsrcStation.search(req.query.latitude, req.query.longitude);
+    crawlThsrcTrains.getTrainsData(closestStation, (trainsData)=> {
+        if (trainsData.code === 0) {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'text/plain');
+            res.json({
+                data   : {
+                    trainsTimetableData: trainsData,
+                    closestStation      : closestStation
+                },
+                code   : 0,
+                message: 'search trains ok!'
+            });
+        } else {
+            res.statusCode = 401;
+            res.setHeader('Content-Type', 'text/plain');
+            res.json({
+                data   : {
+                    trainsTimetableData: trainsData,
+                    closestStation      : closestStation
+                },
+                code   : -1,
+                message: 'search trains error!'
+            });
+        }
     });
 });
  app.listen(port, () => {

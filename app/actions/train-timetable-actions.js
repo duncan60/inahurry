@@ -2,9 +2,10 @@ import AppDispatcher from '../dispatcher/app-dispatcher';
 import Constants from '../constants/constants';
 
 let TrainTimetableActions = {
-    getTrainTimetable(latitude, longitude) {
+    getTrainTimetable(latitude, longitude, type='twtraffic') {
         let request = new XMLHttpRequest();
-        request.open('GET', `/api/twtraffic?latitude=${latitude}&longitude=${longitude}`, true);
+        let api = type === 'twtraffic' ? `/api/twtraffic?latitude=${latitude}&longitude=${longitude}` : `/api/thsrc?latitude=${latitude}&longitude=${longitude}`;
+        request.open('GET', api, true);
         request.onreadystatechange = function() {
             if (request.readyState === 4 && request.status === 200){
                 AppDispatcher.viewHandleAction({

@@ -1,17 +1,17 @@
 
 
 import React from 'react/addons';
-import BaseComponent from '../base-component';
+import BaseComponent from '../../base-component';
 
 //components
-import Item from '../common/components/item/item';
-import Loading from '../common/components/loading/loading';
+import Item from '../../common/components/item/item';
+import Loading from '../../common/components/loading/loading';
 
 //store
-import TrainTimeTableStore from '../stores/train-timetable-store';
+import TrainTimeTableStore from '../../stores/train-timetable-store';
 
 //actions
-import TrainTimetableActions from '../actions/train-timetable-actions';
+import TrainTimetableActions from '../../actions/train-timetable-actions';
 
 
 let ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;

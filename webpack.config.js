@@ -1,20 +1,22 @@
-var path = require('path');
-var Webpack = require('webpack');
-var nodeModulesPath = path.resolve(__dirname, 'node_modules');
-var buildPath = path.resolve(__dirname, 'server', 'build');
-var indexPath = path.resolve(__dirname, 'app', 'index', 'entry.js');
-var thsrcPath = path.resolve(__dirname, 'app', 'thsrc', 'entry.js');
-var autoprefixer = require('autoprefixer-core');
-var csswring     = require('csswring');
-var eslintrcPath = path.resolve(__dirname, '.eslintrc');
+var path            = require('path'),
+    Webpack         = require('webpack'),
+    autoprefixer    = require('autoprefixer-core'),
+    csswring        = require('csswring');
+
+var nodeModulesPath = path.resolve(__dirname, 'node_modules'),
+    buildPath       = path.resolve(__dirname, 'server', 'build'),
+    twtrafficPath   = path.resolve(__dirname, 'app', 'page', 'twtraffic', 'entry.js'),
+    thsrcPath       = path.resolve(__dirname, 'app', 'page', 'thsrc', 'entry.js'),
+    eslintrcPath    = path.resolve(__dirname, '.eslintrc');
+
 module.exports = [
     {
         name: 'browser',
         entry: {
-            index: [
+            twtraffic: [
                 'webpack/hot/dev-server',
                 'webpack-dev-server/client?http://localhost:8080',
-                indexPath
+                twtrafficPath
             ],
             thsrc: [
                 'webpack/hot/dev-server',
