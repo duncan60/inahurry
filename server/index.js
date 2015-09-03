@@ -1,4 +1,4 @@
-require('node-jsx').install();
+//require('node-jsx').install();
 import path from 'path';
 import util from 'util';
 import express from 'express';
@@ -58,7 +58,6 @@ let renderPage = (common, entry, style) => {
             );
 };
 
-
 //router
 app.get(ROUTERCONFIG[0].router, (req, res) => {
     activeRouter = ROUTERCONFIG[0].router;
@@ -73,7 +72,7 @@ app.use(express.static(path.join(__dirname, 'assets')));
 app.use(api);
 
 
- app.listen(port, () => {
+app.listen(port, () => {
     console.log('Listening on ' + port);
- } );
+});
 
