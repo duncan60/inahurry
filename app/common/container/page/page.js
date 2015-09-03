@@ -86,10 +86,10 @@ class Page extends BaseComponent {
             return ;
         }
         const {targetStation} = this.state.closestStation;
-
+        let trainType = this.props.routerType === 'twtraffic' ? '火車站' : '';
         return (
             <p className="header__subsection">
-                <small className="header__subsection--small">距離 </small>{targetStation.name}火車站
+                <small className="header__subsection--small">距離 </small>{targetStation.name}{trainType}
                 <small className="header__subsection--small">約 {(+targetStation.dist).toFixed(2)} Km</small>
             </p>
         );
@@ -97,8 +97,10 @@ class Page extends BaseComponent {
     _renderNotHasTrains() {
         return (
             <li className="item">
-                <div className="item__heading">
-                    <p>目前沒有任何列車</p>
+                <div className="item__inner">
+                    <div className="item__heading">
+                        <p>目前沒有任何列車</p>
+                    </div>
                 </div>
             </li>
         );
