@@ -17,7 +17,7 @@ class Item extends BaseComponent {
             } = this.props;
 
         return (
-            <li className="item" >
+            <div className="item__inner">
                 <div className="item__heading">
                         <p>車次</p>
                         <p>{trainType} </p>
@@ -29,7 +29,7 @@ class Item extends BaseComponent {
                     </p>
                 </div>
 
-            </li>
+            </div>
         );
     }
     _renderTwtrafficItem() {
@@ -43,7 +43,7 @@ class Item extends BaseComponent {
         let stateStr = (state === '0' || state === '') ? '準點' : `誤點${state}分鐘`;
 
         return (
-            <li className="item" >
+            <div className="item__inner">
                 <div className="item__heading">
                         <p>{trainType}</p>
                         <p>開往: {router} </p>
@@ -59,16 +59,16 @@ class Item extends BaseComponent {
                         {stateStr}
                     </p>
                 </div>
-            </li>
+            </div>
         );
     }
     render() {
         let contentHtml = this.props.type === 'twtraffic' ? this._renderTwtrafficItem() : this._renderThsrcItem();
 
         return (
-            <div>
+            <li className="item" >
                 {contentHtml}
-            </div>
+            </li>
         );
     }
 }

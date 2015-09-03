@@ -42,7 +42,7 @@ class Page extends BaseComponent {
     componentWillMount() {
         if (navigator.userAgent.match(/FB/) !== null) {
             /*eslint-disable */
-            alert('建議使用safair瀏覽，確保能使用使服務！');
+            alert('建議使用safari或Chrome瀏覽，確保能使用使服務！');
         }
         this._getGeolocation();
     }
@@ -185,11 +185,11 @@ class Page extends BaseComponent {
     }
 }
 
-Item.propTypes = {
+Page.propTypes = {
     routerType: React.PropTypes.string,
 };
 
-Item.defaultProps = {
+Page.defaultProps = {
     routerType: 'twtraffic',
 };
 

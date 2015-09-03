@@ -1,5 +1,5 @@
 @import '../../../assets/css/_tools.mixins.scss';
-.item {
+.item__inner{
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
@@ -40,4 +40,10 @@
 
 .item-appear.item-appear-active {
     opacity: 1;
+}
+
+@media (max-width: 480px) {
+    .item__inner{
+        display: block;
+    }
 }
