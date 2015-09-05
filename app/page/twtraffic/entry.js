@@ -2,6 +2,11 @@ import 'normalize.css';
 import '../../assets/fonts-style';
 import '../../assets/main';
 
+import 'file?name=./images/[name].[ext]?[hash]!../../assets/images/apple-icon-57x57.png';
+import 'file?name=./images/[name].[ext]?[hash]!../../assets/images/apple-icon-72x72.png';
+import 'file?name=./images/[name].[ext]?[hash]!../../assets/images/apple-icon-114x114.png';
+import 'file?name=./images/[name].[ext]?[hash]!../../assets/images/apple-icon-144x144.png';
+
 import React from 'react';
 import Page from '../../common/container/page/page';
 
@@ -16,5 +21,10 @@ if (location.hostname !== 'localhost') {
 
 	ga('create', 'UA-66833382-1', 'auto');
 	ga('send', 'pageview');
+}
+window.onload = function(){
+    setTimeout(function(){
+        window.scrollTo(0, 1);
+    }, 100);
 }
 

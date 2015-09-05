@@ -5,7 +5,7 @@ import express from 'express';
 import pkg from '../package.json';
 
 import React from 'react';
-import DefaultPage from './default-page';
+import DefaultPage from './components/default-page';
 import api from './api';
 
 

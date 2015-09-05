@@ -51,7 +51,7 @@
         font-weight: normal;
     }
     &__subsection {
-        @include fontToRem(20, 1.4);
+        @include fontToRem(22, 1.4);
         &--small {
             @include fontToRem(16, 1.4);
             font-family: 'Roboto Mono';
@@ -113,7 +113,13 @@
     color: #CA0223;
     border-radius: 4px;
 }
-
+.group-line{
+    margin: 10px 12px;
+    height: 1px;
+    background-color: #FFFFFF;
+    border: 0;
+    box-shadow: 0px 1px 0 #32759D;
+}
 //footer
 .footer {
     color: $global-font-color;
