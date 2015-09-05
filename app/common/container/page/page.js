@@ -90,7 +90,7 @@ class Page extends BaseComponent {
         return (
             <p className="header__subsection">
                 <small className="header__subsection--small">距離 </small>{targetStation.name}{trainType}
-                <small className="header__subsection--small">約 {(+targetStation.dist).toFixed(2)} Km</small>
+                <small className="header__subsection--small"> 約 {(+targetStation.dist).toFixed(2)} Km</small>
             </p>
         );
     }
@@ -149,6 +149,7 @@ class Page extends BaseComponent {
                         {northItems}
                     </ReactCSSTransitionGroup>
                 </div>
+                <hr className="group-line" />
                 <div className="list-wrapper south-list">
                     <p className="list-title"><span className="icon-train" />南下列車</p>
                     <ReactCSSTransitionGroup component="ul" className="list-group" transitionName="item" transitionAppear={true}>
