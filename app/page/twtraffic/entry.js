@@ -2,12 +2,6 @@ import 'normalize.css';
 import '../../assets/fonts-style';
 import '../../assets/main';
 
-import 'file?name=./images/[name].[ext]?[hash]!../../assets/images/apple-icon-57x57.png';
-import 'file?name=./images/[name].[ext]?[hash]!../../assets/images/apple-icon-72x72.png';
-import 'file?name=./images/[name].[ext]?[hash]!../../assets/images/apple-icon-114x114.png';
-import 'file?name=./images/[name].[ext]?[hash]!../../assets/images/apple-icon-144x144.png';
-import 'file?name=./images/[name].[ext]?[hash]!../../assets/images/inahurry_logo.jpg';
-
 import React from 'react';
 import Page from '../../common/container/page/page';
 
