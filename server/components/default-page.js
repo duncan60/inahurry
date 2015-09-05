@@ -1,5 +1,5 @@
 import React from 'react';
-import TabButton from './components/tab-button';
+import TabButton from './tab-button';
 import classNames from 'classnames';
 
 class DefaultPage extends React.Component {
