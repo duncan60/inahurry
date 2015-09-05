@@ -32,6 +32,10 @@ class DefaultPage extends React.Component {
                     <meta property="og:description" content="你是急急忙忙的通勤族嗎？到了車站才發現趕不上列車！特搜時刻表利用定位分析出距離最近的車站，快速幫你搜尋台灣鐵路時刻表及台灣高鐵時刻表資訊，讓你當個不疾不徐的通勤族" />
                     <meta property="article:author" content="https://github.com/duncan60" />
                     <meta property="article:section" content="javascript" />
+                    <link href="./assets/images/apple-icon-57x57.png" rel="apple-touch-icon-precomposed" sizes="57x57" />
+                    <link href="./assets/images/apple-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72" />
+                    <link href="./assets/images/apple-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114" />
+                    <link href="./assets/images/apple-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144" />
                     <link href='http://fonts.googleapis.com/css?family=Roboto+Mono:400,300italic' rel='stylesheet' type='text/css' />
                     <link href={this.props.stylePath} rel='stylesheet' type='text/css' />
                 </head>
