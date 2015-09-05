@@ -57,12 +57,16 @@ class Page extends BaseComponent {
     }
     _getGeolocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                TrainTimetableActions.getTrainTimetable(position.coords.latitude, position.coords.longitude, this.props.routerType);
-            });
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    TrainTimetableActions.getTrainTimetable(position.coords.latitude, position.coords.longitude, this.props.routerType);
+                },() => {
+                    /*eslint-disable */
+                    alert('無法使用定位，請設定瀏覽器開啟定位功能');
+                });
         } else {
             /*eslint-disable */
-            alert('無法使用定位，請允許瀏覽器開啟定位功能');
+            alert('無法使用定位，無法提供服務');
         }
     }
     _renderError() {
