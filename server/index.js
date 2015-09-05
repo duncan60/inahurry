@@ -30,10 +30,10 @@ const ROUTERCONFIG = [
 ];
 
 if (process.env.NODE_ENV) {
-    stylePath = util.format('styles/style.bundle.%s.css', pkg.version);
-    commonPath = util.format('js/common.%s.js', pkg.version);
-    twtrafficJsPath = util.format('js/twtraffic.%s.js', pkg.version);
-    thsrcJsPath = util.format('js/thsrc.%s.js', pkg.version);
+    stylePath = util.format('assets/styles/style.bundle.%s.css', pkg.version);
+    commonPath = util.format('assets/js/common.%s.js', pkg.version);
+    twtrafficJsPath = util.format('assets/js/twtraffic.%s.js', pkg.version);
+    thsrcJsPath = util.format('assets/js/thsrc.%s.js', pkg.version);
     port = 8080;
 } else {
     stylePath = '';
@@ -68,9 +68,8 @@ app.get(ROUTERCONFIG[1].router, (req, res) => {
     res.end(renderPage(commonPath, thsrcJsPath, stylePath));
 });
 
-app.use(express.static(path.join(__dirname, 'assets')));
+app.use(express.static(path.join(__dirname)));
 app.use(api);
-
 
 app.listen(port, () => {
     console.log('Listening on ' + port);
