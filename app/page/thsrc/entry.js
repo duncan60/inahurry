@@ -17,4 +17,8 @@ if (location.hostname !== 'localhost') {
 	ga('create', 'UA-66833382-1', 'auto');
 	ga('send', 'pageview');
 }
-
+window.onload = function(){
+    setTimeout(function(){
+        window.scrollTo(0, 1);
+    }, 100);
+}

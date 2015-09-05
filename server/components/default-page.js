@@ -23,6 +23,8 @@ class DefaultPage extends React.Component {
                     <meta charSet="utf-8" />
                     <title>特搜時刻表</title>
                     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+                    <meta name="apple-mobile-web-app-capable" content="yes" />
+                    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
                     <meta name="description" content="你是急急忙忙的通勤族嗎？到了車站才發現趕不上列車！特搜時刻表利用定位分析出距離最近的車站，快速幫你搜尋台灣鐵路時刻表及台灣高鐵時刻表資訊，讓你當個不疾不徐的通勤族" />
                     <meta property="og:site_name" content="特搜時刻表" />
                     <meta property="og:type" content="article" />
