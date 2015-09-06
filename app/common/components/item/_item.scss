@@ -6,9 +6,9 @@
     align-items: center;
     margin-bottom: 8px;
     padding:16px 10px;
-    border-radius: 4px;
-    color: #fff;
     background-color: rgba(#fff, 0.25);
+    color: #fff;
+    border-radius: 4px;
 }
 .item__heading {
     flex: 1;
@@ -23,9 +23,9 @@
     text-align: center;
 }
 .item__time {
+    @include fontToRem(46, 1.4);
     font-family: 'Roboto Mono';
     font-style: italic;
-    @include fontToRem(46, 1.4);
 }
 .item__icon-clock {
     @include fontToRem(22, 1.4);
