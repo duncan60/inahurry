@@ -9,14 +9,14 @@ import DefaultPage from './components/default-page';
 import api from './api';
 
 
-let app    = express(),
-    lhPath = '//localhost:8080/build/',
-    activeRouter,
-    twtrafficJsPath,
-    thsrcJsPath,
-    stylePath,
-    commonPath,
-    port;
+let app             = express(),
+    lhPath          = '//localhost:8080/build/',
+    commonPath      = `${lhPath}common.js`,
+    twtrafficJsPath = `${lhPath}twtraffic.js`,
+    thsrcJsPath     = `${lhPath}thsrc.js`,
+    stylePath       = '',
+    port            = 3000,
+    activeRouter;
 
 const ROUTERCONFIG = [
     {
@@ -35,12 +35,6 @@ if (process.env.NODE_ENV) {
     twtrafficJsPath = util.format('assets/js/twtraffic.%s.js', pkg.version);
     thsrcJsPath = util.format('assets/js/thsrc.%s.js', pkg.version);
     port = 8080;
-} else {
-    stylePath = '';
-    commonPath = `${lhPath}common.js`;
-    twtrafficJsPath = `${lhPath}twtraffic.js`;
-    thsrcJsPath = `${lhPath}thsrc.js`;
-    port = 3000;
 }
 
 let renderPage = (common, entry, style) => {
