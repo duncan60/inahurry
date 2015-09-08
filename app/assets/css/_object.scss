@@ -26,16 +26,16 @@
 
 //site-top
 .site-top {
+    border-bottom: 1px solid #045C90;
     background-color: #84AEC9;
     box-shadow: 0 1px 0px #639FC3;
-    border-bottom: 1px solid #045C90;
     &__title{
         margin: 0;
         padding: 0;
-        @include fontToRem(28, 1.4);
         color:$global-font-color;
-        text-align: center;
+        @include fontToRem(28, 1.4);
         font-weight: 200;
+        text-align: center;
     }
 }
 
@@ -66,17 +66,17 @@
     text-align: center;
     &__item{
         display: inline-block;
-        padding: 10px;
         list-style: none;
+        padding: 10px;
         border: 1px solid #fff;
         a{
             color: #fff;
             text-decoration: none;
         }
         &:first-child{
+            border-right: none;
             border-bottom-left-radius: 4px;
             border-top-left-radius: 4px;
-            border-right: none;
         }
         &:last-child{
             border-bottom-right-radius: 4px;
@@ -93,31 +93,31 @@
 }
 //list
 .list-group {
+    list-style: none;
     margin: 0;
     padding: 0;
-    list-style: none;
 }
 .list-title {
     margin-bottom: 10px;
-    @include fontToRem(20, 1.4);
     color: $global-font-color;
+    @include fontToRem(20, 1.4);
     .icon-train{
         vertical-align: text-bottom;
     }
 }
 .error_txt{
-    padding: 6px 10px;
     margin: 0 12px;
-    text-align: center;
+    padding: 6px 10px;
     background-color: rgba(255, 255, 255, 0.4);
     color: #CA0223;
+    text-align: center;
     border-radius: 4px;
 }
 .group-line{
-    margin: 10px 12px;
     height: 1px;
-    background-color: #FFFFFF;
+    margin: 10px 12px;
     border: 0;
+    background-color: #FFFFFF;
     box-shadow: 0px 1px 0 #32759D;
 }
 //footer

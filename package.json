@@ -6,9 +6,9 @@
   "scripts": {
     "clean": "rimraf server/assets",
     "webpackDev": "node webpack-server.js",
-    "serverDev": "./node_modules/.bin/babel-node server ",
+    "serverDev": "nodemon server --exec babel-node",
     "webpackDeploy": "npm run clean && NODE_ENV=production webpack -p --progress --config webpack.production.config.js",
-    "server": "NODE_ENV=production ./node_modules/.bin/babel-node server"
+    "server": "NODE_ENV=production babel-node server"
   },
   "repository": "duncan60/closest-train",
   "keywords": [
@@ -45,6 +45,7 @@
     "jsx-loader": "~0.10.2",
     "node-jsx": "^0.13.3",
     "node-sass": "^3.2.0",
+    "nodemon": "^1.4.1",
     "postcss-loader": "^0.5.1",
     "react": "^0.13.3",
     "rimraf": "^2.4.2",

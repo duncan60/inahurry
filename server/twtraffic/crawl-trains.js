@@ -11,17 +11,18 @@ let crawlTwtrafficTrains =  {
             msg  : ''
         };
         let getStationInfo = this.promise(this.crawlURL(stations), 'GET');
-        Promise.all([getStationInfo]).then((res) => {
-            this.model.north = this.parseData(res[0]).filter((item) => item.direction === '0');
-            this.model.south = this.parseData(res[0]).filter((item) => item.direction === '1');
-            this.model.code = 0;
-            this.model.msg = 'success';
-            callback(this.model);
-        }, (error) => {
-            this.model.code = 1;
-            this.model.msg = error;
-            callback(this.model);
-        });
+        Promise.all([getStationInfo])
+            .then((res) => {
+                this.model.north = this.parseData(res[0]).filter((item) => item.direction === '0');
+                this.model.south = this.parseData(res[0]).filter((item) => item.direction === '1');
+                this.model.code = 0;
+                this.model.msg = 'success';
+                callback(this.model);
+            }, (error) => {
+                this.model.code = 1;
+                this.model.msg = error;
+                callback(this.model);
+            });
     },
     promise(url, type) {
         //console.log('url', url);
