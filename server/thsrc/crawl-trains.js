@@ -8,9 +8,10 @@ let crawlTrains =  {
             south: [],
             msg  : ''
         };
-
+        console.log('await start');
         let result = await this.promise(stations.targetStation, 'GET');
         try {
+            console.log('await complete');
             let resJson = JSON.parse(JSON.parse(result));
             this.model.north = resJson.northbound.map((item) => {
                 return {
@@ -32,6 +33,7 @@ let crawlTrains =  {
             this.model.msg = error;
             callback(this.model);
         }
+        console.log('function end');
     },
     promise(targetStaton, type) {
         return new Promise((resolve, reject) => {
