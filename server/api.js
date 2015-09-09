@@ -20,7 +20,7 @@ router.get('/api/twtraffic', (req, res) => {
             res.json({
                 data   : {
                     trainsTimetableData: trainsData,
-                    closestStation      : closestStation
+                    closestStation     : closestStation
                 },
                 code   : 0,
                 message: 'search trains ok!'
@@ -31,7 +31,7 @@ router.get('/api/twtraffic', (req, res) => {
             res.json({
                 data   : {
                     trainsTimetableData: trainsData,
-                    closestStation      : closestStation
+                    closestStation     : closestStation
                 },
                 code   : -1,
                 message: 'search trains error!'
@@ -49,7 +49,7 @@ router.get('/api/thsrc', (req, res) => {
             res.json({
                 data   : {
                     trainsTimetableData: trainsData,
-                    closestStation      : closestStation
+                    closestStation     : closestStation
                 },
                 code   : 0,
                 message: 'search trains ok!'
@@ -60,7 +60,7 @@ router.get('/api/thsrc', (req, res) => {
             res.json({
                 data   : {
                     trainsTimetableData: trainsData,
-                    closestStation      : closestStation
+                    closestStation     : closestStation
                 },
                 code   : -1,
                 message: 'search trains error!'
