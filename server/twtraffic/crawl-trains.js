@@ -10,9 +10,11 @@ let crawlTwtrafficTrains =  {
             south: [],
             msg  : ''
         };
+        console.log('promise start');
         let getStationInfo = this.promise(this.crawlURL(stations), 'GET');
         Promise.all([getStationInfo])
             .then((res) => {
+                 console.log('promise complete');
                 this.model.north = this.parseData(res[0]).filter((item) => item.direction === '0');
                 this.model.south = this.parseData(res[0]).filter((item) => item.direction === '1');
                 this.model.code = 0;
@@ -23,9 +25,9 @@ let crawlTwtrafficTrains =  {
                 this.model.msg = error;
                 callback(this.model);
             });
+         console.log('function end');
     },
     promise(url, type) {
-        //console.log('url', url);
         return new Promise((resolve, reject) => {
             request({
                 url   : url,
@@ -61,7 +63,7 @@ let crawlTwtrafficTrains =  {
             multiple = i * 7;
             train.startTime = scriptAry[multiple + 2].split('\'')[1];
             let time = moment(train.startTime, 'HH:mm').format('YYYY-MM-DD HH:mm');
-            if ( moment(time).isBetween(nowTime, totime, 'milliseconds')) {
+            if (moment(time).isBetween(nowTime, totime, 'milliseconds')) {
                 train.type = scriptAry[multiple].split('\'')[1];
                 train.router = scriptAry[multiple + 3].split('\'')[1];
                 train.direction = scriptAry[multiple + 4].split('\'')[1];
