@@ -1,0 +1,13 @@
+.list-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.list-title {
+    margin-bottom: 10px;
+    color: $global-font-color;
+    @include fontToRem(20, 1.4);
+    .icon-train{
+        vertical-align: text-bottom;
+    }
+}

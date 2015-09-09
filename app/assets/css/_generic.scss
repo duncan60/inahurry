@@ -1,3 +1,21 @@
 * {
     box-sizing: border-box;
 }
+.pull-right {
+    float: right;
+}
+.error_txt{
+    margin: 0 12px;
+    padding: 6px 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+    color: #CA0223;
+    text-align: center;
+    border-radius: 4px;
+}
+.group-line{
+    height: 1px;
+    margin: 10px 12px;
+    border: 0;
+    background-color: #FFFFFF;
+    box-shadow: 0px 1px 0 #32759D;
+}
