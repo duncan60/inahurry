@@ -1,11 +1,5 @@
 import stationData from './station-data';
 
-let compose = (f, g) => {
-  return (x) => {
-    return f(g(x));
-  };
-};
-
 let closestStations =  {
     search(lat, long) {
         let lowest = Number.POSITIVE_INFINITY,

@@ -10,11 +10,9 @@ let crawlTwtrafficTrains =  {
             south: [],
             msg  : ''
         };
-        console.log('promise start');
         let getStationInfo = this.promise(this.crawlURL(stations), 'GET');
         Promise.all([getStationInfo])
             .then((res) => {
-                 console.log('promise complete');
                 this.model.north = this.parseData(res[0]).filter((item) => item.direction === '0');
                 this.model.south = this.parseData(res[0]).filter((item) => item.direction === '1');
                 this.model.code = 0;
@@ -25,7 +23,6 @@ let crawlTwtrafficTrains =  {
                 this.model.msg = error;
                 callback(this.model);
             });
-         console.log('function end');
     },
     promise(url, type) {
         return new Promise((resolve, reject) => {

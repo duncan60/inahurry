@@ -40,33 +40,33 @@ router.get('/api/twtraffic', (req, res) => {
     });
 });
 
-router.get('/api/thsrc', (req, res) => {
-    let closestStation = closestThsrcStation.search(req.query.latitude, req.query.longitude);
-    crawlThsrcTrains.getTrainsData(closestStation, (trainsData)=> {
-        if (trainsData.code === 0) {
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'text/plain');
-            res.json({
-                data   : {
-                    trainsTimetableData: trainsData,
-                    closestStation     : closestStation
-                },
-                code   : 0,
-                message: 'search trains ok!'
-            });
-        } else {
-            res.statusCode = 401;
-            res.setHeader('Content-Type', 'text/plain');
-            res.json({
-                data   : {
-                    trainsTimetableData: trainsData,
-                    closestStation     : closestStation
-                },
-                code   : -1,
-                message: 'search trains error!'
-            });
-        }
-    });
+router.get('/api/thsrc', async (req, res) => {
+    let closestStation = closestThsrcStation.search(req.query.latitude, req.query.longitude),
+        trainsData     = await crawlThsrcTrains.getTrainsData(closestStation);
+
+    if (trainsData.code === 0) {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
+        res.json({
+            data   : {
+                trainsTimetableData: trainsData,
+                closestStation     : closestStation
+            },
+            code   : 0,
+            message: 'search trains ok!'
+        });
+    } else {
+        res.statusCode = 401;
+        res.setHeader('Content-Type', 'text/plain');
+        res.json({
+            data   : {
+                trainsTimetableData: trainsData,
+                closestStation     : closestStation
+            },
+            code   : -1,
+            message: 'search trains error!'
+        });
+    }
 });
 
 export default router;
