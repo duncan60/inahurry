@@ -8,7 +8,6 @@ let crawlTrains =  {
             south: [],
             msg  : ''
         };
-                console.log('stations', stations);
         let result = await this.promise(stations.targetStation, 'GET');
         try {
             let resJson = JSON.parse(JSON.parse(result));

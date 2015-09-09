@@ -3,18 +3,18 @@
 ** pdf: http://csswizardry.net/talks/2014/11/itcss-dafed.pdf
 */
 
-@import './css/_settings.global';
+@import './scss/_settings.global';
 
-@import './css/_tools.mixins';
+@import './scss/_tools.mixins';
 
-@import './css/_elements';
+@import './scss/_elements';
 
-@import './css/_generic';
-@import './css/_layout';
-@import './css/_site-header';
-@import './css/_table-header';
-@import './css/_footer';
-@import './css/_nav-tab';
-@import './css/_list-wrapper';
-@import './css/_list-group';
-@import './css/_responsive';
+@import './scss/_generic';
+@import './scss/_layout';
+@import './scss/_site-header';
+@import './scss/_table-header';
+@import './scss/_footer';
+@import './scss/_nav-tab';
+@import './scss/_list-wrapper';
+@import './scss/_list-group';
+@import './scss/_responsive';
