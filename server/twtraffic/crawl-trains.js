@@ -3,29 +3,24 @@ import cheerio from 'cheerio';
 import moment from 'moment';
 
 let crawlTwtrafficTrains =  {
-    getTrainsData(stations, callback) {
+    async getTrainsData(stations) {
         this.model = {
             code : -1,
             north: [],
             south: [],
             msg  : ''
         };
-        console.log('promise start');
-        let getStationInfo = this.promise(this.crawlURL(stations), 'GET');
-        Promise.all([getStationInfo])
-            .then((res) => {
-                 console.log('promise complete');
-                this.model.north = this.parseData(res[0]).filter((item) => item.direction === '0');
-                this.model.south = this.parseData(res[0]).filter((item) => item.direction === '1');
-                this.model.code = 0;
-                this.model.msg = 'success';
-                callback(this.model);
-            }, (error) => {
-                this.model.code = 1;
-                this.model.msg = error;
-                callback(this.model);
-            });
-         console.log('function end');
+        let result = await this.promise(this.crawlURL(stations), 'GET');
+        try {
+            this.model.north = this.parseData(result).filter((item) => item.direction === '0');
+            this.model.south = this.parseData(result).filter((item) => item.direction === '1');
+            this.model.code = 0;
+            this.model.msg = 'success';
+        } catch(error) {
+            this.model.code = 1;
+            this.model.msg = error;
+        }
+        return this.model
     },
     promise(url, type) {
         return new Promise((resolve, reject) => {

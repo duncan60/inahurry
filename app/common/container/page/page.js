@@ -173,7 +173,7 @@ class Page extends BaseComponent {
 
         return (
             <div className="content-inner">
-                <div className="header">
+                <div className="table-header">
                     <div className="header__inner">
                         <h2 className="header__title">{title}</h2>
                         {headerInfoHtml}

@@ -1,17 +1,15 @@
 import request from 'request';
 
 let crawlTrains =  {
-    async getTrainsData(stations, callback) {
+    async getTrainsData(stations) {
         this.model = {
             code : -1,
             north: [],
             south: [],
             msg  : ''
         };
-        console.log('await start');
         let result = await this.promise(stations.targetStation, 'GET');
         try {
-            console.log('await complete');
             let resJson = JSON.parse(JSON.parse(result));
             this.model.north = resJson.northbound.map((item) => {
                 return {
@@ -27,13 +25,11 @@ let crawlTrains =  {
             });
             this.model.code = 0;
             this.model.msg = 'success';
-            callback(this.model);
         } catch(error) {
             this.model.code = -1;
             this.model.msg = error;
-            callback(this.model);
         }
-        console.log('function end');
+        return this.model;
     },
     promise(targetStaton, type) {
         return new Promise((resolve, reject) => {

@@ -44,8 +44,8 @@ class DefaultPage extends React.Component {
                     <link href={this.props.stylePath} rel='stylesheet' type='text/css' />
                 </head>
                 <body>
-                    <header className="site-top" role="banner">
-                        <h1 className="site-top__title">特搜時刻表</h1>
+                    <header className="site-header" role="banner">
+                        <h1 className="site-header__title">特搜時刻表</h1>
                     </header>
                     <nav>
                         <ul className='nav-tab'>
