@@ -61,9 +61,6 @@ app.get(ROUTERCONFIG[1].router, (req, res) => {
     activeRouter = ROUTERCONFIG[1].router;
     res.end(renderPage(commonPath, thsrcJsPath, stylePath));
 });
-app.get('/test', (req, res) => {
-    res.end(renderPage('', '', stylePath));
-});
 
 app.use(express.static(path.join(__dirname)));
 app.use(api);
