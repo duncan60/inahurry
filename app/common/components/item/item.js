@@ -3,67 +3,49 @@ import './_item';
 import React from 'react';
 import BaseComponent from '../../../base-component';
 
+let ThsrcItem = ({props}) => (
+    <div className="item__inner">
+        <div className="item__heading">
+                <p>車次</p>
+                <p>{props.trainType} </p>
+        </div>
+        <div className="item__body">
+            <p className="item__time">
+                <small className="item__small">時間：</small>
+                <time dateTime={props.startTime}>{props.startTime}</time>
+            </p>
+        </div>
+
+    </div>
+);
+
+let TwtrafficItem = ({props}) => (
+    <div className="item__inner">
+        <div className="item__heading">
+                <p>{props.trainType}</p>
+                <p>開往: {props.router} </p>
+        </div>
+        <div className="item__body">
+            <p className="item__time">
+                <small className="item__small">時間：</small>
+                <time dateTime={props.startTime}>{props.startTime}</time>
+            </p>
+        </div>
+        <div className="item__footer">
+            <p>
+                {(props.state === '0' || props.state === '') ? '準點' : `誤點${props.state}分鐘`}
+            </p>
+        </div>
+    </div>
+);
 
 class Item extends BaseComponent {
     constructor(props) {
         super(props);
         this._bind();
     }
-    _renderThsrcItem() {
-        const
-            {
-                startTime,
-                trainType
-            } = this.props;
-
-        return (
-            <div className="item__inner">
-                <div className="item__heading">
-                        <p>車次</p>
-                        <p>{trainType} </p>
-                </div>
-                <div className="item__body">
-                    <p className="item__time">
-                        <small className="item__small">時間：</small>
-                        <time dateTime={startTime}>{startTime}</time>
-                    </p>
-                </div>
-
-            </div>
-        );
-    }
-    _renderTwtrafficItem() {
-        const
-            {
-                trainType,
-                startTime,
-                router,
-                state
-            } = this.props;
-        let stateStr = (state === '0' || state === '') ? '準點' : `誤點${state}分鐘`;
-
-        return (
-            <div className="item__inner">
-                <div className="item__heading">
-                        <p>{trainType}</p>
-                        <p>開往: {router} </p>
-                </div>
-                <div className="item__body">
-                    <p className="item__time">
-                        <small className="item__small">時間：</small>
-                        <time dateTime={startTime}>{startTime}</time>
-                    </p>
-                </div>
-                <div className="item__footer">
-                    <p>
-                        {stateStr}
-                    </p>
-                </div>
-            </div>
-        );
-    }
     render() {
-        let contentHtml = this.props.type === 'twtraffic' ? this._renderTwtrafficItem() : this._renderThsrcItem();
+        let contentHtml = this.props.type === 'twtraffic' ? <TwtrafficItem  props={this.props} /> : <ThsrcItem props={this.props} />;
 
         return (
             <li className="item" >
