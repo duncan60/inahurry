@@ -3,9 +3,10 @@ import '../../assets/fonts-style';
 import '../../assets/main';
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Page from '../../common/container/page/page';
 
-React.render(<Page routerType={'thsrc'} />, document.getElementById('content'));
+ReactDOM.render(<Page routerType={'thsrc'} />, document.getElementById('content'));
 
 /*eslint-disable */
 if (location.hostname !== 'localhost') {

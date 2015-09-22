@@ -1,6 +1,6 @@
 
 
-import React from 'react/addons';
+import React from 'react';
 import BaseComponent from '../../../base-component';
 
 //components
@@ -14,7 +14,7 @@ import TrainTimeTableStore from '../../../stores/train-timetable-store';
 import TrainTimetableActions from '../../../actions/train-timetable-actions';
 
 
-let ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+import ReactCSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
 
 let getStore = () => {
     return {
@@ -149,14 +149,14 @@ class Page extends BaseComponent {
             <div className="list-section__inner">
                 <div className="list-wrapper north-list">
                     <p className="list-title"><span className="icon-train" />北上列車</p>
-                    <ReactCSSTransitionGroup component="ul" className="list-group" transitionName="item" transitionAppear={true}>
+                    <ReactCSSTransitionGroup component="ul" className="list-group" transitionName="item" transitionAppear={true} transitionEnterTimeout={500}>
                         {northItems}
                     </ReactCSSTransitionGroup>
                 </div>
                 <hr className="group-line" />
                 <div className="list-wrapper south-list">
                     <p className="list-title"><span className="icon-train" />南下列車</p>
-                    <ReactCSSTransitionGroup component="ul" className="list-group" transitionName="item" transitionAppear={true}>
+                    <ReactCSSTransitionGroup component="ul" className="list-group" transitionName="item" transitionAppear={true} transitionEnterTimeout={500}>
                         {southItems}
                     </ReactCSSTransitionGroup>
                 </div>

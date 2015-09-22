@@ -65,7 +65,7 @@ DefaultPage.propTypes = {
     commonPath  : React.PropTypes.string.isRequired,
     jsPath      : React.PropTypes.string.isRequired,
     stylePath   : React.PropTypes.string.isRequired,
-    activeRouter:React.PropTypes.string.isRequired,
+    activeRouter: React.PropTypes.string.isRequired,
     tabData     : React.PropTypes.array.isRequired
 };
 
