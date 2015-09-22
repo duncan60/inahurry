@@ -15,7 +15,6 @@ let ThsrcItem = ({props}) => (
                 <time dateTime={props.startTime}>{props.startTime}</time>
             </p>
         </div>
-
     </div>
 );
 
