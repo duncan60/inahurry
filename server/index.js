@@ -5,6 +5,7 @@ import express from 'express';
 import pkg from '../package.json';
 
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import DefaultPage from './components/default-page';
 import api from './api';
 
@@ -38,7 +39,7 @@ if (process.env.NODE_ENV) {
 }
 
 let renderPage = (common, entry, style) => {
-    return React.renderToString(
+    return ReactDOMServer.renderToString(
                 React.createElement(
                     DefaultPage,
                     {

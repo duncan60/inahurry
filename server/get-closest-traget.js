@@ -1,27 +1,19 @@
-import stationData from './station-data';
-
-let closestStations =  {
-    search(lat, long) {
+let getClosestTraget =  {
+    search(dataList, lat, long) {
         let lowest = Number.POSITIVE_INFINITY,
             tmp,
-            targetStation,
-            northStation,
-            southStation,
-            idx;
+            closestTarget;
         let getDistance = this.getDistanceCurry(lat, long);
-        stationData.stations.forEach((item, i) => {
+        dataList.forEach((item, i) => {
            tmp = getDistance(item);
            if (tmp < lowest) {
                 lowest = tmp;
                 item.dist = tmp;
-                targetStation = item;
-                idx = i;
+                closestTarget = item;
+                closestTarget.idx = i;
            }
         });
-        northStation = targetStation.id === '1001' ? targetStation : stationData.stations[idx - 1];
-        southStation = targetStation.id === stationData.stations[stationData.stations.length - 1].id ? targetStation : stationData.stations[idx + 1];
-        return {targetStation, northStation, southStation};
-        //var minX = Math.min.apply(Math, stations.map(function(val) { return val.dist; }));
+        return closestTarget;
     },
     rad(d) {
         return d * Math.PI / 180.0;
@@ -43,4 +35,4 @@ let closestStations =  {
     }
 };
 
-export default closestStations;
+export default getClosestTraget;

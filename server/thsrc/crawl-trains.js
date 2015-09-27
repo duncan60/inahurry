@@ -1,14 +1,14 @@
 import request from 'request';
 
 let crawlTrains =  {
-    async getTrainsData(stations) {
+    async getTrainsData(closestStation) {
         this.model = {
             code : -1,
             north: [],
             south: [],
             msg  : ''
         };
-        let result = await this.promise(stations.targetStation, 'GET');
+        let result = await this.promise(closestStation, 'GET');
         try {
             let resJson = JSON.parse(JSON.parse(result));
             this.model.north = resJson.northbound.map((item) => {
@@ -31,10 +31,10 @@ let crawlTrains =  {
         }
         return this.model;
     },
-    promise(targetStaton, type) {
+    promise(station, type) {
         return new Promise((resolve, reject) => {
             request({
-                url   : `http://www.thsrc.com.tw/tw/StationInfo/LatestTrainTime?id=${targetStaton.id}`,
+                url   : `http://www.thsrc.com.tw/tw/StationInfo/LatestTrainTime?id=${station.id}`,
                 method: type
             }, (e, r, b) => {
                 if (e || !b) {

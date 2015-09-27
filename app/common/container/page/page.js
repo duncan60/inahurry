@@ -1,6 +1,4 @@
-
-
-import React from 'react/addons';
+import React from 'react';
 import BaseComponent from '../../../base-component';
 
 //components
@@ -13,9 +11,6 @@ import TrainTimeTableStore from '../../../stores/train-timetable-store';
 //actions
 import TrainTimetableActions from '../../../actions/train-timetable-actions';
 
-
-let ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
-
 let getStore = () => {
     return {
         trainsTimetable: TrainTimeTableStore.getTrainsTimetable(),
@@ -24,6 +19,7 @@ let getStore = () => {
         isError        : TrainTimeTableStore.getError()
     };
 };
+
 class Page extends BaseComponent {
     constructor(props) {
         super(props);
@@ -89,12 +85,13 @@ class Page extends BaseComponent {
         if (!this.state.isReady) {
             return ;
         }
-        const {targetStation} = this.state.closestStation;
+        const {closestStation} = this.state;
         let trainType = this.props.routerType === 'twtraffic' ? '火車站' : '';
+
         return (
             <p className="header__subsection">
-                <small className="header__subsection--small">距離 </small>{targetStation.name}{trainType}
-                <small className="header__subsection--small"> 約 {(+targetStation.dist).toFixed(2)} Km</small>
+                <small className="header__subsection--small">距離 </small>{closestStation.name}{trainType}
+                <small className="header__subsection--small"> 約 {(+closestStation.dist).toFixed(2)} Km</small>
             </p>
         );
     }
@@ -149,16 +146,16 @@ class Page extends BaseComponent {
             <div className="list-section__inner">
                 <div className="list-wrapper north-list">
                     <p className="list-title"><span className="icon-train" />北上列車</p>
-                    <ReactCSSTransitionGroup component="ul" className="list-group" transitionName="item" transitionAppear={true}>
+                    <ul className="list-group">
                         {northItems}
-                    </ReactCSSTransitionGroup>
+                    </ul>
                 </div>
                 <hr className="group-line" />
                 <div className="list-wrapper south-list">
                     <p className="list-title"><span className="icon-train" />南下列車</p>
-                    <ReactCSSTransitionGroup component="ul" className="list-group" transitionName="item" transitionAppear={true}>
+                    <ul className="list-group">
                         {southItems}
-                    </ReactCSSTransitionGroup>
+                    </ul>
                 </div>
             </div>
         );
