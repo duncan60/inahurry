@@ -3,14 +3,14 @@ import cheerio from 'cheerio';
 import moment from 'moment';
 
 let crawlTwtrafficTrains =  {
-    async getTrainsData(stations) {
+    async getTrainsData(closestStation) {
         this.model = {
             code : -1,
             north: [],
             south: [],
             msg  : ''
         };
-        let result = await this.promise(this.crawlURL(stations), 'GET');
+        let result = await this.promise(this.crawlURL(closestStation), 'GET');
         try {
             this.model.north = this.parseData(result).filter((item) => item.direction === '0');
             this.model.south = this.parseData(result).filter((item) => item.direction === '1');
@@ -37,10 +37,9 @@ let crawlTwtrafficTrains =  {
         });
     },
     crawlURL(stations) {
-        const {targetStation} = stations;
         let momentDate    = moment(),
             searchDate    = momentDate.format('YYYY/MM/DD'),
-            fromStationId = targetStation.id;
+            fromStationId = stations.id;
         return `http://twtraffic.tra.gov.tw/twrail/mobile/StationSearchResult.aspx?fromstation=${fromStationId}&searchdate=${searchDate}`;
     },
     parseData(data) {

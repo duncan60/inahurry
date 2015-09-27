@@ -1,6 +1,7 @@
 
 import express from 'express';
 //twtraffic
+import twtrafficStationsData from './twtraffic/station-data';
 import closestTwtrafficStations from './twtraffic/closest-stations';
 import crawlTwtrafficTrains from './twtraffic/crawl-trains';
 //thsrc
@@ -13,7 +14,7 @@ let router = express.Router();
 
 //api
 router.get('/api/twtraffic', async (req, res) => {
-    let closestStation = closestTwtrafficStations.search(req.query.latitude, req.query.longitude),
+    let closestStation = getClosestTarget.search(twtrafficStationsData.stations, req.query.latitude, req.query.longitude),
         trainsData     = await crawlTwtrafficTrains.getTrainsData(closestStation);
 
     if (trainsData.code === 0) {
@@ -44,7 +45,6 @@ router.get('/api/twtraffic', async (req, res) => {
 router.get('/api/thsrc', async (req, res) => {
     let closestStation = getClosestTarget.search(thsrcStationsData.stations, req.query.latitude, req.query.longitude),
         trainsData     = await crawlThsrcTrains.getTrainsData(closestStation);
-
     if (trainsData.code === 0) {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/plain');

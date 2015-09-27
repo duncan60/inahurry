@@ -1,5 +1,3 @@
-
-
 import React from 'react/addons';
 import BaseComponent from '../../../base-component';
 
@@ -53,6 +51,7 @@ class Page extends BaseComponent {
         TrainTimeTableStore.removeChangeListener(this._storeChange);
     }
     _storeChange() {
+        console.log('getStore()', getStore());
         this.setState(getStore());
     }
     _getGeolocation() {
@@ -89,12 +88,13 @@ class Page extends BaseComponent {
         if (!this.state.isReady) {
             return ;
         }
-        const {targetStation} = this.state.closestStation;
+        const {closestStation} = this.state;
         let trainType = this.props.routerType === 'twtraffic' ? '火車站' : '';
+
         return (
             <p className="header__subsection">
-                <small className="header__subsection--small">距離 </small>{targetStation.name}{trainType}
-                <small className="header__subsection--small"> 約 {(+targetStation.dist).toFixed(2)} Km</small>
+                <small className="header__subsection--small">距離 </small>{closestStation.name}{trainType}
+                <small className="header__subsection--small"> 約 {(+closestStation.dist).toFixed(2)} Km</small>
             </p>
         );
     }
