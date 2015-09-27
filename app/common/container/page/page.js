@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import BaseComponent from '../../../base-component';
 
 //components
@@ -11,7 +11,7 @@ import TrainTimeTableStore from '../../../stores/train-timetable-store';
 //actions
 import TrainTimetableActions from '../../../actions/train-timetable-actions';
 
-let ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+import ReactCSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
 let getStore = () => {
     return {
         trainsTimetable: TrainTimeTableStore.getTrainsTimetable(),
