@@ -2,7 +2,6 @@
 import express from 'express';
 //twtraffic
 import twtrafficStationsData from './twtraffic/station-data';
-import closestTwtrafficStations from './twtraffic/closest-stations';
 import crawlTwtrafficTrains from './twtraffic/crawl-trains';
 //thsrc
 import thsrcStationsData from './thsrc/station-data';

@@ -11,9 +11,7 @@ import TrainTimeTableStore from '../../../stores/train-timetable-store';
 //actions
 import TrainTimetableActions from '../../../actions/train-timetable-actions';
 
-
 let ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
-
 let getStore = () => {
     return {
         trainsTimetable: TrainTimeTableStore.getTrainsTimetable(),
@@ -51,7 +49,6 @@ class Page extends BaseComponent {
         TrainTimeTableStore.removeChangeListener(this._storeChange);
     }
     _storeChange() {
-        console.log('getStore()', getStore());
         this.setState(getStore());
     }
     _getGeolocation() {
@@ -149,14 +146,24 @@ class Page extends BaseComponent {
             <div className="list-section__inner">
                 <div className="list-wrapper north-list">
                     <p className="list-title"><span className="icon-train" />北上列車</p>
-                    <ReactCSSTransitionGroup component="ul" className="list-group" transitionName="item" transitionAppear={true}>
+                    <ReactCSSTransitionGroup
+                        component="ul"
+                        className="list-group"
+                        transitionName="item"
+                        transitionEnterTimeout={5000}
+                        transitionAppear={true}>
                         {northItems}
                     </ReactCSSTransitionGroup>
                 </div>
                 <hr className="group-line" />
                 <div className="list-wrapper south-list">
                     <p className="list-title"><span className="icon-train" />南下列車</p>
-                    <ReactCSSTransitionGroup component="ul" className="list-group" transitionName="item" transitionAppear={true}>
+                    <ReactCSSTransitionGroup
+                        component="ul"
+                        className="list-group"
+                        transitionName="item"
+                        transitionEnterTimeout={5000}
+                        transitionAppear={true}>
                         {southItems}
                     </ReactCSSTransitionGroup>
                 </div>
