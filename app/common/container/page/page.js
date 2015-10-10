@@ -22,8 +22,14 @@ let getStore = () => {
 
 let HeaderInfo = ({props, state}) => (
     <p className="table-header__subsection">
-        <small className="table-header__subsection--small">距離 </small>{state.closestStation.name}{props.routerType === 'twtraffic' ? '火車站' : ''}
-        <small className="table-header__subsection--small"> 約 {(+state.closestStation.dist).toFixed(2)} Km</small>
+        <small className="table-header__subsection--small">
+            距離
+        </small>
+        {state.closestStation.name}
+        {props.routerType === 'twtraffic' ? '火車站' : ''}
+        <small className="table-header__subsection--small">
+            約 {(+state.closestStation.dist).toFixed(2)} Km
+        </small>
     </p>
 );
 
