@@ -20,18 +20,46 @@ let getStore = () => {
     };
 };
 
+let HeaderInfo = ({type, station}) => (
+    <p className="table-header__subsection">
+        <small className="table-header__subsection--small">
+            距離
+        </small>
+        {station.name}
+        {type === 'twtraffic' ? '火車站' : ''}
+        <small className="table-header__subsection--small">
+            約 {(+station.dist).toFixed(2)} Km
+        </small>
+    </p>
+);
+
+let NotHasTrainsItem = () => (
+    <li className="item">
+        <div className="item__inner">
+            <div className="item__heading">
+                <p>目前沒有任何列車</p>
+            </div>
+        </div>
+    </li>
+);
+
+let ListGroup = ({title, items}) => (
+    <div className="list-wrapper south-list">
+        <p className="list-title"><span className="icon-train" />{title}</p>
+        <ul className="list-group">
+            {items}
+        </ul>
+    </div>
+);
+
 class Page extends BaseComponent {
     constructor(props) {
         super(props);
         this._bind(
             '_getGeolocation',
             '_storeChange',
-            '_renderError',
             '_renderList',
-            '_renderItems',
-            '_renderHeaderInfo',
-            '_renderNotHasTrains',
-            '_renderLoading'
+            '_renderItems'
         );
         this.state = getStore();
     }
@@ -65,120 +93,63 @@ class Page extends BaseComponent {
             alert('無法使用定位，無法提供服務');
         }
     }
-    _renderError() {
-        if (!this.state.isError) {
-            return ;
-        }
-        return (
-            <p className='error_txt'>連線錯誤，暫時無法提供服務...</p>
-        );
-    }
-    _renderLoading() {
-        if (this.state.isReady || this.state.isError) {
-            return ;
-        }
-        return (
-            <Loading />
-        );
-    }
-    _renderHeaderInfo() {
-        if (!this.state.isReady) {
-            return ;
-        }
-        const {closestStation} = this.state;
-        let trainType = this.props.routerType === 'twtraffic' ? '火車站' : '';
-
-        return (
-            <p className="header__subsection">
-                <small className="header__subsection--small">距離 </small>{closestStation.name}{trainType}
-                <small className="header__subsection--small"> 約 {(+closestStation.dist).toFixed(2)} Km</small>
-            </p>
-        );
-    }
-    _renderNotHasTrains() {
-        return (
-            <li className="item">
-                <div className="item__inner">
-                    <div className="item__heading">
-                        <p>目前沒有任何列車</p>
-                    </div>
-                </div>
-            </li>
-        );
-    }
     _renderItems(items) {
         if (items.length === 0) {
-            return this._renderNotHasTrains();
+            return <NotHasTrainsItem />;
         }
         if (this.props.routerType ==='twtraffic') {
             return items.map((item, i) => {
-                return (
-                    <Item
+                return <Item
                         key={i}
                         type={this.props.routerType}
                         trainType={item.type}
                         startTime={item.startTime}
                         router={item.router}
-                        state ={item.state} />
-                );
+                        state ={item.state} />;
             });
         } else {
             return items.map((item, i) => {
-                return (
-                    <Item
+                return <Item
                         key={i}
                         type={this.props.routerType}
                         trainType={item.trainNumber}
-                        startTime={item.departureTime} />
-                );
+                        startTime={item.departureTime} />;
             });
         }
     }
     _renderList() {
-        if (!this.state.isReady) {
-            return ;
-        }
         const {south, north} = this.state.trainsTimetable;
         let northItems = this._renderItems(north),
             southItems = this._renderItems(south);
 
         return (
             <div className="list-section__inner">
-                <div className="list-wrapper north-list">
-                    <p className="list-title"><span className="icon-train" />北上列車</p>
-                    <ul className="list-group">
-                        {northItems}
-                    </ul>
-                </div>
+                <ListGroup title={'北上列車'} items={northItems} />
                 <hr className="group-line" />
-                <div className="list-wrapper south-list">
-                    <p className="list-title"><span className="icon-train" />南下列車</p>
-                    <ul className="list-group">
-                        {southItems}
-                    </ul>
-                </div>
+                <ListGroup title={'南下列車'} items={southItems} />
             </div>
         );
     }
     render() {
-        let headerInfoHtml = this._renderHeaderInfo(),
-            loadingHtml    = this._renderLoading(),
-            listHtml       = this._renderList(),
-            errorHtml      = this._renderError(),
-            title          = this.props.routerType === 'twtraffic' ? '台鐵時刻表' : '高鐵時刻表',
-            source         = this.props.routerType === 'twtraffic' ? '交通部台灣鐵路管理局 列車時刻查詢系統' : '台灣高速鐵路股份有限公司 表定最近車次';
+        if (!this.state.isReady) {
+            return <Loading />;
+        }
+        if (this.state.isError) {
+            return <p className='error_txt'>連線錯誤，暫時無法提供服務...</p>;
+        }
+        let listHtml = this._renderList(),
+            title    = this.props.routerType === 'twtraffic' ? '台鐵時刻表' : '高鐵時刻表',
+            source   = this.props.routerType === 'twtraffic' ? '交通部台灣鐵路管理局 列車時刻查詢系統' : '台灣高速鐵路股份有限公司 表定最近車次';
 
         return (
             <div className="content-inner">
                 <div className="table-header">
-                    <div className="header__inner">
-                        <h2 className="header__title">{title}</h2>
-                        {headerInfoHtml}
+                    <div className="table-header__inner">
+                        <h2 className="table-header__title">{title}</h2>
+                        <HeaderInfo type={this.props.routerType} station={this.state.closestStation} />
                     </div>
                 </div>
                 <section className="list-section">
-                    {errorHtml}
-                    {loadingHtml}
                     {listHtml}
                 </section>
                 <footer className="footer">

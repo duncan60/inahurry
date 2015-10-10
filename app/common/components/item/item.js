@@ -41,7 +41,6 @@ let TwtrafficItem = ({props}) => (
 class Item extends BaseComponent {
     constructor(props) {
         super(props);
-        this._bind();
     }
     render() {
         let contentHtml = this.props.type === 'twtraffic' ? <TwtrafficItem  props={this.props} /> : <ThsrcItem props={this.props} />;
