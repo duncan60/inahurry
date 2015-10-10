@@ -20,15 +20,15 @@ let getStore = () => {
     };
 };
 
-let HeaderInfo = ({props, state}) => (
+let HeaderInfo = ({type, station}) => (
     <p className="table-header__subsection">
         <small className="table-header__subsection--small">
             距離
         </small>
-        {state.closestStation.name}
-        {props.routerType === 'twtraffic' ? '火車站' : ''}
+        {station.name}
+        {type === 'twtraffic' ? '火車站' : ''}
         <small className="table-header__subsection--small">
-            約 {(+state.closestStation.dist).toFixed(2)} Km
+            約 {(+station.dist).toFixed(2)} Km
         </small>
     </p>
 );
@@ -50,10 +50,6 @@ let ListGroup = ({title, items}) => (
             {items}
         </ul>
     </div>
-);
-
-let ServerError = () => (
-    <p className='error_txt'>連線錯誤，暫時無法提供服務...</p>
 );
 
 class Page extends BaseComponent {
@@ -139,7 +135,7 @@ class Page extends BaseComponent {
             return <Loading />;
         }
         if (this.state.isError) {
-            return <ServerError />;
+            return <p className='error_txt'>連線錯誤，暫時無法提供服務...</p>;
         }
         let listHtml = this._renderList(),
             title    = this.props.routerType === 'twtraffic' ? '台鐵時刻表' : '高鐵時刻表',
@@ -150,7 +146,7 @@ class Page extends BaseComponent {
                 <div className="table-header">
                     <div className="table-header__inner">
                         <h2 className="table-header__title">{title}</h2>
-                        <HeaderInfo props={this.props} state={this.state} />
+                        <HeaderInfo type={this.props.routerType} station={this.state.closestStation} />
                     </div>
                 </div>
                 <section className="list-section">
