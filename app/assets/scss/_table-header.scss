@@ -1,5 +1,4 @@
 .table-header {
-    padding: 0 10px;
     color:$global-font-color;
     &__inner {
         padding:16px 10px;
@@ -18,3 +17,19 @@
         }
     }
 }
+// .table-header__inner {
+//     padding:16px 10px;
+// }
+// .table-header__title {
+//     margin: 0 0 6px;
+//     @include fontToRem(24, 1.4);
+//     font-weight: normal;
+// }
+// .table-header__subsection {
+//     @include fontToRem(22, 1.4);
+//     &--small {
+//         @include fontToRem(16, 1.4);
+//         font-family: 'Roboto Mono';
+//         font-style: italic;
+//     }
+// }

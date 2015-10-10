@@ -20,6 +20,24 @@ let getStore = () => {
     };
 };
 
+
+let HeaderInfo = ({props, state}) => (
+    <p className="table-header__subsection">
+        <small className="table-header__subsection--small">距離 </small>{state.closestStation.name}{props.routerType === 'twtraffic' ? '火車站' : ''}
+        <small className="table-header__subsection--small"> 約 {(+state.closestStation.dist).toFixed(2)} Km</small>
+    </p>
+);
+
+let NotHasTrainsItem = () => (
+    <li className="item">
+        <div className="item__inner">
+            <div className="item__heading">
+                <p>目前沒有任何列車</p>
+            </div>
+        </div>
+    </li>
+);
+
 class Page extends BaseComponent {
     constructor(props) {
         super(props);
@@ -30,7 +48,6 @@ class Page extends BaseComponent {
             '_renderList',
             '_renderItems',
             '_renderHeaderInfo',
-            '_renderNotHasTrains',
             '_renderLoading'
         );
         this.state = getStore();
@@ -69,68 +86,41 @@ class Page extends BaseComponent {
         if (!this.state.isError) {
             return ;
         }
-        return (
-            <p className='error_txt'>連線錯誤，暫時無法提供服務...</p>
-        );
+        return <p className='error_txt'>連線錯誤，暫時無法提供服務...</p>;
     }
     _renderLoading() {
         if (this.state.isReady || this.state.isError) {
             return ;
         }
-        return (
-            <Loading />
-        );
+        return <Loading />;
     }
     _renderHeaderInfo() {
         if (!this.state.isReady) {
             return ;
         }
-        const {closestStation} = this.state;
-        let trainType = this.props.routerType === 'twtraffic' ? '火車站' : '';
-
-        return (
-            <p className="header__subsection">
-                <small className="header__subsection--small">距離 </small>{closestStation.name}{trainType}
-                <small className="header__subsection--small"> 約 {(+closestStation.dist).toFixed(2)} Km</small>
-            </p>
-        );
-    }
-    _renderNotHasTrains() {
-        return (
-            <li className="item">
-                <div className="item__inner">
-                    <div className="item__heading">
-                        <p>目前沒有任何列車</p>
-                    </div>
-                </div>
-            </li>
-        );
+        return <HeaderInfo props={this.props} state={this.state} />;
     }
     _renderItems(items) {
         if (items.length === 0) {
-            return this._renderNotHasTrains();
+            return <NotHasTrainsItem />;
         }
         if (this.props.routerType ==='twtraffic') {
             return items.map((item, i) => {
-                return (
-                    <Item
+                return <Item
                         key={i}
                         type={this.props.routerType}
                         trainType={item.type}
                         startTime={item.startTime}
                         router={item.router}
-                        state ={item.state} />
-                );
+                        state ={item.state} />;
             });
         } else {
             return items.map((item, i) => {
-                return (
-                    <Item
+                return <Item
                         key={i}
                         type={this.props.routerType}
                         trainType={item.trainNumber}
-                        startTime={item.departureTime} />
-                );
+                        startTime={item.departureTime} />;
             });
         }
     }
@@ -171,8 +161,8 @@ class Page extends BaseComponent {
         return (
             <div className="content-inner">
                 <div className="table-header">
-                    <div className="header__inner">
-                        <h2 className="header__title">{title}</h2>
+                    <div className="table-header__inner">
+                        <h2 className="table-header__title">{title}</h2>
                         {headerInfoHtml}
                     </div>
                 </div>
