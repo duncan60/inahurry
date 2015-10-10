@@ -135,9 +135,9 @@ class Page extends BaseComponent {
         if (this.state.isError) {
             return <ServerError />;
         }
-        let listHtml  = this._renderList(),
-            title     = this.props.routerType === 'twtraffic' ? '台鐵時刻表' : '高鐵時刻表',
-            source    = this.props.routerType === 'twtraffic' ? '交通部台灣鐵路管理局 列車時刻查詢系統' : '台灣高速鐵路股份有限公司 表定最近車次';
+        let listHtml = this._renderList(),
+            title    = this.props.routerType === 'twtraffic' ? '台鐵時刻表' : '高鐵時刻表',
+            source   = this.props.routerType === 'twtraffic' ? '交通部台灣鐵路管理局 列車時刻查詢系統' : '台灣高速鐵路股份有限公司 表定最近車次';
 
         return (
             <div className="content-inner">
