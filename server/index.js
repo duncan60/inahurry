@@ -56,7 +56,6 @@ let renderPage = (common, entry, style, host) => {
 
 //router
 app.get(ROUTERCONFIG[0].router, (req, res) => {
-    console.log('req', req.headers.host);
     activeRouter = ROUTERCONFIG[0].router;
     res.end(renderPage(commonPath, twtrafficJsPath, stylePath, req.headers.host));
 });

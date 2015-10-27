@@ -1,6 +1,6 @@
-import AppDispatcher from '../dispatcher/app-dispatcher';
-import Constants from '../constants/constants';
-import UtilsStore from './utils-store.js';
+import AppDispatcher from 'dispatcher/app-dispatcher';
+import Constants from 'constants/constants';
+import UtilsStore from 'stores/utils-store.js';
 
 let trainsTimetableData = {},
     closestStation      = {},
