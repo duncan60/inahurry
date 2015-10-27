@@ -38,7 +38,7 @@ if (process.env.NODE_ENV) {
     port = 8080;
 }
 
-let renderPage = (common, entry, style) => {
+let renderPage = (common, entry, style, host) => {
     return ReactDOMServer.renderToString(
                 React.createElement(
                     DefaultPage,
@@ -47,7 +47,8 @@ let renderPage = (common, entry, style) => {
                         stylePath   : style,
                         commonPath  : common,
                         tabData     : ROUTERCONFIG,
-                        activeRouter: activeRouter
+                        activeRouter: activeRouter,
+                        host        : host
                     }
                 )
             );
@@ -55,12 +56,13 @@ let renderPage = (common, entry, style) => {
 
 //router
 app.get(ROUTERCONFIG[0].router, (req, res) => {
+    console.log('req', req.headers.host);
     activeRouter = ROUTERCONFIG[0].router;
-    res.end(renderPage(commonPath, twtrafficJsPath, stylePath));
+    res.end(renderPage(commonPath, twtrafficJsPath, stylePath, req.headers.host));
 });
 app.get(ROUTERCONFIG[1].router, (req, res) => {
     activeRouter = ROUTERCONFIG[1].router;
-    res.end(renderPage(commonPath, thsrcJsPath, stylePath));
+    res.end(renderPage(commonPath, thsrcJsPath, stylePath, req.headers.host));
 });
 
 app.use(express.static(path.join(__dirname)));

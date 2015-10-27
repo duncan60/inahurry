@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseComponent from '../../../base-component';
-
+import withDecorators from '../../../decorators/withDecorators';
 //components
 import Item from '../../../common/components/item/item';
 import Loading from '../../../common/components/loading/loading';
@@ -52,6 +52,7 @@ let ListGroup = ({title, items}) => (
     </div>
 );
 
+@withDecorators
 class Page extends BaseComponent {
     constructor(props) {
         super(props);

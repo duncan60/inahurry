@@ -50,6 +50,10 @@ module.exports = [
                 {
                     test: /\.js(x)?$/,
                     loader: 'babel',
+                    query: {
+                        stage: 0,
+                        optional: ['es7.decorators']
+                    },
                     exclude: nodeModulesPath
                 }
             ]
