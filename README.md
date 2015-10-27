@@ -10,7 +10,7 @@ $ npm install
 
 ``` text
 # 2 different terminals  
-$ npm run weboackDev
+$ npm run webpackDev
 $ npm run serverDev
 # open this url in your browser
 # http://localhost:3000/

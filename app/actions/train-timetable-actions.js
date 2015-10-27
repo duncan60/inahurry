@@ -1,5 +1,5 @@
-import AppDispatcher from '../dispatcher/app-dispatcher';
-import Constants from '../constants/constants';
+import AppDispatcher from 'dispatcher/app-dispatcher';
+import Constants from 'constants/constants';
 
 let TrainTimetableActions = {
     getTrainTimetable(latitude, longitude, type='twtraffic') {

@@ -1,15 +1,15 @@
 import React from 'react';
-import BaseComponent from '../../../base-component';
-
+import BaseComponent from 'base-component';
+import withDecorators from 'decorators/withDecorators';
 //components
-import Item from '../../../common/components/item/item';
-import Loading from '../../../common/components/loading/loading';
+import Item from 'common/components/item/item';
+import Loading from 'common/components/loading/loading';
 
 //store
-import TrainTimeTableStore from '../../../stores/train-timetable-store';
+import TrainTimeTableStore from 'stores/train-timetable-store';
 
 //actions
-import TrainTimetableActions from '../../../actions/train-timetable-actions';
+import TrainTimetableActions from 'actions/train-timetable-actions';
 
 let getStore = () => {
     return {
@@ -52,6 +52,7 @@ let ListGroup = ({title, items}) => (
     </div>
 );
 
+@withDecorators
 class Page extends BaseComponent {
     constructor(props) {
         super(props);

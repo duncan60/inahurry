@@ -3,6 +3,21 @@ import TabButton from './tab-button';
 import classNames from 'classnames';
 
 class DefaultPage extends React.Component {
+      _trackingCode() {
+        let googleAnalyticsId = 'UA-66833382-1';
+        if (this.props.host !== 'localhost:3000') {
+            return ({__html:
+                `(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=` +
+                `function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;` +
+                `e=o.createElement(i);r=o.getElementsByTagName(i)[0];` +
+                `e.src='https://www.google-analytics.com/analytics.js';` +
+                `r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));` +
+                `ga('create','${googleAnalyticsId}','auto');ga('send','pageview');`
+            });
+        } else {
+            return ({__html: ''});
+       }
+    }
     _renderTab() {
         return this.props.tabData.map((item, i) => {
             let itemClasses = classNames('nav-tab__item', {'nav-tab__item--active': item.router === this.props.activeRouter});
@@ -42,6 +57,7 @@ class DefaultPage extends React.Component {
                     <link href="icon/apple-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144" />
                     <link href='http://fonts.googleapis.com/css?family=Roboto+Mono:400,300italic' rel='stylesheet' type='text/css' />
                     <link href={this.props.stylePath} rel='stylesheet' type='text/css' />
+                    <script dangerouslySetInnerHTML={this._trackingCode()} />
                 </head>
                 <body>
                     <header className="site-header" role="banner">
@@ -66,6 +82,7 @@ DefaultPage.propTypes = {
     jsPath      : React.PropTypes.string.isRequired,
     stylePath   : React.PropTypes.string.isRequired,
     activeRouter: React.PropTypes.string.isRequired,
+    host        : React.PropTypes.string.isRequired,
     tabData     : React.PropTypes.array.isRequired
 };
 

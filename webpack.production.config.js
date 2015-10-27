@@ -56,6 +56,10 @@ var config = {
         })
     ],
     resolve: {
+        modulesDirectories: [
+            'app',
+            'node_modules'
+        ],
         extensions: ['', '.js', '.jsx', '.css', '.scss']
     }
 };

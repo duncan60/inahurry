@@ -1,7 +1,7 @@
 import './_loading';
 
 import React from 'react';
-import BaseComponent from '../../../base-component';
+import BaseComponent from 'base-component';
 
 class Loading extends BaseComponent {
     constructor(props) {
