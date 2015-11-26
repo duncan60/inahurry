@@ -1,13 +1,12 @@
-import { SET_TRAIN_TIMETABLE, SERVER_ERROR } from 'constants/ActionTypes';
+import { SET_TRAIN_TIMETABLE } from 'constants/ActionTypes';
 
 const initialState = {
     trainsTimetableData: {},
     closestStation     : {},
-    isReady            : false,
-    isError            : false
+    isReady            : false
 };
 
-export default function todos(state = initialState, action) {
+let postByTimetable = (state = initialState, action) => {
     switch (action.type) {
         case SET_TRAIN_TIMETABLE:
             return {
@@ -15,11 +14,9 @@ export default function todos(state = initialState, action) {
                 closestStation     : state.closestStation,
                 isReady            : true
             };
-        case SERVER_ERROR:
-            return {
-                isError: true
-            };
         default:
             return state;
     }
-}
+};
+
+export default postByTimetable;

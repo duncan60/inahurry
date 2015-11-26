@@ -5,20 +5,10 @@ import withDecorators from 'decorators/withDecorators';
 import Item from 'common/components/item/item';
 import Loading from 'common/components/loading/loading';
 
-//store
-import TrainTimeTableStore from 'stores/train-timetable-store';
+//redux
 
-//actions
-import TrainTimetableActions from 'actions/train-timetable-actions';
-
-let getStore = () => {
-    return {
-        trainsTimetable: TrainTimeTableStore.getTrainsTimetable(),
-        closestStation : TrainTimeTableStore.getClosestTrains(),
-        isReady        : TrainTimeTableStore.getReady(),
-        isError        : TrainTimeTableStore.getError()
-    };
-};
+import { connect } from 'react-redux';
+import { getTrainTimetable } from 'actions/train-timetable';
 
 let HeaderInfo = ({type, station}) => (
     <p className="table-header__subsection">
@@ -62,7 +52,6 @@ class Page extends BaseComponent {
             '_renderList',
             '_renderItems'
         );
-        this.state = getStore();
     }
     componentWillMount() {
         if (navigator.userAgent.match(/FB/) !== null) {
@@ -84,7 +73,8 @@ class Page extends BaseComponent {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-                    TrainTimetableActions.getTrainTimetable(position.coords.latitude, position.coords.longitude, this.props.routerType);
+                    const { dispatch } = this.props
+                    dispatch(getTrainTimetable(position.coords.latitude, position.coords.longitude, this.props.routerType));
                 },() => {
                     /*eslint-disable */
                     alert('無法使用定位，請設定瀏覽器開啟定位功能');
@@ -169,4 +159,14 @@ Page.defaultProps = {
     routerType: 'twtraffic',
 };
 
-export default Page;
+function mapStateToProps(state) {
+    const { trainsTimetable, closestStation, isReady, isError } = state;
+    return {
+        trainsTimetable,
+        closestStation,
+        isReady,
+        isError
+    }
+}
+//export default Page;
+export default connect(mapStateToProps)(Page);
