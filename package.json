@@ -53,6 +53,8 @@
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "redux-devtools": "^2.1.5",
+    "redux-logger": "^2.0.4",
+    "redux-thunk": "^1.0.0",
     "request": "^2.61.0",
     "rimraf": "^2.4.2",
     "sass-loader": "^1.0.2",

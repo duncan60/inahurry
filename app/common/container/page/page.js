@@ -48,7 +48,6 @@ class Page extends BaseComponent {
         super(props);
         this._bind(
             '_getGeolocation',
-            '_storeChange',
             '_renderList',
             '_renderItems'
         );
@@ -59,15 +58,6 @@ class Page extends BaseComponent {
             alert('建議使用safari或Chrome瀏覽，確保能使用使服務！');
         }
         this._getGeolocation();
-    }
-    componentDidMount() {
-        TrainTimeTableStore.addChangeListener(this._storeChange);
-    }
-    componentWillUnmount() {
-        TrainTimeTableStore.removeChangeListener(this._storeChange);
-    }
-    _storeChange() {
-        this.setState(getStore());
     }
     _getGeolocation() {
         if (navigator.geolocation) {
@@ -109,7 +99,7 @@ class Page extends BaseComponent {
         }
     }
     _renderList() {
-        const {south, north} = this.state.trainsTimetable;
+        const {south, north} = this.props.trainsTimetable;
         let northItems = this._renderItems(north),
             southItems = this._renderItems(south);
 
@@ -122,10 +112,11 @@ class Page extends BaseComponent {
         );
     }
     render() {
-        if (!this.state.isReady) {
+        console.log('conponent state', this.props);
+        if (!this.props.isReady) {
             return <Loading />;
         }
-        if (this.state.isError) {
+        if (this.props.isError) {
             return <p className='error_txt'>連線錯誤，暫時無法提供服務...</p>;
         }
         let listHtml = this._renderList(),
@@ -137,7 +128,7 @@ class Page extends BaseComponent {
                 <div className="table-header">
                     <div className="table-header__inner">
                         <h2 className="table-header__title">{title}</h2>
-                        <HeaderInfo type={this.props.routerType} station={this.state.closestStation} />
+                        <HeaderInfo type={this.props.routerType} station={this.props.closestStation} />
                     </div>
                 </div>
                 <section className="list-section">
@@ -160,9 +151,21 @@ Page.defaultProps = {
 };
 
 function mapStateToProps(state) {
-    const { trainsTimetable, closestStation, isReady, isError } = state;
+    console.log('mapStateToProps');
+    const {
+        serverError,
+        trainTimetable
+    } = state,
+    {
+        isError
+    } = serverError,
+    {
+        trainsTimetableData,
+        closestStation,
+        isReady
+    } = trainTimetable;
     return {
-        trainsTimetable,
+        trainsTimetableData,
         closestStation,
         isReady,
         isError

@@ -4,11 +4,12 @@ const states = {
     isError: false
 };
 
-let postByError = (state = {}, action) => {
+let postByError = (state = states, action) => {
     switch (action.type) {
         case SERVER_ERROR:
-            states.isError = true;
-            return states;
+            return {
+            	isError: true
+            };
         default:
             return state;
     }
