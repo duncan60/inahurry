@@ -1,14 +1,14 @@
 import { SERVER_ERROR } from 'constants/ActionTypes';
 
-const states = {
+const initialState = {
     isError: false
 };
 
-let postByError = (state = states, action) => {
+let postByError = (state = initialState, action) => {
     switch (action.type) {
         case SERVER_ERROR:
             return {
-            	isError: true
+                isError: true
             };
         default:
             return state;

@@ -112,8 +112,8 @@ class Page extends BaseComponent {
         );
     }
     render() {
-        console.log('conponent state', this.props);
-        if (!this.props.isReady) {
+        console.log('>>>>>>render conponent props', this.props);
+        if (!this.props.isReady && !this.props.isError) {
             return <Loading />;
         }
         if (this.props.isError) {

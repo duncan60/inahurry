@@ -1,12 +1,12 @@
 import { SET_TRAIN_TIMETABLE } from 'constants/ActionTypes';
 
-const states = {
+const initialState = {
     trainsTimetableData: {},
     closestStation     : {},
     isReady            : false
 };
 
-let postByTimetable = (state = states, action) => {
+let postByTimetable = (state = initialState, action) => {
     switch (action.type) {
         case SET_TRAIN_TIMETABLE:
             return {
