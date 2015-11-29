@@ -113,11 +113,11 @@ class Page extends BaseComponent {
     }
     render() {
         console.log('>>>>>>render conponent props', this.props);
-        if (!this.props.isReady && !this.props.isError) {
-            return <Loading />;
-        }
         if (this.props.isError) {
             return <p className='error_txt'>連線錯誤，暫時無法提供服務...</p>;
+        }
+        if (!this.props.isReady) {
+            return <Loading />;
         }
         let listHtml = this._renderList(),
             title    = this.props.routerType === 'twtraffic' ? '台鐵時刻表' : '高鐵時刻表',
