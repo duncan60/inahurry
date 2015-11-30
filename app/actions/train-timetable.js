@@ -18,7 +18,6 @@ async function fetchTrainTimetable(latitude, longitude, type) {
     try {
         let response = await fetch(api);
         let data = await response.json();
-        console.log('data.data', data.data);
         fetchSuccessed(data.data);
     } catch(e) {
         fetchFailed(e);
@@ -28,6 +27,5 @@ async function fetchTrainTimetable(latitude, longitude, type) {
 export function getTrainTimetable(latitude, longitude, type = 'twtraffic') {
     return (dispatch) => {
         return dispatch(fetchTrainTimetable(latitude, longitude, type));
-      };
-
+    };
 }
