@@ -2,11 +2,13 @@ import 'isomorphic-fetch';
 import * as types from 'constants/ActionTypes';
 
 let fetchSuccessed = (responData) => {
+    console.log('fetchSuccessed');
     return {
         type: types.SET_TRAIN_TIMETABLE,
         data: responData
     };
 };
+
 let fetchFailed = () => {
     return {
         type: types.SERVER_ERROR
