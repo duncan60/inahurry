@@ -63,7 +63,7 @@ class Page extends BaseComponent {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-                    const { dispatch } = this.props
+                    const { dispatch } = this.props;
                     dispatch(getTrainTimetable(position.coords.latitude, position.coords.longitude, this.props.routerType));
                 },() => {
                     /*eslint-disable */
@@ -112,7 +112,7 @@ class Page extends BaseComponent {
         );
     }
     render() {
-        console.log('>>>>>>render conponent props', this.props);
+        console.log('>>>>>>render page conponent');
         if (this.props.isError) {
             return <p className='error_txt'>連線錯誤，暫時無法提供服務...</p>;
         }
@@ -144,10 +144,12 @@ class Page extends BaseComponent {
 
 Page.propTypes = {
     routerType: React.PropTypes.string,
+    dispatch:React.PropTypes.func
 };
 
 Page.defaultProps = {
     routerType: 'twtraffic',
+    dispatch: () => {}
 };
 
 function mapStateToProps(state) {

@@ -5,11 +5,9 @@ import 'assets/main';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import appStore from 'stores/AppStore';
-import Page from 'common/container/page';
-
-const store = appStore();
+import Root from 'page/root';
 
 ReactDOM.render(
-    <Page routerType={'twtraffic'} store={store} />
+    <Root routerType={'twtraffic'} />
     , document.getElementById('content'));
+

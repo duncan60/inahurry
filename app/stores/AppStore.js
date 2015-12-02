@@ -1,13 +1,18 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import loggerMiddleware from 'redux-logger';
+import { createStore } from 'redux';
+//import thunkMiddleware from 'redux-thunk';
+//import loggerMiddleware from 'redux-logger';
 import rootReducer from '../reducers';
 
-const createStoreWithMiddleware = applyMiddleware(
-    thunkMiddleware,
-    loggerMiddleware
-)(createStore);
-
 export default function configureStore(initialState) {
-  return createStoreWithMiddleware(rootReducer, initialState);
+  const store = createStore(rootReducer, initialState);
+
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('../reducers', () => {
+      const nextReducer = require('../reducers');
+      store.replaceReducer(nextReducer);
+    });
+  }
+
+  return store;
 }
