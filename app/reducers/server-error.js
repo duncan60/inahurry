@@ -5,12 +5,10 @@ const initialState = {
 };
 
 let postByError = (state = initialState, action) => {
-	console.log('>>>>>>>>postByError', action);
     switch (action.type) {
         case SERVER_ERROR:
-        	console.log('LLLLLL');
             return {
-            	...initialState,
+                ...initialState,
                 isError: true
             };
         default:

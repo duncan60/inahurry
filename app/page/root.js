@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import Page from 'common/container/page';
 
-import appStore from 'stores/AppStore';
+import configureStore from 'stores/AppStore';
 
-const store = appStore();
+const store = configureStore();
 
 export default class Root extends Component {
   render() {

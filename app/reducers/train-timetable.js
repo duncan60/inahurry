@@ -7,18 +7,16 @@ const initialState = {
 };
 
 let postByTimetable = (state = initialState, action) => {
-    console.log('action.type', action.type);
+    console.log('action.data', action.data);
     switch (action.type) {
         case SET_TRAIN_TIMETABLE:
-            console.log('switch SET_TRAIN_TIMETABLE');
             return {
                 ...state,
-                trainsTimetableData: state.trainsTimetableData,
-                closestStation     : state.closestStation,
+                trainsTimetableData: action.data.trainsTimetableData,
+                closestStation     : action.data.closestStation,
                 isReady            : true
             };
         default:
-            console.log('switch default');
             return state;
     }
 };
