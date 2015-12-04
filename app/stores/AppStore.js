@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import api from '../middleware/api';
+import callAPIMiddleware from '../middleware/callAPIMiddleware';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
 
 const finalCreateStore = compose(
-  applyMiddleware(thunk, api),
+  applyMiddleware(thunk, callAPIMiddleware),
   applyMiddleware(createLogger())
 )(createStore);
 
