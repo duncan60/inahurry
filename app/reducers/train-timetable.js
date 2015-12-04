@@ -7,7 +7,6 @@ const initialState = {
 };
 
 let postByTimetable = (state = initialState, action) => {
-    console.log('action.data', action.data);
     switch (action.type) {
         case SET_TRAIN_TIMETABLE:
             return {

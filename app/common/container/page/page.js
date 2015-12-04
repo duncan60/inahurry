@@ -99,7 +99,7 @@ class Page extends BaseComponent {
         }
     }
     _renderList() {
-        const {south, north} = this.props.trainsTimetable;
+        const {south, north} = this.props.trainsTimetableData;
         let northItems = this._renderItems(north),
             southItems = this._renderItems(south);
 
@@ -112,7 +112,6 @@ class Page extends BaseComponent {
         );
     }
     render() {
-        console.log('>>>>>>render page conponent');
         if (this.props.isError) {
             return <p className='error_txt'>連線錯誤，暫時無法提供服務...</p>;
         }
@@ -152,8 +151,7 @@ Page.defaultProps = {
     dispatch: () => {}
 };
 
-function mapStateToProps(state) {
-    console.log('mapStateToProps');
+let mapStateToProps = (state) => {
     const {
         serverError,
         trainTimetable
@@ -172,6 +170,6 @@ function mapStateToProps(state) {
         isReady,
         isError
     }
-}
-//export default Page;
+};
+
 export default connect(mapStateToProps)(Page);
