@@ -14,16 +14,22 @@ let fetchFailed = () => {
     };
 };
 
-async function fetchTrainTimetable(latitude, longitude, type) {
+function fetchTrainTimetable(latitude, longitude, type) {
     let api = type === 'twtraffic' ? `/api/twtraffic?latitude=${latitude}&longitude=${longitude}` : `/api/thsrc?latitude=${latitude}&longitude=${longitude}`;
-    return (dispatch) => {
-        try {
-            let response = await fetch(api);
-            let data = await response.json();
-            fetchSuccessed(data.data);
-        } catch(e) {
-            fetchFailed(e);
-        }
+    return dispatch => {
+        return fetch(api)
+                .then(response =>response.json().then(json => ({ json, response })))
+                .then(({ json, response }) => {
+                    if (response.status === 200) {
+                        dispatch(fetchSuccessed(json));
+                    } else {
+                        dispatch(fetchFailed());
+                    }
+
+                })
+                .catch((err) => {
+                    dispatch(fetchFailed(err));
+                });
     };
 }
 
