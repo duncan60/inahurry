@@ -1,0 +1,2 @@
+export const SET_TRAIN_TIMETABLE = 'SET_TRAIN_TIMETABLE';
+export const SERVER_ERROR = 'SERVER_ERROR';
