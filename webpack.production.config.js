@@ -1,4 +1,4 @@
-var Webpack = require('webpack'),
+var webpack = require('webpack'),
     path = require('path'),
     util = require('util'),
     pkg = require('./package.json'),
@@ -13,7 +13,7 @@ var nodeModulesPath = path.resolve(__dirname, 'node_modules'),
 
 process.env.UV_THREADPOOL_SIZE = 100;
 
-var config = {
+module.exports = {
     devtool: 'source-map',
     entry: {
         twtraffic: [twtrafficPath],
@@ -46,9 +46,14 @@ var config = {
     },
     plugins: [
         new ExtractTextPlugin(cssBundleName),
-        new Webpack.ProvidePlugin({}),
-        new Webpack.optimize.CommonsChunkPlugin(util.format('js/common.%s.js', pkg.version)),
-        new Webpack.optimize.UglifyJsPlugin({
+        new webpack.ProvidePlugin({}),
+        new webpack.optimize.CommonsChunkPlugin(util.format('js/common.%s.js', pkg.version)),
+        new webpack.DefinePlugin({
+              'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+              }
+            }),
+        new webpack.optimize.UglifyJsPlugin({
             sourceMap: true,
             compress: {
                 warnings: false
@@ -63,5 +68,3 @@ var config = {
         extensions: ['', '.js', '.jsx', '.css', '.scss']
     }
 };
-
-module.exports = config;

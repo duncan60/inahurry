@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf server/assets",
-    "dev": "npm run webpackDev | npm run serverDev",
     "webpackDev": "node webpack-server.js ",
     "serverDev": "nodemon server --exec babel-node",
-    "webpackDeploy": "npm run clean && NODE_ENV=production webpack -p --progress --config webpack.production.config.js",
+    "webpackDeploy": "npm run clean && webpack -p --progress --config webpack.production.config.js",
     "server": "NODE_ENV=production babel-node server"
   },
   "repository": "duncan60/closest-train",
@@ -25,11 +24,13 @@
     "isomorphic-fetch": "^2.2.0",
     "moment": "^2.10.3",
     "normalize.css": "^3.0.3",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
     "react-redux": "^4.0.0",
     "redux": "^3.0.4",
-    "request": "^2.61.0",
     "redux-logger": "^2.0.4",
-    "redux-thunk": "^1.0.0"
+    "redux-thunk": "^1.0.0",
+    "request": "^2.61.0"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
@@ -53,9 +54,10 @@
     "node-sass": "^3.2.0",
     "nodemon": "^1.4.1",
     "postcss-loader": "^0.5.1",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
-    "redux-devtools": "^2.1.5",
+    "react-transform-hmr": "^1.0.1",
+    "redux-devtools": "^3.0.0-beta-3",
+    "redux-devtools-dock-monitor": "^1.0.0-beta-3",
+    "redux-devtools-log-monitor": "^1.0.0-beta-3",
     "request": "^2.61.0",
     "rimraf": "^2.4.2",
     "sass-loader": "^1.0.2",
@@ -63,6 +65,7 @@
     "url-loader": "~0.5.5",
     "util": "^0.10.3",
     "webpack": "^1.9.10",
-    "webpack-dev-server": "^1.9.0"
+    "webpack-dev-middleware": "^1.4.0",
+    "webpack-hot-middleware": "^2.6.0"
   }
 }

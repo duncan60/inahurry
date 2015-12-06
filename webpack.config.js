@@ -1,5 +1,5 @@
 var path            = require('path'),
-    Webpack         = require('webpack'),
+    webpack         = require('webpack'),
     autoprefixer    = require('autoprefixer-core'),
     csswring        = require('csswring');
 
@@ -9,18 +9,18 @@ var nodeModulesPath = path.resolve(__dirname, 'node_modules'),
     thsrcPath       = path.resolve(__dirname, 'app', 'page', 'thsrc', 'entry.js'),
     eslintrcPath    = path.resolve(__dirname, '.eslintrc');
 
-module.exports = [
-    {
+module.exports = {
         name: 'browser',
+        devtool: 'cheap-module-eval-source-map',
         entry: {
             twtraffic: [
                 'webpack/hot/dev-server',
-                'webpack-dev-server/client?http://localhost:8080',
+                'webpack-hot-middleware/client',
                 twtrafficPath
             ],
             thsrc: [
                 'webpack/hot/dev-server',
-                'webpack-dev-server/client?http://localhost:8080',
+                'webpack-hot-middleware/client',
                 thsrcPath
             ]
         },
@@ -62,8 +62,9 @@ module.exports = [
             extensions: ['', '.js', '.jsx', '.css', '.scss']
         },
         plugins: [
-            new Webpack.HotModuleReplacementPlugin(),
-            new Webpack.optimize.CommonsChunkPlugin('common.js')
+            new webpack.optimize.OccurenceOrderPlugin(),
+            new webpack.HotModuleReplacementPlugin(),
+            new webpack.optimize.CommonsChunkPlugin('common.js')
         ],
         eslint: {
             configFile: eslintrcPath
@@ -71,5 +72,6 @@ module.exports = [
         postcss: function () {
             return [autoprefixer, csswring];
         }
-    }
-];
+};
+
+
