@@ -5,20 +5,10 @@ import withDecorators from 'decorators/withDecorators';
 import Item from 'common/components/item/item';
 import Loading from 'common/components/loading/loading';
 
-//store
-import TrainTimeTableStore from 'stores/train-timetable-store';
+//redux
 
-//actions
-import TrainTimetableActions from 'actions/train-timetable-actions';
-
-let getStore = () => {
-    return {
-        trainsTimetable: TrainTimeTableStore.getTrainsTimetable(),
-        closestStation : TrainTimeTableStore.getClosestTrains(),
-        isReady        : TrainTimeTableStore.getReady(),
-        isError        : TrainTimeTableStore.getError()
-    };
-};
+import { connect } from 'react-redux';
+import { getTrainTimetable } from 'actions/train-timetable';
 
 let HeaderInfo = ({type, station}) => (
     <p className="table-header__subsection">
@@ -58,11 +48,9 @@ class Page extends BaseComponent {
         super(props);
         this._bind(
             '_getGeolocation',
-            '_storeChange',
             '_renderList',
             '_renderItems'
         );
-        this.state = getStore();
     }
     componentWillMount() {
         if (navigator.userAgent.match(/FB/) !== null) {
@@ -71,20 +59,12 @@ class Page extends BaseComponent {
         }
         this._getGeolocation();
     }
-    componentDidMount() {
-        TrainTimeTableStore.addChangeListener(this._storeChange);
-    }
-    componentWillUnmount() {
-        TrainTimeTableStore.removeChangeListener(this._storeChange);
-    }
-    _storeChange() {
-        this.setState(getStore());
-    }
     _getGeolocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-                    TrainTimetableActions.getTrainTimetable(position.coords.latitude, position.coords.longitude, this.props.routerType);
+                    const { dispatch } = this.props;
+                    dispatch(getTrainTimetable(position.coords.latitude, position.coords.longitude, this.props.routerType));
                 },() => {
                     /*eslint-disable */
                     alert('無法使用定位，請設定瀏覽器開啟定位功能');
@@ -119,7 +99,7 @@ class Page extends BaseComponent {
         }
     }
     _renderList() {
-        const {south, north} = this.state.trainsTimetable;
+        const {south, north} = this.props.trainsTimetableData;
         let northItems = this._renderItems(north),
             southItems = this._renderItems(south);
 
@@ -132,11 +112,11 @@ class Page extends BaseComponent {
         );
     }
     render() {
-        if (!this.state.isReady) {
-            return <Loading />;
-        }
-        if (this.state.isError) {
+        if (this.props.isError) {
             return <p className='error_txt'>連線錯誤，暫時無法提供服務...</p>;
+        }
+        if (!this.props.isReady) {
+            return <Loading />;
         }
         let listHtml = this._renderList(),
             title    = this.props.routerType === 'twtraffic' ? '台鐵時刻表' : '高鐵時刻表',
@@ -147,7 +127,7 @@ class Page extends BaseComponent {
                 <div className="table-header">
                     <div className="table-header__inner">
                         <h2 className="table-header__title">{title}</h2>
-                        <HeaderInfo type={this.props.routerType} station={this.state.closestStation} />
+                        <HeaderInfo type={this.props.routerType} station={this.props.closestStation} />
                     </div>
                 </div>
                 <section className="list-section">
@@ -163,10 +143,33 @@ class Page extends BaseComponent {
 
 Page.propTypes = {
     routerType: React.PropTypes.string,
+    dispatch:React.PropTypes.func
 };
 
 Page.defaultProps = {
     routerType: 'twtraffic',
+    dispatch: () => {}
 };
 
-export default Page;
+let mapStateToProps = (state) => {
+    const {
+        serverError,
+        trainTimetable
+    } = state,
+    {
+        isError
+    } = serverError,
+    {
+        trainsTimetableData,
+        closestStation,
+        isReady
+    } = trainTimetable;
+    return {
+        trainsTimetableData,
+        closestStation,
+        isReady,
+        isError
+    }
+};
+
+export default connect(mapStateToProps)(Page);

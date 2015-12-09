@@ -20,7 +20,7 @@ let crawlTwtrafficTrains =  {
             this.model.code = 1;
             this.model.msg = error;
         }
-        return this.model
+        return this.model;
     },
     promise(url, type) {
         return new Promise((resolve, reject) => {
