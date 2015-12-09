@@ -24,7 +24,9 @@ var webpackBundle = function() {
             colors: true
         }
     }));
-    app.use(webpackHotMiddleware(compiler));
+    app.use(webpackHotMiddleware(compiler, {
+        log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
+    }));
     app.listen(8080, 'localhost', function(error) {
         if (error) {
            console.error(error);

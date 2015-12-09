@@ -14,11 +14,13 @@ module.exports = {
         devtool: 'cheap-module-eval-source-map',
         entry: {
             twtraffic: [
-                'webpack-hot-middleware/client?reload=true',
+                'webpack/hot/dev-server',
+                'webpack-hot-middleware/client?http://localhost:8080',
                 twtrafficPath
             ],
             thsrc: [
-                'webpack-hot-middleware/client?reload=true',
+                'webpack/hot/dev-server',
+                'webpack-hot-middleware/client?http://localhost:8080',
                 thsrcPath
             ]
         },
