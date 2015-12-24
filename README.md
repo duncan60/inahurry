@@ -1,5 +1,5 @@
 # inahurry
-定位目前的geolocation，分析出距離最近的火車站，在由node.js去爬台鐵的火時刻表，搜尋出一小時內發車的火車資訊。
+定位目前的geolocation，分析出距離最近的火車站，在由node.js去爬台鐵/高鐵的火時刻表，搜尋出最近的發車資訊。
 
 ##Install npm
 ``` text
