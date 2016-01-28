@@ -14,7 +14,7 @@ let fetchFailed = () => {
     };
 };
 
-function fetchTrainTimetable(latitude, longitude, type) {
+let fetchTrainTimetable = (latitude, longitude, type) => {
     let api = type === 'twtraffic' ? `/api/twtraffic?latitude=${latitude}&longitude=${longitude}` : `/api/thsrc?latitude=${latitude}&longitude=${longitude}`;
     return dispatch => {
         return fetch(api)
@@ -31,7 +31,7 @@ function fetchTrainTimetable(latitude, longitude, type) {
                     dispatch(fetchFailed(err));
                 });
     };
-}
+};
 
 export function getTrainTimetable(latitude, longitude, type = 'twtraffic') {
     return (dispatch) => {

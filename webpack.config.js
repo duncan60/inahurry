@@ -1,13 +1,11 @@
-var path            = require('path'),
-    webpack         = require('webpack'),
-    autoprefixer    = require('autoprefixer-core'),
-    csswring        = require('csswring');
-
-var nodeModulesPath = path.resolve(__dirname, 'node_modules'),
-    buildPath       = path.resolve(__dirname, 'server', 'build'),
-    twtrafficPath   = path.resolve(__dirname, 'app', 'page', 'twtraffic', 'entry.js'),
-    thsrcPath       = path.resolve(__dirname, 'app', 'page', 'thsrc', 'entry.js'),
-    eslintrcPath    = path.resolve(__dirname, '.eslintrc');
+var path = require('path'),
+    webpack = require('webpack'),
+    autoprefixer = require('autoprefixer'),//({ browsers: ['safari >= 9, ie >= 10'] })
+    nodeModulesPath = path.resolve(__dirname, 'node_modules'),
+    buildPath = path.resolve(__dirname, 'server', 'build'),
+    twtrafficPath = path.resolve(__dirname, 'app', 'page', 'twtraffic', 'entry.js'),
+    thsrcPath = path.resolve(__dirname, 'app', 'page', 'thsrc', 'entry.js'),
+    eslintrcPath = path.resolve(__dirname, '.eslintrc');
 
 module.exports = {
         name: 'browser',
@@ -70,7 +68,7 @@ module.exports = {
             configFile: eslintrcPath
         },
         postcss: function () {
-            return [autoprefixer, csswring];
+            return [autoprefixer];
         }
 };
 

@@ -1,2 +1,2 @@
-webpackJsonp([1],{0:function(t,e,n){t.exports=n(290)},290:function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{"default":t}}n(125),n(129),n(127),n(128);var o=n(18),i=r(o),a=n(130),u=r(a),s=n(126),c=r(s);u["default"].render(i["default"].createElement(c["default"],{routerType:"twtraffic"}),document.getElementById("content"))}});
+webpackJsonp([1],{0:function(t,e,n){t.exports=n(289)},289:function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{"default":t}}n(124),n(128),n(126),n(127);var o=n(18),i=r(o),a=n(129),u=r(a),s=n(125),c=r(s);u["default"].render(i["default"].createElement(c["default"],{routerType:"twtraffic"}),document.getElementById("content"))}});
 //# sourceMappingURL=twtraffic.1.0.0.js.map
