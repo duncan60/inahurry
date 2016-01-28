@@ -1,37 +1,40 @@
 @import '../../../assets/scss/_tools.mixins.scss';
-.item__inner{
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: center;
-    margin-bottom: 8px;
-    padding:16px 10px;
-    background-color: rgba(#fff, 0.25);
-    color: #fff;
-    border-radius: 4px;
-}
-.item__heading {
-    flex: 1;
-    text-align: center;
-}
-.item__body {
-    flex: 2;
-    text-align: center;
-}
-.item__footer{
-    flex: 1;
-    text-align: center;
-}
-.item__time {
-    @include fontToRem(46, 1.4);
-    font-family: 'Roboto Mono';
-    font-style: italic;
-}
-.item__icon-clock {
-    @include fontToRem(22, 1.4);
-}
-.item__small {
-    @include fontToRem(16, 1.4);
+
+.item {
+    &__inner{
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 8px;
+        padding:16px 10px;
+        background-color: rgba(255, 255, 255, 0.25);
+        color: #fff;
+        border-radius: 4px;
+    }
+    &__heading {
+        flex: 1;
+        text-align: center;
+    }
+    &__body {
+        flex: 2;
+        text-align: center;
+    }
+    &__footer{
+        flex: 1;
+        text-align: center;
+    }
+    &__time {
+        @include fontToRem(46, 1.4);
+        font-family: 'Roboto Mono';
+        font-style: italic;
+    }
+    &__icon-clock {
+        @include fontToRem(22, 1.4);
+    }
+    &__small {
+        @include fontToRem(16, 1.4);
+    }
 }
 .item-appear {
     opacity: 0.01;
@@ -41,7 +44,6 @@
 .item-appear.item-appear-active {
     opacity: 1;
 }
-
 @media (max-width: 440px) {
     .item__inner{
         display: block;
