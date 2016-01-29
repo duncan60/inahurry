@@ -5,6 +5,15 @@
 ``` text
 $ npm install
 ```
+## Stack
+
+- React.js
+- Webpack
+- Express
+- Redux
+- Redux-DevTools
+- Babel
+- postcss
 
 ##Start to development server
 
