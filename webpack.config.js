@@ -6,24 +6,23 @@ var path = require('path'),
     twtrafficPath = path.resolve(__dirname, 'app', 'page', 'twtraffic', 'entry.js'),
     thsrcPath = path.resolve(__dirname, 'app', 'page', 'thsrc', 'entry.js'),
     eslintrcPath = path.resolve(__dirname, '.eslintrc');
-
+var hotMiddlewareScript = 'webpack-hot-middleware/client?path=http://localhost:8080';
 module.exports = {
         name: 'browser',
         devtool: 'cheap-module-eval-source-map',
         entry: {
             twtraffic: [
-                'webpack/hot/dev-server',
-                'webpack-hot-middleware/client?http://localhost:8080',
-                twtrafficPath
+                twtrafficPath,
+                hotMiddlewareScript
             ],
             thsrc: [
-                'webpack/hot/dev-server',
-                'webpack-hot-middleware/client?http://localhost:8080',
-                thsrcPath
+                thsrcPath,
+                hotMiddlewareScript
             ]
         },
         output: {
             path: buildPath,
+            publicPath: '/build/',
             filename: '[name].js'
         },
         module: {
@@ -62,6 +61,7 @@ module.exports = {
         plugins: [
             new webpack.optimize.OccurenceOrderPlugin(),
             new webpack.HotModuleReplacementPlugin(),
+            new webpack.NoErrorsPlugin(),
             new webpack.optimize.CommonsChunkPlugin('common.js')
         ],
         eslint: {

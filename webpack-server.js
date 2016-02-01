@@ -12,18 +12,7 @@ var webpackBundle = function() {
         bundleStart = Date.now();
     });
 
-    compiler.plugin('done', function() {
-        console.log('Bundled in ' + (Date.now() - bundleStart) + 'ms!');
-    });
-
-    app.use(webpackDevMiddleware(compiler, {
-        noInfo: true,
-        headers: { 'X-Custom-Header': 'yes' },
-        publicPath: '/build/',
-        stats: {
-            colors: true
-        }
-    }));
+    app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath, headers: { "Access-Control-Allow-Origin": "*" } }));
     app.use(webpackHotMiddleware(compiler, {
         log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
     }));
