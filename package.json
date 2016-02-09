@@ -10,7 +10,7 @@
     "webpackDeploy": "npm run clean && webpack -p --progress --config webpack.production.config.js",
     "server": "NODE_ENV=production babel-node server"
   },
-  "repository": "duncan60/closest-train",
+  "repository": "duncan60/inahurry",
   "keywords": [
     "react",
     "reactjs",
