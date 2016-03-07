@@ -21,5 +21,5 @@ export default class Root extends Component {
 }
 
 Root.propTypes = {
-  routerType: PropTypes.string
+  routerType: React.PropTypes.string
 };

@@ -1,4 +1,4 @@
-import 'babel-core/polyfill';
+import 'babel-polyfill';
 import 'normalize.css';
 import 'assets/fonts-style';
 import 'assets/main';

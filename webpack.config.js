@@ -26,13 +26,13 @@ module.exports = {
             filename: '[name].js'
         },
         module: {
-            preLoaders: [
-                {
-                    test: /\.js(x)?$/,
-                    loader: 'eslint',
-                    exclude: nodeModulesPath
-                }
-            ],
+            // preLoaders: [
+            //     {
+            //         test: /\.js(x)?$/,
+            //         loader: 'eslint',
+            //         exclude: nodeModulesPath
+            //     }
+            // ],
             loaders: [
                 { test: /\.js$/, loader: 'jsx-loader' },
                 { test: /\.png$/, loader: 'url-loader' },
@@ -47,7 +47,16 @@ module.exports = {
                 {
                     test: /\.js(x)?$/,
                     loader: 'babel',
-                    exclude: nodeModulesPath
+                    exclude: nodeModulesPath,
+                    query: {
+                        presets: ['react','es2015', 'stage-0'],
+                        plugins: ['transform-decorators-legacy'],
+                        env: {
+                            development: {
+                                presets: ['react-hmre']
+                            }
+                        }
+                    }
                 }
             ]
         },

@@ -1,4 +1,4 @@
-import 'babel-core/polyfill';
+import 'babel-polyfill';
 import 'normalize.css';
 import 'assets/fonts-style';
 import 'assets/main';
@@ -8,6 +8,6 @@ import ReactDOM from 'react-dom';
 import Root from 'page/root';
 
 ReactDOM.render(
-    <Root routerType={'thsrc'} />
-    , document.getElementById('content'));
+    <Root routerType={'thsrc'} />, document.getElementById('content')
+);
 
