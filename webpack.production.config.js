@@ -28,7 +28,16 @@ module.exports = {
             {
                 test: /\.js(x)?$/,
                 loader: 'babel',
-                exclude: nodeModulesPath
+                exclude: nodeModulesPath,
+                query: {
+                    presets: ['react','es2015', 'stage-0'],
+                    plugins: ['transform-decorators-legacy'],
+                    env: {
+                        development: {
+                            presets: ['react-hmre']
+                        }
+                    }
+                }
             },
             {
                 test: /\.(css|scss)$/,
