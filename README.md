@@ -23,6 +23,8 @@ $ npm run webpackDev
 $ npm run serverDev
 # open this url in your browser
 # http://localhost:3000/
+# or
+# npm run dev
 ```
 ##deployment
 
