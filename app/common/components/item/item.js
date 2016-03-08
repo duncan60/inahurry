@@ -18,7 +18,7 @@ let ThsrcItem = ({props}) => (
     </div>
 );
 
-let TwtrafficItem = ({props}) => (
+let TwtrafficItem = ({ props }) => (
     <div className="item__inner">
         <div className="item__heading">
                 <p>{props.trainType}</p>

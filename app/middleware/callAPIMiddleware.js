@@ -1,23 +1,23 @@
 import 'isomorphic-fetch';
-export default function callAPIMiddleware (){
-    return next=> action =>{
-        const { fetchAPI, types, ...rest } = action;
+export default function callAPIMiddleware () {
+    return next => action => {
+        const { fetchAPI, types } = action;
         if (!fetchAPI) {
             return next(action);
         }
-        const [SUCCESS, FAILURE] = types;
+        const [ success, failure ] = types;
         return fetch(fetchAPI)
             .then(response =>response.json().then(json => ({ json, response })))
             .then(({ json, response }) => {
                 if (response.status === 200) {
-                    next(SUCCESS(json));
+                    next(success(json));
                 } else {
-                    next(FAILURE());
+                    next(failure());
                 }
 
             })
             .catch((err) => {
-                next(FAILURE());
+                next(failure(err));
             });
     };
 }
