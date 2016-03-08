@@ -26,13 +26,13 @@ module.exports = {
             filename: '[name].js'
         },
         module: {
-            // preLoaders: [
-            //     {
-            //         test: /\.js(x)?$/,
-            //         loader: 'eslint',
-            //         exclude: nodeModulesPath
-            //     }
-            // ],
+            preLoaders: [
+                {
+                    test: /\.js(x)?$/,
+                    loader: 'eslint',
+                    exclude: nodeModulesPath
+                }
+            ],
             loaders: [
                 { test: /\.js$/, loader: 'jsx-loader' },
                 { test: /\.png$/, loader: 'url-loader' },
