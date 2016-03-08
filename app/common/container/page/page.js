@@ -1,46 +1,16 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import BaseComponent from 'base-component';
 import withDecorators from 'decorators/withDecorators';
 //components
 import Item from 'common/components/item/item';
 import Loading from 'common/components/loading/loading';
-
+import { HeaderInfo, NotHasTrainsItem, ListGroup } from 'common/components/stateless';
 //redux
-
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getTrainTimetable } from 'actions/train-timetable';
 
-let HeaderInfo = ({type, station}) => (
-    <p className="table-header__subsection">
-        <small className="table-header__subsection--small">
-            距離
-        </small>
-        {station.name}
-        {type === 'twtraffic' ? '火車站' : ''}
-        <small className="table-header__subsection--small">
-            約 {(+station.dist).toFixed(2)} Km
-        </small>
-    </p>
-);
 
-let NotHasTrainsItem = () => (
-    <li className="item">
-        <div className="item__inner">
-            <div className="item__heading">
-                <p>目前沒有任何列車</p>
-            </div>
-        </div>
-    </li>
-);
-
-let ListGroup = ({title, items}) => (
-    <div className="list-wrapper south-list">
-        <p className="list-title"><span className="icon-train" />{title}</p>
-        <ul className="list-group">
-            {items}
-        </ul>
-    </div>
-);
 
 @withDecorators
 class Page extends BaseComponent {
@@ -63,8 +33,7 @@ class Page extends BaseComponent {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-                    const { dispatch } = this.props;
-                    dispatch(getTrainTimetable(position.coords.latitude, position.coords.longitude, this.props.routerType));
+                    this.props.getTrainTimetable(position.coords.latitude, position.coords.longitude, this.props.routerType);
                 },() => {
                     /*eslint-disable */
                     alert('無法使用定位，請設定瀏覽器開啟定位功能');
@@ -142,13 +111,11 @@ class Page extends BaseComponent {
 }
 
 Page.propTypes = {
-    routerType: React.PropTypes.string,
-    dispatch:React.PropTypes.func
+    routerType: PropTypes.string
 };
 
 Page.defaultProps = {
-    routerType: 'twtraffic',
-    dispatch: () => {}
+    routerType: 'twtraffic'
 };
 
 let mapStateToProps = (state) => {
@@ -172,4 +139,10 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(Page);
+export default connect(
+    mapStateToProps,
+    dispatch => bindActionCreators({
+        getTrainTimetable
+    }, dispatch)
+
+)(Page);

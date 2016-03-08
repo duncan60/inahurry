@@ -2,14 +2,14 @@ var webpack = require('webpack'),
     path = require('path'),
     util = require('util'),
     pkg = require('./package.json'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-var nodeModulesPath = path.resolve(__dirname, 'node_modules'),
-    buildPath       = path.resolve(__dirname, 'server', 'assets'),
-    twtrafficPath   = path.resolve(__dirname, 'app', 'page', 'twtraffic', 'entry.js'),
-    thsrcPath       = path.resolve(__dirname, 'app', 'page', 'thsrc', 'entry.js'),
-    cssBundleName   = util.format('styles/style.bundle.%s.css', pkg.version),
-    jsBundleName    = util.format('js/[name].%s.js', pkg.version);
+    autoprefixer = require('autoprefixer'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    nodeModulesPath = path.resolve(__dirname, 'node_modules'),
+    buildPath = path.resolve(__dirname, 'server', 'assets'),
+    twtrafficPath = path.resolve(__dirname, 'app', 'page', 'twtraffic', 'entry.js'),
+    thsrcPath = path.resolve(__dirname, 'app', 'page', 'thsrc', 'entry.js'),
+    cssBundleName = util.format('styles/style.bundle.%s.css', pkg.version),
+    jsBundleName = util.format('js/[name].%s.js', pkg.version);
 
 process.env.UV_THREADPOOL_SIZE = 100;
 
@@ -28,11 +28,20 @@ module.exports = {
             {
                 test: /\.js(x)?$/,
                 loader: 'babel',
-                exclude: nodeModulesPath
+                exclude: nodeModulesPath,
+                query: {
+                    presets: ['react','es2015', 'stage-0'],
+                    plugins: ['transform-decorators-legacy'],
+                    env: {
+                        development: {
+                            presets: ['react-hmre']
+                        }
+                    }
+                }
             },
             {
                 test: /\.(css|scss)$/,
-                loader: ExtractTextPlugin.extract('css?sourceMap!sass?sourceMap')
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader')
             },
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
@@ -66,5 +75,8 @@ module.exports = {
             'node_modules'
         ],
         extensions: ['', '.js', '.jsx', '.css', '.scss']
+    },
+    postcss: function () {
+        return [autoprefixer];
     }
 };

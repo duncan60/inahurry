@@ -5,6 +5,15 @@
 ``` text
 $ npm install
 ```
+## Stack
+
+- React.js
+- Webpack
+- Express
+- Redux
+- Redux-DevTools
+- Babel
+- postcss
 
 ##Start to development server
 
@@ -14,6 +23,8 @@ $ npm run webpackDev
 $ npm run serverDev
 # open this url in your browser
 # http://localhost:3000/
+# or
+# npm run dev
 ```
 ##deployment
 
