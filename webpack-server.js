@@ -12,7 +12,7 @@ var webpackBundle = function() {
         bundleStart = Date.now();
     });
 
-    app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath, headers: { "Access-Control-Allow-Origin": "*" } }));
+    app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }));
     app.use(webpackHotMiddleware(compiler, {
         log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
     }));

@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf server/assets",
     "webpackDev": "node webpack-server.js ",
-    "serverDev": "nodemon server --exec babel-node ",
+    "serverDev": "nodemon server --exec babel-node --watch server/",
     "webpackDeploy": "npm run clean && webpack -p --progress --config webpack.production.config.js",
     "server": "NODE_ENV=production babel-node server",
     "dev": "parallelshell 'npm run serverDev' 'npm run webpackDev'"
