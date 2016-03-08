@@ -1,6 +1,6 @@
 import './_item';
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import BaseComponent from 'base-component';
 
 let ThsrcItem = ({props}) => (
@@ -54,11 +54,11 @@ class Item extends BaseComponent {
 }
 
 Item.propTypes = {
-    type     : React.PropTypes.string,
-    trainType: React.PropTypes.string,
-    startTime: React.PropTypes.string,
-    router   : React.PropTypes.string,
-    state    : React.PropTypes.string
+    type     : PropTypes.string,
+    trainType: PropTypes.string,
+    startTime: PropTypes.string,
+    router   : PropTypes.string,
+    state    : PropTypes.string
 };
 Item.defaultProps = {
     type     : 'twtraffic',
