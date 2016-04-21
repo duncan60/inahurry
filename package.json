@@ -1,7 +1,7 @@
 {
-  "name": "closest-train",
+  "name": "inahurry",
   "version": "1.0.0",
-  "description": "",
+  "description": "定位目前的geolocation，分析出距離最近的火車站，在由node.js去爬台鐵/高鐵的火時刻表，搜尋出最近的發車資訊。",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf server/assets",
@@ -11,10 +11,13 @@
     "server": "NODE_ENV=production babel-node server",
     "dev": "parallelshell 'npm run serverDev' 'npm run webpackDev'"
   },
-  "repository": "duncan60/inahurry",
+  "repository": "https://github.com/duncan60/inahurry/",
   "keywords": [
     "react",
     "reactjs",
+    "redux",
+    "webpack",
+    "node.js"
     "server",
     "server-side"
   ],
