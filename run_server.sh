@@ -4,4 +4,4 @@ docker run -t -i -d \
        -p 0.0.0.0:443:443 \
        -v $(pwd):/var/www/inahurry \
        --name inahurry node:6.9.2 \
-       /bin/bash -c 'cd /var/www/inahurry && sh build.sh'
+       # /bin/bash -c 'cd /var/www/inahurry && sh build.sh'
