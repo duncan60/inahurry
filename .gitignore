@@ -7,9 +7,6 @@ Thumbs.db
 ehthumbs.db
 
 node_modules/
-/dist
-/src/scripts
-/src/bower_components
-/server/assets
+server/assets/
 .sass-cache/
 npm-debug.log
