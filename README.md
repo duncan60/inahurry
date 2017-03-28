@@ -1,7 +1,7 @@
 # inahurry
 定位目前的geolocation，分析出距離最近的火車站，在由node.js去爬台鐵/高鐵的火時刻表，搜尋出最近的發車資訊。
 
-##Install npm
+## Install npm
 ``` text
 $ npm install
 ```
@@ -15,7 +15,7 @@ $ npm install
 - Babel
 - postcss
 
-##Start to development server
+## Start to development server
 
 ``` text
 # 2 different terminals  
@@ -26,7 +26,7 @@ $ npm run serverDev
 # or
 # npm run dev
 ```
-##deployment
+## deployment
 
 ``` text
 # 2 different terminals  
